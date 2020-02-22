@@ -1,16 +1,23 @@
 header {
     background-color: $lightBlue;
+    // padding: 0 10px;
     nav {
         display: flex;
         justify-content: space-around;
         max-width: 600px;
         margin: 0 auto;
         .nav-item {
-            padding: 25px;
+            width: 33.33%;
+            max-width: 160px;
+            padding: 25px 0;
             font-size: 16px;
             text-align: center;
             font-weight: 500;
             color: $darkBlue;
+            @include tablet {
+                font-weight: 400;
+                font-size: 22px;
+            }
         }
         // 當前頁面
         .active {
