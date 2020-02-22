@@ -1,3 +1,25 @@
+body {
+  margin: 0; }
+
+a {
+  text-decoration: none; }
+
+* {
+  box-sizing: border-box; }
+
 header {
-  display: flex;
-  background-color: #00408B; }
+  background-color: #4A90E2; }
+  header nav {
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    margin: 0 auto; }
+    header nav .nav-item {
+      padding: 25px;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 500;
+      color: #00408B; }
+    header nav .active {
+      color: #ffffff;
+      box-shadow: inset 0 -5px #00408B; }

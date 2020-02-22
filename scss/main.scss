@@ -1,8 +1,10 @@
 //-- settings
-@import './settings/color';
+@import 'settings/colors';
 //-- tools
 //-- generic
+@import 'generic/reset';
 //-- elememts
+@import 'elements/base';
 //-- objects
 //-- components
-@import './components/Header.scss'
+@import 'components/header.scss';
