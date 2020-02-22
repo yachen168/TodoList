@@ -1,0 +1,21 @@
+header {
+    background-color: $lightBlue;
+    nav {
+        display: flex;
+        justify-content: space-around;
+        max-width: 600px;
+        margin: 0 auto;
+        .nav-item {
+            padding: 25px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 500;
+            color: $darkBlue;
+        }
+        // 當前頁面
+        .active {
+            color: $white;
+            box-shadow: inset 0 -5px $darkBlue;
+        }
+    }
+}
