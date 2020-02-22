@@ -57,7 +57,6 @@ header {
 
 .add-edit-card {
   margin-top: 20px;
-  background-color: #F2F2F2;
   border-radius: 5px;
   overflow: hidden; }
   .add-edit-card .card-bar {
@@ -88,8 +87,10 @@ header {
       margin-left: 10px;
       font-size: 16px; }
   .add-edit-card .card-body {
-    padding: 15px 50px 0 80px; }
-    .add-edit-card .card-body > div {
+    padding: 15px 50px 15px 80px;
+    margin-top: 3px;
+    background-color: #F2F2F2; }
+    .add-edit-card .card-body > div:not(:last-child) {
       margin-bottom: 20px; }
     .add-edit-card .card-body h3 {
       position: relative;

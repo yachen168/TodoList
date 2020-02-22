@@ -1,6 +1,5 @@
 .add-edit-card {
     margin-top: 20px;
-    background-color: $lightGrey;
     border-radius: 5px;
     overflow: hidden;
     .card-bar {
@@ -42,8 +41,10 @@
         }
     }
     .card-body {
-        padding: 15px 50px 0 80px;
-        >div {
+        padding: 15px 50px 15px 80px;
+        margin-top: 3px;
+        background-color: $lightGrey;
+        >div:not(:last-child) {
             margin-bottom: 20px;
         }
         h3 {
