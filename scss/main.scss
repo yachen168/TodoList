@@ -1,10 +1,13 @@
 //-- settings
 @import 'settings/colors';
 //-- tools
+@import 'tools/mediaQuery';
 //-- generic
 @import 'generic/reset';
 //-- elememts
 @import 'elements/base';
 //-- objects
+@import 'objects/section-add-edit';
 //-- components
-@import 'components/header.scss';
+@import 'components/header';
+@import 'components/add-edit-card';

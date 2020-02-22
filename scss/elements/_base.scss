@@ -1,3 +1,13 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    background-color: $greyisWhite;
+}
+
+main {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 30px 5px;
+}

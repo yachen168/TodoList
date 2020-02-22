@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 <link rel="stylesheet" href="./dist/main.css">
 
 <head>
@@ -17,6 +18,48 @@
         </nav>
         </div>
     </header>
+    <main>
+        <section class="add-edit">
+            <!-- Add Task -->
+            <button class="add-button">+ Add Task</button>
+            <!-- 點擊 Add Task，展開編輯區塊 -->
+            <div class="add-edit-card">
+                <!-- 加入星星的(loved) bar 會變黃色 -->
+                <div class="card-bar loved">
+                    <label>
+                        <input class="checkbox" type="checkbox">
+                        <h2>Type Something Here…</h2>
+                    </label>
+                    <div class="icon-wrapper">
+                        <!-- active 加上 active 的 class (變色) -->
+                        <div class="star"><i class="fas fa-star star-active"></i></div>
+                        <div class="pen"><i class="fas fa-pen pen-active"></i></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="deadline">
+                        <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="yyyy/mm/dd">
+                            <input type="text" placeholder="hh:mm">
+                        </div>
+                    </div>
+                    <div class="file">
+                        <h3><i class="far fa-file"></i>File</h3>
+                        <button class="plus">+</button>
+                    </div>
+                    <div class="comment">
+                        <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                        <textarea placeholder="Type your memo here..."></textarea>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="cancel"><i class="fas fa-times"></i>Cancel</button>
+                    <button class="addTask"><i class="fas fa-plus"></i>Add Task</button>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
