@@ -1,0 +1,20 @@
+{
+    "name": "to-do-list",
+    "version": "1.0.0",
+    "description": "[設計稿](https://hexschool.github.io/THE_F2E_Design/todolist/)",
+    "main": "index.js",
+    "scripts": {
+        "build-css": "node-sass -w scss/ -o dist/css/ --recursive"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yachen168/to-do-list.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yachen168/to-do-list/issues"
+    },
+    "homepage": "https://github.com/yachen168/to-do-list#readme"
+}
