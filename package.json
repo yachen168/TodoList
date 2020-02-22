@@ -4,17 +4,19 @@
     "description": "[設計稿](https://hexschool.github.io/THE_F2E_Design/todolist/)",
     "main": "index.js",
     "scripts": {
-        "build-css": "node-sass -w scss/ -o dist/css/ --recursive"
+        "build-css": "node-sass -w scss/main.scss -o dist/ -r"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/yachen168/to-do-list.git"
     },
-    "keywords": [],
-    "author": "",
+    "author": "yachen",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/yachen168/to-do-list/issues"
     },
-    "homepage": "https://github.com/yachen168/to-do-list#readme"
+    "homepage": "https://github.com/yachen168/to-do-list#readme",
+    "dependencies": {
+        "node-sass": "^4.13.1"
+    }
 }
