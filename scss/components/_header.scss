@@ -1,28 +1,29 @@
 header {
-    background-color: $lightBlue;
+    background-color: $blue-100;
     // padding: 0 10px;
-    nav {
-        display: flex;
-        justify-content: space-around;
-        max-width: 600px;
-        margin: 0 auto;
-        .nav-item {
-            width: 33.33%;
-            max-width: 160px;
-            padding: 25px 0;
-            font-size: 16px;
-            text-align: center;
-            font-weight: 500;
-            color: $darkBlue;
-            @include tablet {
-                font-weight: 400;
-                font-size: 20px;
-            }
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    margin: 0 auto;
+    .nav-item {
+        width: 33.33%;
+        max-width: 160px;
+        padding: 25px 0;
+        font-size: 18px;
+        text-align: center;
+        font-weight: 500;
+        color: $blue-300;
+        @include tablet {
+            font-weight: 400;
+            font-size: 24px;
         }
-        // 當前頁面
-        .active {
-            color: $white;
-            box-shadow: inset 0 -5px $darkBlue;
-        }
+    }
+    // 當前頁面
+    .nav-item-active {
+        color: $white;
+        box-shadow: inset 0 -5px $blue-300;
     }
 }
