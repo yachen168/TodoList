@@ -6,13 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yachen's to-do-list</title>
+    <title>to-do-list</title>
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="##" class="nav-item active">My Tasks</a>
+            <a href="##" class="nav-item nav-item-active">My Tasks</a>
             <a href="##" class="nav-item">In progress</a>
             <a href="##" class="nav-item">Completed</a>
         </nav>
@@ -20,46 +20,85 @@
     </header>
     <main>
         <section class="add-edit">
-            <!-- Add Task -->
-            <button class="add-button">+ Add Task</button>
-            <!-- 點擊 Add Task，展開編輯區塊 -->
-            <div class="add-edit-card">
-                <!-- 加入星星的(loved) bar 會變黃色 -->
-                <div class="card-bar loved">
+            <button class="add-new-task">+ Add Task</button>
+            <div class="edit-new-task-area">
+                <div class="task-bar new-task-bar">
                     <label>
                         <input class="checkbox" type="checkbox">
                         <h2>Type Something Here…</h2>
                     </label>
                     <div class="icon-wrapper">
-                        <!-- active 加上 active 的 class (變色) -->
-                        <div class="star"><i class="fas fa-star star-active"></i></div>
-                        <div class="pen"><i class="fas fa-pen pen-active"></i></div>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-pen pen-active"></i>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="deadline">
-                        <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
-                        <div class="input-wrapper">
-                            <input type="text" placeholder="yyyy/mm/dd">
-                            <input type="text" placeholder="hh:mm">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="deadline">
+                            <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                            <div class="input-wrapper">
+                                <input type="text" placeholder="yyyy/mm/dd">
+                                <input type="text" placeholder="hh:mm">
+                            </div>
+                        </div>
+                        <div class="file">
+                            <h3><i class="far fa-file"></i>File</h3>
+                            <button class="plus">+</button>
+                        </div>
+                        <div class="comment">
+                            <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                            <textarea placeholder="Type your memo here..."></textarea>
                         </div>
                     </div>
-                    <div class="file">
-                        <h3><i class="far fa-file"></i>File</h3>
-                        <button class="plus">+</button>
+                    <div class="card-footer">
+                        <button class="cancel"><i class="fas fa-times"></i>Cancel</button>
+                        <button class="addTask"><i class="fas fa-plus"></i>Add Task</button>
                     </div>
-                    <div class="comment">
-                        <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                        <textarea placeholder="Type your memo here..."></textarea>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button class="cancel"><i class="fas fa-times"></i>Cancel</button>
-                    <button class="addTask"><i class="fas fa-plus"></i>Add Task</button>
                 </div>
             </div>
+            <!-- fake -->
+            <div class="task-item">
+                <div class="task-bar">
+                    <label>
+                        <input class="checkbox" type="checkbox">
+                        <h2>{{ 待辦事項 1 }}</h2>
+                    </label>
+                    <div class="icon-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-pen"></i>
+                    </div>
+                </div>
+                <div class="edit-old-task-area">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="deadline">
+                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="yyyy/mm/dd">
+                                    <input type="text" placeholder="hh:mm">
+                                </div>
+                            </div>
+                            <div class="file">
+                                <h3><i class="far fa-file"></i>File</h3>
+                                <button class="plus">+</button>
+                            </div>
+                            <div class="comment">
+                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                                <textarea placeholder="Type your memo here..."></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button class="addTask"><i class="fas fa-plus"></i>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ----- -->
         </section>
     </main>
+
+    <script src="./main.js"></script>
 </body>
 
 </html>
