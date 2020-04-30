@@ -3,11 +3,15 @@
 }
 
 body {
-    background-color: $greyisWhite;
+    background-color: $grey-300;
 }
 
 main {
     max-width: 620px;
     margin: 0 auto;
     padding: 30px 5px;
+}
+
+button {
+    cursor: pointer;
 }
