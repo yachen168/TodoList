@@ -39,11 +39,10 @@ pens.forEach((pen, i) => {
 // 點擊取消，關閉編輯區
 const cancelButtons = document.querySelectorAll('.cancel');
 
-cancelButtons.forEach((cancelButton) => {
-    cancelButton.addEventListener('click', () => {
-        toggleClass(cancelButton.parentNode.parentNode.parentNode, 'edit-area-active')
-    })
-});
+cancelButtons.forEach(cancelButton => cancelButton.addEventListener('click', () => {
+    toggleClass(cancelButton.parentNode.parentNode.parentNode, 'edit-area-active');
+}))
+
 
 // ======== toggle css class ========
 function toggleClass(nodeItem, cssClass) {
