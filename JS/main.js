@@ -1,19 +1,28 @@
 // ======== render 畫面 ========
 const taskItem = document.querySelector('.task-item');
 
-let data = [{
-        task: '吃飯'
-    }, {
-        task: '睡覺'
-    },
-    {
-        task: '看電視'
-    }
-]
+let data = {
+    todoNum: '',
+    lists: [{
+            id: 1,
+            task: '吃飯',
+            completed: false
+        }, {
+            id: 2,
+            task: '睡覺',
+            completed: false
+        },
+        {
+            id: 3,
+            task: '看電視',
+            completed: false
+        }
+    ]
+}
 
 function renderTasks() {
     let htmlString = '';
-    data.forEach((item, i) => {
+    data.lists.forEach((item, i) => {
         htmlString = htmlString + `
         <div class="task-bar" data-id="${i}">
         <label>
