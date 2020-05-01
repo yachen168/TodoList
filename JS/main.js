@@ -1,9 +1,5 @@
-// ======== render 畫面 ========
-const taskItem = document.querySelector('.task-item');
-
 // fake data
 let data = {
-    todoNum: '',
     lists: [{
         id: 1,
         task: '吃飯',
@@ -22,6 +18,15 @@ let data = {
         isCompleted: false
     }]
 }
+
+let methods = {
+    getNumTasksLeft: () => {
+        return data.lists.length;
+    }
+}
+
+// ======== render tasks 畫面 ========
+const taskItem = document.querySelector('.task-item');
 
 function renderTasks() {
     let htmlString = '';
@@ -68,7 +73,16 @@ function renderTasks() {
     taskItem.innerHTML = htmlString;
 }
 
-renderTasks()
+// ======== render how many tasks left ========
+const numsTasksLeft = document.querySelector('.numbers-tasks-left');
+
+function renderNumsTasksLeft() {
+    numsTasksLeft.innerText = `${methods.getNumTasksLeft()} tasks left`;
+
+}
+
+renderTasks();
+renderNumsTasksLeft();
 
 
 // ======== 點擊 nav-item，切換樣式  ========

@@ -177,6 +177,13 @@ button {
   100% {
     height: fit-content; } }
 
+.numbers-tasks-left {
+  padding-left: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #C8C8C8; }
+
 header {
   background-color: #4A90E2; }
 
