@@ -1,3 +1,64 @@
+// ======== render 畫面 ========
+const taskItem = document.querySelector('.task-item');
+
+let data = [{
+        task: '吃飯'
+    }, {
+        task: '睡覺'
+    },
+    {
+        task: '看電視'
+    }
+]
+
+function renderTasks() {
+    let htmlString = '';
+    data.forEach((item, i) => {
+        htmlString = htmlString + `
+        <div class="task-bar" data-id="${i}">
+        <label>
+            <input class="checkbox" type="checkbox">
+            <h2>${ item.task }</h2>
+        </label>
+        <div class="icon-wrapper">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-pen"></i>
+        </div>
+    </div>
+    <div class="edit-old-task-area">
+        <div class="card">
+            <div class="card-body">
+                <div class="deadline">
+                    <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="yyyy/mm/dd">
+                        <input type="text" placeholder="hh:mm">
+                    </div>
+                </div>
+                <div class="file">
+                    <h3><i class="far fa-file"></i>File</h3>
+                    <button class="plus">+</button>
+                </div>
+                <div class="comment">
+                    <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                    <textarea placeholder="Type your memo here..."></textarea>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="cancel"><i class="fas fa-times"></i>Cancel</button>
+                <button class="addTask"><i class="fas fa-plus"></i>Save</button>
+            </div>
+        </div>
+    </div>
+        `;
+    })
+
+    taskItem.innerHTML = htmlString;
+}
+
+renderTasks()
+
+
 // ======== 點擊 nav-item，切換樣式  ========
 const navItems = document.querySelectorAll('.nav-item');
 
