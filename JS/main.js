@@ -3,7 +3,7 @@ const navItems = document.querySelectorAll('.nav-item');
 
 navItems.forEach(navItem => {
     navItem.addEventListener('click', () => {
-        item.forEach(navItem => navItem.classList.remove('nav-item-active'));
+        navItems.forEach(navItem => navItem.classList.remove('nav-item-active'));
         toggleClass(navItem, 'nav-item-active');
     })
 })
