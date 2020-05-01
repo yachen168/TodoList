@@ -1,30 +1,33 @@
 // ======== render 畫面 ========
 const taskItem = document.querySelector('.task-item');
 
+// fake data
 let data = {
     todoNum: '',
     lists: [{
-            id: 1,
-            task: '吃飯',
-            completed: false
-        }, {
-            id: 2,
-            task: '睡覺',
-            completed: false
-        },
-        {
-            id: 3,
-            task: '看電視',
-            completed: false
-        }
-    ]
+        id: 1,
+        task: '吃飯',
+        deadline: [],
+        file: [],
+        comment: '',
+        isImportant: false,
+        completed: false
+    }, {
+        id: 2,
+        task: '睡覺',
+        deadline: [],
+        file: [],
+        comment: '',
+        isImportant: false,
+        isCompleted: false
+    }]
 }
 
 function renderTasks() {
     let htmlString = '';
     data.lists.forEach((item, i) => {
         htmlString = htmlString + `
-        <div class="task-bar" data-id="${i}">
+        <div class="task-bar" data-id="${i+1}">
         <label>
             <input class="checkbox" type="checkbox">
             <h2>${ item.task }</h2>
