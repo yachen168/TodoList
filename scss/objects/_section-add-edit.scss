@@ -59,19 +59,31 @@
     border-radius: 5px;
     label {
         display: flex;
+        flex: 0.8;
         align-items: center;
         .checkbox {
             zoom: 210%;
             border: none;
             margin: 0;
         }
-        .checkbox:checked~h2 {
+        .checkbox:checked~input {
             color: $grey-500;
             text-decoration: line-through;
         }
-        h2 {
+        .new-task-name,
+        .old-task-name {
+            width: 100%;
             margin-left: 10px;
             font-size: 20px;
+            background-color: $grey-200;
+            border: none;
+            &:focus::placeholder {
+                font-size: 0;
+            }
+        }
+        // input 變色
+        .task-name-important {
+            background-color: $yellow-100;
         }
     }
 }

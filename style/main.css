@@ -88,20 +88,34 @@ button {
   .new-task-bar label,
   .task-bar label {
     display: flex;
+    flex: 0.8;
     align-items: center; }
     .new-task-bar label .checkbox,
     .task-bar label .checkbox {
       zoom: 210%;
       border: none;
       margin: 0; }
-    .new-task-bar label .checkbox:checked ~ h2,
-    .task-bar label .checkbox:checked ~ h2 {
+    .new-task-bar label .checkbox:checked ~ input,
+    .task-bar label .checkbox:checked ~ input {
       color: #757575;
       text-decoration: line-through; }
-    .new-task-bar label h2,
-    .task-bar label h2 {
+    .new-task-bar label .new-task-name,
+    .new-task-bar label .old-task-name,
+    .task-bar label .new-task-name,
+    .task-bar label .old-task-name {
+      width: 100%;
       margin-left: 10px;
-      font-size: 20px; }
+      font-size: 20px;
+      background-color: #F2F2F2;
+      border: none; }
+      .new-task-bar label .new-task-name:focus::placeholder,
+      .new-task-bar label .old-task-name:focus::placeholder,
+      .task-bar label .new-task-name:focus::placeholder,
+      .task-bar label .old-task-name:focus::placeholder {
+        font-size: 0; }
+    .new-task-bar label .task-name-important,
+    .task-bar label .task-name-important {
+      background-color: #FFF2DC; }
 
 .icon-wrapper {
   display: flex;
