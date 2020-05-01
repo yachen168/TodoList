@@ -32,14 +32,14 @@
                 margin-right: 15px;
             }
         }
-        .cancel {
+        .buttonCancel {
             color: $red;
             background-color: $white;
             &:hover {
                 background-color: $grey-100;
             }
         }
-        .addTask {
+        .buttonConfirm {
             color: $white;
             background-color: $blue-100;
             &:hover {

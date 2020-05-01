@@ -62,19 +62,19 @@ button {
       .edit-new-task-area .card-footer button i,
       .edit-old-task-area .card-footer button i {
         margin-right: 15px; }
-    .edit-new-task-area .card-footer .cancel,
-    .edit-old-task-area .card-footer .cancel {
+    .edit-new-task-area .card-footer .buttonCancel,
+    .edit-old-task-area .card-footer .buttonCancel {
       color: #D0021B;
       background-color: #ffffff; }
-      .edit-new-task-area .card-footer .cancel:hover,
-      .edit-old-task-area .card-footer .cancel:hover {
+      .edit-new-task-area .card-footer .buttonCancel:hover,
+      .edit-old-task-area .card-footer .buttonCancel:hover {
         background-color: #FCFCFC; }
-    .edit-new-task-area .card-footer .addTask,
-    .edit-old-task-area .card-footer .addTask {
+    .edit-new-task-area .card-footer .buttonConfirm,
+    .edit-old-task-area .card-footer .buttonConfirm {
       color: #ffffff;
       background-color: #4A90E2; }
-      .edit-new-task-area .card-footer .addTask:hover,
-      .edit-old-task-area .card-footer .addTask:hover {
+      .edit-new-task-area .card-footer .buttonConfirm:hover,
+      .edit-old-task-area .card-footer .buttonConfirm:hover {
         background-color: #5197E7; }
 
 .new-task-bar,
