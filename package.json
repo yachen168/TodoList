@@ -1,22 +1,20 @@
 {
     "name": "to-do-list",
     "version": "1.0.0",
-    "description": "[設計稿](https://hexschool.github.io/THE_F2E_Design/todolist/)",
+    "description": "## 功能 -",
     "main": "index.js",
     "scripts": {
-        "build-css": "node-sass -w scss/main.scss -o dist/ -r"
+        "build-css": "sass --watch scss:style"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/yachen168/to-do-list.git"
     },
-    "author": "yachen",
+    "author": "",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/yachen168/to-do-list/issues"
     },
     "homepage": "https://github.com/yachen168/to-do-list#readme",
-    "dependencies": {
-        "node-sass": "^4.13.1"
-    }
+    "dependencies": {}
 }
