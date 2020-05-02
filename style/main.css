@@ -50,35 +50,33 @@ button {
   border-radius: 5px;
   margin-bottom: 20px;
   overflow: hidden; }
-  .edit-new-task-area .card-footer,
-  .edit-old-task-area .card-footer {
-    display: flex; }
-    .edit-new-task-area .card-footer button,
-    .edit-old-task-area .card-footer button {
-      flex: 0 0 50%;
-      height: 60px;
-      font-size: 20px;
-      border: none; }
-      .edit-new-task-area .card-footer button i,
-      .edit-old-task-area .card-footer button i {
-        margin-right: 15px; }
-    .edit-new-task-area .card-footer .buttonCancel,
-    .edit-old-task-area .card-footer .buttonCancel {
-      color: #D0021B;
-      background-color: #ffffff; }
-      .edit-new-task-area .card-footer .buttonCancel:hover,
-      .edit-old-task-area .card-footer .buttonCancel:hover {
-        background-color: #FCFCFC; }
-    .edit-new-task-area .card-footer .buttonConfirm,
-    .edit-old-task-area .card-footer .buttonConfirm {
-      color: #ffffff;
-      background-color: #4A90E2; }
-      .edit-new-task-area .card-footer .buttonConfirm:hover,
-      .edit-old-task-area .card-footer .buttonConfirm:hover {
-        background-color: #5197E7; }
+
+.card-footer {
+  display: flex; }
+  .card-footer button {
+    flex: 0 0 50%;
+    height: 60px;
+    font-size: 20px;
+    border: none; }
+    .card-footer button i {
+      margin-right: 15px; }
+  .card-footer .buttonCancelAdd,
+  .card-footer .buttonCancelEdit {
+    color: #D0021B;
+    background-color: #ffffff; }
+    .card-footer .buttonCancelAdd:hover,
+    .card-footer .buttonCancelEdit:hover {
+      background-color: #FCFCFC; }
+  .card-footer .buttonConfirmAdd,
+  .card-footer .buttonConfirmEdit {
+    color: #ffffff;
+    background-color: #4A90E2; }
+    .card-footer .buttonConfirmAdd:hover,
+    .card-footer .buttonConfirmEdit:hover {
+      background-color: #5197E7; }
 
 .new-task-bar,
-.task-bar {
+.old-task-bar {
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
@@ -86,23 +84,23 @@ button {
   background-color: #F2F2F2;
   border-radius: 5px; }
   .new-task-bar label,
-  .task-bar label {
+  .old-task-bar label {
     display: flex;
     flex: 0.8;
     align-items: center; }
     .new-task-bar label .checkbox,
-    .task-bar label .checkbox {
+    .old-task-bar label .checkbox {
       zoom: 210%;
       border: none;
       margin: 0; }
     .new-task-bar label .checkbox:checked ~ input,
-    .task-bar label .checkbox:checked ~ input {
+    .old-task-bar label .checkbox:checked ~ input {
       color: #757575;
       text-decoration: line-through; }
     .new-task-bar label .new-task-name,
     .new-task-bar label .old-task-name,
-    .task-bar label .new-task-name,
-    .task-bar label .old-task-name {
+    .old-task-bar label .new-task-name,
+    .old-task-bar label .old-task-name {
       width: 100%;
       margin-left: 10px;
       font-size: 20px;
@@ -110,11 +108,11 @@ button {
       border: none; }
       .new-task-bar label .new-task-name:focus::placeholder,
       .new-task-bar label .old-task-name:focus::placeholder,
-      .task-bar label .new-task-name:focus::placeholder,
-      .task-bar label .old-task-name:focus::placeholder {
+      .old-task-bar label .new-task-name:focus::placeholder,
+      .old-task-bar label .old-task-name:focus::placeholder {
         font-size: 0; }
     .new-task-bar label .task-name-important,
-    .task-bar label .task-name-important {
+    .old-task-bar label .task-name-important {
       background-color: #FFF2DC; }
 
 .icon-wrapper {
@@ -149,6 +147,27 @@ button {
       bottom: 0;
       margin: auto 0;
       font-size: 18px; }
+  .card-body .upload_cover {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    background: #efefef; }
+  .card-body .upload_input {
+    display: none; }
+  .card-body .upload_icon {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 30px;
+    border-radius: 2px;
+    background-color: #C8C8C8; }
   .card-body .input-wrapper {
     display: flex;
     flex-wrap: wrap; }
@@ -159,14 +178,6 @@ button {
       .card-body .input-wrapper input::placeholder {
         font-size: 14px;
         color: #C8C8C8; }
-  .card-body .plus {
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-radius: 2px;
-    color: #ffffff;
-    font-size: 20px;
-    background-color: #C8C8C8; }
   .card-body .comment textarea {
     width: 100%;
     height: 100px;

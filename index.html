@@ -28,7 +28,7 @@
                         <input class="new-task-name" type="text" placeholder="Type Something Here…">
                     </label>
                     <div class="icon-wrapper">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star new-task-star"></i>
                         <i class="fas fa-pen pen-active"></i>
                     </div>
                 </div>
@@ -43,7 +43,10 @@
                         </div>
                         <div class="file">
                             <h3><i class="far fa-file"></i>File</h3>
-                            <button class="plus">+</button>
+                            <label class="upload_cover">
+                                <input class="upload_input" type="file">
+                                <span class="upload_icon">+</span>
+                            </label>
                         </div>
                         <div class="comment">
                             <h3><i class="far fa-comment-dots"></i>Comment</h3>
@@ -51,8 +54,8 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="buttonCancel"><i class="fas fa-times"></i>Cancel</button>
-                        <button class="buttonConfirm"><i class="fas fa-plus"></i>Add Task</button>
+                        <button class="buttonCancelAdd"><i class="fas fa-times"></i>Cancel</button>
+                        <button class="buttonConfirmAdd"><i class="fas fa-plus"></i>Add Task</button>
                     </div>
                 </div>
             </div>

@@ -21,36 +21,39 @@
     border-radius: 5px;
     margin-bottom: 20px;
     overflow: hidden;
-    .card-footer {
-        display: flex;
-        button {
-            flex: 0 0 50%;
-            height: 60px;
-            font-size: 20px;
-            border: none;
-            i {
-                margin-right: 15px;
-            }
+}
+
+.card-footer {
+    display: flex;
+    button {
+        flex: 0 0 50%;
+        height: 60px;
+        font-size: 20px;
+        border: none;
+        i {
+            margin-right: 15px;
         }
-        .buttonCancel {
-            color: $red;
-            background-color: $white;
-            &:hover {
-                background-color: $grey-100;
-            }
+    }
+    .buttonCancelAdd,
+    .buttonCancelEdit {
+        color: $red;
+        background-color: $white;
+        &:hover {
+            background-color: $grey-100;
         }
-        .buttonConfirm {
-            color: $white;
-            background-color: $blue-100;
-            &:hover {
-                background-color: $blue-200;
-            }
+    }
+    .buttonConfirmAdd,
+    .buttonConfirmEdit {
+        color: $white;
+        background-color: $blue-100;
+        &:hover {
+            background-color: $blue-200;
         }
     }
 }
 
 .new-task-bar,
-.task-bar {
+.old-task-bar {
     display: flex;
     justify-content: space-between;
     padding: 20px 30px;
@@ -128,6 +131,30 @@
             font-size: 18px;
         }
     }
+    .upload_cover {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        position: relative;
+        text-align: center;
+        cursor: pointer;
+        background: #efefef;
+    }
+    .upload_input {
+        display: none;
+    }
+    .upload_icon {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        color: $white;
+        font-size: 20px;
+        line-height: 30px;
+        border-radius: 2px;
+        background-color: $grey-400;
+    }
     .input-wrapper {
         display: flex;
         flex-wrap: wrap;
@@ -140,15 +167,6 @@
                 color: $grey-400;
             }
         }
-    }
-    .plus {
-        display: block;
-        width: 30px;
-        height: 30px;
-        border-radius: 2px;
-        color: $white;
-        font-size: 20px;
-        background-color: $grey-400;
     }
     .comment {
         textarea {
