@@ -91,17 +91,6 @@ function renderTasks() {
     taskItem.innerHTML = htmlString;
     methods.updateOldTaskName();
 
-    // ======== 點擊鉛筆，出現該事項編輯區 ========
-    const oldTaskAreas = document.querySelectorAll('.edit-old-task-area');
-    const pens = document.querySelectorAll('.task-item .fa-pen');
-    pens.forEach((pen, i) => {
-        pen.addEventListener('click', () => {
-            toggleClass(oldTaskAreas[i], 'edit-area-active');
-            toggleClass(pen, 'pen-active');
-            inputsOldTaskNames[i].disabled = false;
-        })
-    })
-
     // 點擊取消，關閉 old task 編輯區
     const cancelEditButtons = document.querySelectorAll('.buttonCancelEdit');
 
@@ -119,10 +108,21 @@ function renderTasks() {
         })
     })
 
+    // ======== 點擊鉛筆，出現該事項編輯區 ========
+    const oldTaskAreas = document.querySelectorAll('.edit-old-task-area');
+    const pens = document.querySelectorAll('.task-item .fa-pen');
+    const inputsOldTaskNames = document.querySelectorAll('.old-task-name');
+    pens.forEach((pen, i) => {
+        pen.addEventListener('click', () => {
+            toggleClass(oldTaskAreas[i], 'edit-area-active');
+            toggleClass(pen, 'pen-active');
+            inputsOldTaskNames[i].disabled = !inputsOldTaskNames[i].disabled;
+        })
+    })
+
     // ======== 點擊 old task 星星，標記重要待辦事項 =======
     const oldTaskStars = document.querySelectorAll('.old-task-star');
     const oldTaskBars = document.querySelectorAll('.old-task-bar');
-    const inputsOldTaskNames = document.querySelectorAll('.old-task-name');
     oldTaskStars.forEach((oldTaskStar, i) => {
         if (data.lists[i].isImportant) {
             oldTaskBars[i].classList.add('task-bar-important');
