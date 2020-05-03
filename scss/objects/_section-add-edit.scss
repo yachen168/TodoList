@@ -131,7 +131,7 @@
             font-size: 18px;
         }
     }
-    .upload_cover {
+    .upload {
         display: inline-block;
         width: 32px;
         height: 32px;
@@ -140,10 +140,10 @@
         cursor: pointer;
         background: #efefef;
     }
-    .upload_input {
+    .upload-input {
         display: none;
     }
-    .upload_icon {
+    .upload-icon {
         width: 32px;
         height: 32px;
         position: absolute;

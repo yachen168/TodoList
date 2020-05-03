@@ -70,9 +70,9 @@ function renderTasks() {
                 </div>
                 <div class="file">
                     <h3><i class="far fa-file"></i>File</h3>
-                    <label class="upload_cover">
-                        <input class="upload_input" type="file">
-                        <span class="upload_icon">+</span>
+                    <label class="upload">
+                        <input class="upload-input" type="file">
+                        <span class="upload-icon">+</span>
                     </label>
                 </div>
                 <div class="comment">

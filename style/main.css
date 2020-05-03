@@ -181,7 +181,7 @@ button {
   margin: auto 0;
   font-size: 18px;
 }
-.card-body .upload_cover {
+.card-body .upload {
   display: inline-block;
   width: 32px;
   height: 32px;
@@ -190,10 +190,10 @@ button {
   cursor: pointer;
   background: #efefef;
 }
-.card-body .upload_input {
+.card-body .upload-input {
   display: none;
 }
-.card-body .upload_icon {
+.card-body .upload-icon {
   width: 32px;
   height: 32px;
   position: absolute;
