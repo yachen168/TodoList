@@ -5,7 +5,7 @@ let data = {
         task: '吃飯',
         deadline: [],
         file: [],
-        comment: '',
+        comment: '哈哈哈',
         isImportant: false,
         isCompleted: false
     }, {
@@ -25,10 +25,10 @@ let methods = {
     },
     addNewTask: () => {
         data.lists.push({
-            task: '看電視',
+            task: inputNewTaskName.value,
             deadline: [],
             file: [],
-            comment: '',
+            comment: addCommentAreas.value,
             isImportant: false,
             isCompleted: false
         })
@@ -38,6 +38,10 @@ let methods = {
     updateOldTaskName: () => {
         const inputsOldTaskNames = document.querySelectorAll('.old-task-name');
         data.lists.forEach((item, i) => inputsOldTaskNames[i].value = item.task);
+    },
+    updateComment: () => {
+        const commentAreas = document.querySelectorAll('.comment-content');
+        data.lists.forEach((item, i) => commentAreas[i].value = item.comment);
     }
 }
 
@@ -77,7 +81,7 @@ function renderTasks() {
                 </div>
                 <div class="comment">
                     <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                    <textarea placeholder="Type your memo here..."></textarea>
+                    <textarea class="comment-content" placeholder="Type your memo here..."></textarea>
                 </div>
             </div>
             <div class="card-footer">
@@ -90,6 +94,7 @@ function renderTasks() {
     })
     taskItem.innerHTML = htmlString;
     methods.updateOldTaskName();
+    methods.updateComment();
 
     // 點擊取消，關閉 old task 編輯區
     const cancelEditButtons = document.querySelectorAll('.buttonCancelEdit');
@@ -168,6 +173,10 @@ buttonAddNewTask.addEventListener('click', () => {
     toggleClass(editNewTaskArea, 'edit-area-active');
 });
 
+
+// comment
+const addCommentAreas = document.querySelector('.add-comment');
+
 // 點擊確定「新增」，關閉編輯區，並添加 task 至畫面
 const confirmAddButton = document.querySelector('.buttonConfirmAdd');
 const pens = document.querySelectorAll('.task-item .fa-pen');
@@ -176,6 +185,7 @@ confirmAddButton.addEventListener('click', () => {
     toggleClass(confirmAddButton.parentNode.parentNode.parentNode, 'edit-area-active');
     toggleClass(pens[0], 'pen-active');
     methods.addNewTask();
+    inputNewTaskName.value = '';
 })
 
 
