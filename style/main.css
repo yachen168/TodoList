@@ -9,6 +9,15 @@ h4 {
   margin: 0;
 }
 
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  text-decoration: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -40,7 +49,7 @@ button {
   cursor: pointer;
 }
 
-.add-edit .add-new-task {
+.add-todo {
   width: 100%;
   height: 65px;
   font-size: 24px;
@@ -53,7 +62,7 @@ button {
   margin-bottom: 20px;
 }
 
-.edit-new-task-area,
+.edit-area,
 .edit-old-task-area {
   display: none;
   height: 0;
@@ -93,8 +102,7 @@ button {
   background-color: #5197E7;
 }
 
-.new-task-bar,
-.old-task-bar {
+.todo-bar {
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
@@ -102,41 +110,33 @@ button {
   background-color: #F2F2F2;
   border-radius: 5px;
 }
-.new-task-bar label,
-.old-task-bar label {
+.todo-bar label {
   display: flex;
   flex: 0.8;
   align-items: center;
 }
-.new-task-bar label .checkbox,
-.old-task-bar label .checkbox {
+.todo-bar label .checkbox {
   zoom: 210%;
   border: none;
   margin: 0;
 }
-.new-task-bar label .checkbox:checked ~ input,
-.old-task-bar label .checkbox:checked ~ input {
+.todo-bar label .checkbox:checked ~ input {
   color: #757575;
   text-decoration: line-through;
 }
-.new-task-bar label .new-task-name,
-.new-task-bar label .old-task-name,
-.old-task-bar label .new-task-name,
-.old-task-bar label .old-task-name {
+.todo-bar label .new-task-name,
+.todo-bar label .old-task-name {
   width: 100%;
   margin-left: 10px;
   font-size: 20px;
   background-color: #F2F2F2;
   border: none;
 }
-.new-task-bar label .new-task-name:focus::placeholder,
-.new-task-bar label .old-task-name:focus::placeholder,
-.old-task-bar label .new-task-name:focus::placeholder,
-.old-task-bar label .old-task-name:focus::placeholder {
+.todo-bar label .new-task-name:focus::placeholder,
+.todo-bar label .old-task-name:focus::placeholder {
   font-size: 0;
 }
-.new-task-bar label .task-name-important,
-.old-task-bar label .task-name-important {
+.todo-bar label .task-name-important {
   background-color: #FFF2DC;
 }
 
@@ -248,7 +248,7 @@ button {
     height: fit-content;
   }
 }
-.numbers-tasks-left {
+.todo-count {
   padding-left: 30px;
   margin-top: 10px;
   font-size: 20px;
@@ -260,13 +260,13 @@ header {
   background-color: #4A90E2;
 }
 
-nav {
+nav ul {
   display: flex;
   justify-content: space-around;
   max-width: 600px;
   margin: 0 auto;
 }
-nav .nav-item {
+nav ul .nav-item {
   width: 33.33%;
   max-width: 160px;
   padding: 25px 0;
@@ -274,14 +274,15 @@ nav .nav-item {
   text-align: center;
   font-weight: 500;
   color: #00408B;
+  cursor: pointer;
 }
 @media all and (min-width: 768px) {
-  nav .nav-item {
+  nav ul .nav-item {
     font-weight: 400;
     font-size: 24px;
   }
 }
-nav .nav-item-active {
+nav ul .nav-item-active {
   color: #ffffff;
   box-shadow: inset 0 -5px #00408B;
 }

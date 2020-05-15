@@ -3,7 +3,7 @@ header {
     // padding: 0 10px;
 }
 
-nav {
+nav ul {
     display: flex;
     justify-content: space-around;
     max-width: 600px;
@@ -16,6 +16,7 @@ nav {
         text-align: center;
         font-weight: 500;
         color: $blue-300;
+        cursor: pointer;
         @include tablet {
             font-weight: 400;
             font-size: 24px;

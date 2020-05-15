@@ -12,17 +12,19 @@
 <body>
     <header>
         <nav>
-            <a href="##" class="nav-item nav-item-active">My Tasks</a>
-            <a href="##" class="nav-item">In progress</a>
-            <a href="##" class="nav-item">Completed</a>
+            <ul>
+                <li class="nav-item nav-item-active">My Tasks</li>
+                <li class="nav-item">In progress</li>
+                <li class="nav-item">Completed</li>
+            </ul>
         </nav>
         </div>
     </header>
     <main>
-        <section class="add-edit">
-            <button class="add-new-task">+ Add Task</button>
-            <div class="edit-new-task-area">
-                <div class="task-bar new-task-bar">
+        <div class="new-todo">
+            <button class="add-todo">+ Add Task</button>
+            <div class="edit-area">
+                <div class="todo-bar">
                     <label>
                         <input class="checkbox" type="checkbox">
                         <input class="new-task-name" type="text" placeholder="Type Something Here…">
@@ -59,9 +61,9 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="task-item"></section>
-        <h4 class="numbers-tasks-left"></h4>
+        </div>
+        <ul class="todo-list"></ul>
+        <h4 class="todo-count"></h4>
     </main>
 
     <script src="./JS/main.js"></script>
