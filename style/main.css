@@ -62,10 +62,7 @@ button {
   margin-bottom: 20px;
 }
 
-.edit-area,
-.edit-old-task-area {
-  display: none;
-  height: 0;
+.edit-area {
   border-radius: 5px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -105,7 +102,10 @@ button {
 .todo-bar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  padding-right: 25px;
   margin-top: 5px;
   background-color: #F2F2F2;
   border-radius: 5px;
@@ -114,6 +114,7 @@ button {
   display: flex;
   flex: 0.8;
   align-items: center;
+  margin-left: 10px;
 }
 .todo-bar label .checkbox {
   zoom: 210%;
@@ -124,38 +125,64 @@ button {
   color: #757575;
   text-decoration: line-through;
 }
-.todo-bar label .new-task-name,
-.todo-bar label .old-task-name {
-  width: 100%;
-  margin-left: 10px;
+.todo-bar label .todo-name {
   font-size: 20px;
+  width: 100%;
   background-color: #F2F2F2;
   border: none;
 }
-.todo-bar label .new-task-name:focus::placeholder,
-.todo-bar label .old-task-name:focus::placeholder {
+.todo-bar label .todo-name::placeholder {
+  color: #000000;
+  font-weight: 500;
+}
+.todo-bar label .todo-name:focus::placeholder {
   font-size: 0;
 }
 .todo-bar label .task-name-important {
   background-color: #FFF2DC;
 }
+.todo-bar .hint-icons {
+  width: 100%;
+  margin-left: 40px;
+  margin-top: 10px;
+  color: #757575;
+}
+.todo-bar .hint-icons i:not(:first-of-type) {
+  margin-left: 10px;
+}
+.todo-bar .hint-icons span {
+  margin-left: 5px;
+}
+
+.new-todo .hint-icons {
+  display: none;
+}
 
 .icon-wrapper {
   display: flex;
-  width: 50px;
+  width: 60px;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+.icon-wrapper .fa-star {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.icon-wrapper .fas.fa-star {
+  display: none;
+  z-index: 10;
+  color: #F5A623;
 }
 .icon-wrapper .fa-star,
 .icon-wrapper .fa-pen {
-  color: #C8C8C8;
+  font-size: 20px;
+  color: #000000;
   cursor: pointer;
 }
 .icon-wrapper .pen {
   margin-left: 20px;
-}
-.icon-wrapper .star-active {
-  color: #F5A623;
 }
 .icon-wrapper .pen-active {
   color: #4A90E2;

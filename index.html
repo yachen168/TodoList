@@ -27,11 +27,16 @@
                 <div class="todo-bar">
                     <label>
                         <input class="checkbox" type="checkbox">
-                        <input class="new-task-name" type="text" placeholder="Type Something Here…">
+                        <input class="todo-name" type="text" placeholder="Type Something Here…">
                     </label>
                     <div class="icon-wrapper">
-                        <i class="fas fa-star new-task-star"></i>
-                        <i class="fas fa-pen pen-active"></i>
+                        <span><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                        <span><i class="fas fa-pen pen-active"></i></span>
+                    </div>
+                    <div class="hint-icons">
+                        <i class="far fa-calendar-alt"></i><span>5/14</span>
+                        <i class="far fa-file"></i>
+                        <i class="far fa-comment-dots"></i>
                     </div>
                 </div>
                 <div class="card">
@@ -39,8 +44,8 @@
                         <div class="deadline">
                             <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
                             <div class="input-wrapper">
-                                <input type="text" placeholder="yyyy/mm/dd">
-                                <input type="text" placeholder="hh:mm">
+                                <input type="date" placeholder="yyyy/mm/dd">
+                                <input type="time" placeholder="hh:mm">
                             </div>
                         </div>
                         <div class="file">
@@ -62,8 +67,55 @@
                 </div>
             </div>
         </div>
-        <ul class="todo-list"></ul>
-        <h4 class="todo-count"></h4>
+        <section>
+        </section>
+        <ul class="todo-list">
+            <!-- 動態產生 -->
+            <div class="todo-bar" data-id="${i+1}">
+                <label>
+                    <input class="checkbox" type="checkbox">
+                    <input class="todo-name" type="text" placeholder="Type Something Here…">
+                </label>
+                <div class="icon-wrapper">
+                    <span><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                    <span><i class="fas fa-pen pen-active"></i></span>
+                </div>
+                <div class="hint-icons">
+                    <i class="far fa-calendar-alt"></i><span>5/14</span>
+                    <i class="far fa-file"></i>
+                    <i class="far fa-comment-dots"></i>
+                </div>
+            </div>
+            <div class="edit-old-task-area">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="deadline">
+                            <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                            <div class="input-wrapper">
+                                <input type="date" placeholder="yyyy/mm/dd">
+                                <input type="time" placeholder="hh:mm">
+                            </div>
+                        </div>
+                        <div class="file">
+                            <h3><i class="far fa-file"></i>File</h3>
+                            <label class="upload">
+                                <input class="upload-input" type="file">
+                                <span class="upload-icon">+</span>
+                            </label>
+                        </div>
+                        <div class="comment">
+                            <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                            <textarea placeholder="Type your memo here..."></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="buttonCancelEdit"><i class="fas fa-times"></i>Cancel</button>
+                        <button class="buttonConfirmEdit"><i class="fas fa-plus"></i>Save</button>
+                    </div>
+                </div>
+            </div>
+        </ul>
+        <h4 class="todo-count">${todoCount} tasks left</h4>
     </main>
 
     <script src="./JS/main.js"></script>
