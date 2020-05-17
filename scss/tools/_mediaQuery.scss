@@ -1,7 +1,5 @@
 // variable-breakpoint
-// 共 1 個斷點
 $tablet: 768px;
-// mediaquery
 @mixin tablet {
     @media all and (min-width: $tablet) {
         @content;

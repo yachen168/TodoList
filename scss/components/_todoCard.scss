@@ -1,4 +1,3 @@
-// + Add Task
 .add-todo {
     width: 100%;
     height: 65px;
@@ -18,6 +17,15 @@
     border-radius: 5px;
     margin-bottom: 20px;
     overflow: hidden;
+}
+
+.edit-area .task-bar:first-of-type {
+    margin-top: 20px;
+}
+
+.edit-area.active {
+    display: block;
+    animation: open-edit-area 0.01s forwards;
 }
 
 .card-footer {
@@ -86,8 +94,7 @@
                 font-size: 0;
             }
         }
-        // input 變色
-        .task-name-important {
+        .todo-name.active {
             background-color: $yellow-100;
         }
     }
@@ -111,30 +118,34 @@
 
 .icon-wrapper {
     display: flex;
-    width: 60px;
     justify-content: space-between;
     align-items: center;
+    width: 60px;
     position: relative;
     .fa-star {
+        // display: none;
+        opacity: 0;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
     }
     .fas.fa-star {
-        display: none;
-        z-index: 10;
         color: $yellow-200;
+    }
+    .fa-star.active {
+        // z-index: 10;
+        opacity: 1;
     }
     .fa-star,
     .fa-pen {
         font-size: 20px;
-        color: $black;
         cursor: pointer;
+        color: $grey-500;
     }
     .pen {
         margin-left: 20px;
     }
-    .pen-active {
+    .fa-pen.active {
         color: $blue-100;
     }
 }
@@ -210,17 +221,8 @@
     }
 }
 
-.edit-area .task-bar:first-of-type {
-    margin-top: 20px;
-}
-
-.task-bar-important {
+.todo-bar.active {
     background-color: $yellow-100;
-}
-
-.edit-area-active {
-    display: block;
-    animation: open-edit-area 0.01s forwards;
 }
 
 @keyframes open-edit-area {

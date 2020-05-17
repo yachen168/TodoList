@@ -13,7 +13,7 @@
     <header>
         <nav>
             <ul>
-                <li class="nav-item nav-item-active">My Tasks</li>
+                <li class="nav-item active">My Tasks</li>
                 <li class="nav-item">In progress</li>
                 <li class="nav-item">Completed</li>
             </ul>
@@ -21,17 +21,17 @@
         </div>
     </header>
     <main>
-        <div class="new-todo">
+        <section class="new-todo">
             <button class="add-todo">+ Add Task</button>
             <div class="edit-area">
                 <div class="todo-bar">
-                    <label>
+                    <label class="todo-title">
                         <input class="checkbox" type="checkbox">
                         <input class="todo-name" type="text" placeholder="Type Something Here…">
                     </label>
                     <div class="icon-wrapper">
-                        <span><i class="fas fa-star"></i><i class="far fa-star"></i></span>
-                        <span><i class="fas fa-pen pen-active"></i></span>
+                        <span class="star"><i class="fas fa-star"></i><i class="far fa-star active"></i></span>
+                        <span class="pen"><i class="fas fa-pen active"></i></span>
                     </div>
                     <div class="hint-icons">
                         <i class="far fa-calendar-alt"></i><span>5/14</span>
@@ -66,27 +66,25 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <section>
         </section>
-        <ul class="todo-list">
+        <section class="todo-list">
             <!-- 動態產生 -->
-            <div class="todo-bar" data-id="${i+1}">
-                <label>
+            <div class="edit-area">
+                <div class="todo-bar" data-id="${i+1}">
+                    <label class="todo-title">
                     <input class="checkbox" type="checkbox">
                     <input class="todo-name" type="text" placeholder="Type Something Here…">
                 </label>
-                <div class="icon-wrapper">
-                    <span><i class="fas fa-star"></i><i class="far fa-star"></i></span>
-                    <span><i class="fas fa-pen pen-active"></i></span>
+                    <div class="icon-wrapper">
+                        <span class="star"><i class="fas fa-star"></i><i class="far fa-star active"></i></span>
+                        <span class="pen"><i class="fas fa-pen active"></i></span>
+                    </div>
+                    <div class="hint-icons">
+                        <i class="far fa-calendar-alt"></i><span>5/14</span>
+                        <i class="far fa-file"></i>
+                        <i class="far fa-comment-dots"></i>
+                    </div>
                 </div>
-                <div class="hint-icons">
-                    <i class="far fa-calendar-alt"></i><span>5/14</span>
-                    <i class="far fa-file"></i>
-                    <i class="far fa-comment-dots"></i>
-                </div>
-            </div>
-            <div class="edit-old-task-area">
                 <div class="card">
                     <div class="card-body">
                         <div class="deadline">
@@ -114,11 +112,27 @@
                     </div>
                 </div>
             </div>
-        </ul>
+            <!-- 動態產生 -->
+            <div class="todo-bar" data-id="${i+1}">
+                <label class="todo-title">
+                    <input class="checkbox" type="checkbox">
+                    <input class="todo-name" type="text" placeholder="Type Something Here…">
+                </label>
+                <div class="icon-wrapper">
+                    <span class="star"><i class="fas fa-star"></i><i class="far fa-star active"></i></span>
+                    <span class="pen"><i class="fas fa-pen active"></i></span>
+                </div>
+                <div class="hint-icons">
+                    <i class="far fa-calendar-alt"></i><span>5/14</span>
+                    <i class="far fa-file"></i>
+                    <i class="far fa-comment-dots"></i>
+                </div>
+            </div>
+        </section>
         <h4 class="todo-count">${todoCount} tasks left</h4>
     </main>
 
-    <script src="./JS/main.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

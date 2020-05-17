@@ -24,33 +24,49 @@ class Model {
     removeTodo() {}
     toggleTodo() {}
 }
-//  view
+
+
+let that;
+
 class View {
     constructor(template) {
+            that = this;
             this.template = template;
             this.$main = document.querySelector('main');
             this.$todoList = document.querySelector('.todo-list');
             this.$todoCounter = document.querySelector('.todo-count');
             this.$newTodo = document.querySelector('.new-todo');
+            this.$todoBars = document.querySelectorAll('.todo-bar');
+            this.$stars = document.querySelectorAll('.star');
+            this.$pens = document.querySelectorAll('.pen');
+            this.$todoTitles = document.querySelectorAll('.todo-title');
+            this.init();
         }
         // 頁面加載完就先進行初始化綁定事件
-    getElement() {}
-        // 新增 todo
+    init() {
+        this.$stars.forEach((star, i) => {
+            star.i = i;
+            star.addEventListener('click', this.bindClickStar);
+            this.$pens[i].addEventListener('click', this.bindClickPen)
+        })
+    }
     addTodoItem() {}
-        // 移除 todo
     removeTodoItem() {}
-        // 編輯
     editTodoItem() {}
-        // 重新獲取動態添加的元素
-    updateNode() {}
-        // CSS class 切換
-    toggleClass() {}
-        // 清除 CSS class
+    markTodo() {}
+    dragTodo() {}
+    bindClickStar() {
+        toggleActive(this.firstElementChild);
+        toggleActive(this.lastElementChild);
+        toggleActive(that.$todoBars[this.i]);
+        toggleActive(that.$todoTitles[this.i].lastElementChild);
+    }
+    bindClickPen() {
+        toggleActive(this.firstElementChild);
+    }
     clearClass() {}
-
 }
 
-// controller
 class Controller {
     constructor(model, view) {
         this.model = model
@@ -58,4 +74,10 @@ class Controller {
     }
 }
 
-const app = new Controller(new Model(), new View())
+const app = new Controller(new Model(), new View());
+
+
+// helpers
+function toggleActive(nodeItem) {
+    nodeItem.classList.toggle('active');
+}
