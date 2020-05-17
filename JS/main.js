@@ -40,14 +40,18 @@ class View {
             this.$stars = document.querySelectorAll('.star');
             this.$pens = document.querySelectorAll('.pen');
             this.$todoTitles = document.querySelectorAll('.todo-title');
+            this.$editCard = document.querySelectorAll('.card');
             this.init();
         }
         // 頁面加載完就先進行初始化綁定事件
     init() {
-        this.$stars.forEach((star, i) => {
-            star.i = i;
-            star.addEventListener('click', this.bindClickStar);
-            this.$pens[i].addEventListener('click', this.bindClickPen)
+        this.$stars.forEach(($star, i) => {
+            $star.i = i;
+            $star.addEventListener('click', this.bindClickStar);
+        })
+        this.$pens.forEach(($pen, i) => {
+            $pen.i = i;
+            $pen.addEventListener('click', this.bindClickPen)
         })
     }
     addTodoItem() {}
@@ -63,6 +67,7 @@ class View {
     }
     bindClickPen() {
         toggleActive(this.firstElementChild);
+        toggleActive(that.$editCard[this.i]);
     }
     clearClass() {}
 }
