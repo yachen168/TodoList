@@ -26,8 +26,8 @@ class Model {
 }
 
 
+// View
 let that;
-
 class View {
     constructor(template) {
             that = this;
@@ -36,11 +36,12 @@ class View {
             this.$todoList = document.querySelector('.todo-list');
             this.$todoCounter = document.querySelector('.todo-count');
             this.$newTodo = document.querySelector('.new-todo');
+            this.$navItems = document.querySelectorAll('.nav-item');
             this.$todoBars = document.querySelectorAll('.todo-bar');
             this.$stars = document.querySelectorAll('.star');
             this.$pens = document.querySelectorAll('.pen');
             this.$todoTitles = document.querySelectorAll('.todo-title');
-            this.$editCard = document.querySelectorAll('.card');
+            this.$editCards = document.querySelectorAll('.card');
             this.init();
         }
         // 頁面加載完就先進行初始化綁定事件
@@ -53,12 +54,20 @@ class View {
             $pen.i = i;
             $pen.addEventListener('click', this.bindClickPen)
         })
+        this.$navItems.forEach(($navItem, i) => {
+            $navItem.i = i;
+            $navItem.addEventListener('click', this.bindClickNavItem)
+        })
     }
     addTodoItem() {}
     removeTodoItem() {}
     editTodoItem() {}
     markTodo() {}
     dragTodo() {}
+    bindClickNavItem() {
+        that.clearClass();
+        toggleActive(this);
+    }
     bindClickStar() {
         toggleActive(this.firstElementChild);
         toggleActive(this.lastElementChild);
@@ -67,11 +76,14 @@ class View {
     }
     bindClickPen() {
         toggleActive(this.firstElementChild);
-        toggleActive(that.$editCard[this.i]);
+        toggleActive(that.$editCards[this.i]);
     }
-    clearClass() {}
+    clearClass() {
+        that.$navItems.forEach($navItem => $navItem.classList.remove('active'));
+    }
 }
 
+// Controller
 class Controller {
     constructor(model, view) {
         this.model = model
