@@ -95,12 +95,12 @@ nav ul .nav-item.active {
 
 .edit-area {
   border-radius: 5px;
-  margin-bottom: 20px;
   overflow: hidden;
 }
 
 .edit-area.new-todo-edit-area {
   display: none;
+  margin-bottom: 20px;
 }
 .edit-area.new-todo-edit-area .card {
   display: block;
