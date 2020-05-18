@@ -21,6 +21,20 @@
     margin-top: 20px;
 }
 
+.edit-area.new-todo-edit-area {
+    display: none;
+    .card {
+        display: block;
+    }
+}
+
+.edit-area.new-todo-edit-area.active {
+    display: block;
+    .card {
+        animation: open-edit-area 0.01s forwards;
+    }
+}
+
 .card {
     display: none;
     height: 0;
