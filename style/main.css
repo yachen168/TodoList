@@ -139,22 +139,22 @@ nav ul .nav-item.active {
 .card-footer button i {
   margin-right: 15px;
 }
-.card-footer .buttonCancelAdd,
-.card-footer .buttonCancelEdit {
+.card-footer .button-cancelAdd,
+.card-footer .button-cancel {
   color: #D0021B;
   background-color: #ffffff;
 }
-.card-footer .buttonCancelAdd:hover,
-.card-footer .buttonCancelEdit:hover {
+.card-footer .button-cancelAdd:hover,
+.card-footer .button-cancel:hover {
   background-color: #FCFCFC;
 }
-.card-footer .buttonConfirmAdd,
-.card-footer .buttonConfirmEdit {
+.card-footer .button-confirmAdd,
+.card-footer .button-confirm {
   color: #ffffff;
   background-color: #4A90E2;
 }
-.card-footer .buttonConfirmAdd:hover,
-.card-footer .buttonConfirmEdit:hover {
+.card-footer .button-confirmAdd:hover,
+.card-footer .button-confirm:hover {
   background-color: #5197E7;
 }
 

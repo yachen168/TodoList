@@ -56,16 +56,16 @@
             margin-right: 15px;
         }
     }
-    .buttonCancelAdd,
-    .buttonCancelEdit {
+    .button-cancelAdd,
+    .button-cancel {
         color: $red;
         background-color: $white;
         &:hover {
             background-color: $grey-100;
         }
     }
-    .buttonConfirmAdd,
-    .buttonConfirmEdit {
+    .button-confirmAdd,
+    .button-confirm {
         color: $white;
         background-color: $blue-100;
         &:hover {
