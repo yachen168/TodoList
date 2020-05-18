@@ -99,15 +99,14 @@ nav ul .nav-item.active {
   overflow: hidden;
 }
 
-.edit-area .task-bar:first-of-type {
-  margin-top: 20px;
-}
-
 .edit-area.new-todo-edit-area {
   display: none;
 }
 .edit-area.new-todo-edit-area .card {
   display: block;
+}
+.edit-area.new-todo-edit-area .todo-bar:hover {
+  cursor: auto;
 }
 
 .edit-area.new-todo-edit-area.active {
@@ -159,6 +158,7 @@ nav ul .nav-item.active {
 }
 
 .todo-bar {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -168,6 +168,26 @@ nav ul .nav-item.active {
   margin-top: 5px;
   background-color: #F2F2F2;
   border-radius: 5px;
+}
+.todo-bar:hover {
+  cursor: move;
+}
+.todo-bar:hover .hover-dots {
+  opacity: 1;
+}
+.todo-bar .hover-dots {
+  opacity: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 20px;
+  left: 5px;
+  transition-duration: 0.3s;
+}
+.todo-bar .hover-dots span {
+  line-height: 10px;
+  color: #C8C8C8;
 }
 .todo-bar label {
   display: flex;
