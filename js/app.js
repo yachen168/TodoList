@@ -1,24 +1,24 @@
 class Model {
     constructor() {
-        this.todos = [{
-            id: 1,
+        this.todos = [];
+        this.addTodo();
+    }
+    addTodo() {
+        const todo = {
+            id: this.todos.length > 0 ? this.todos.length + 1 : 1,
             title: '吃飯',
             deadline: [],
             comment: '哈哈哈',
             important: false,
             completed: false
-        }]
-    }
-    addTodo(todoTitle, todoComment) {
-        const todo = {
-            id: this.todos.length > 0 ? this.todos.length + 1 : 1,
-            title: todoTitle,
-            deadline: [],
-            comment: todoComment,
-            important: false,
-            completed: false
         }
         this.todos.push(todo);
+    }
+    getToto() {
+        this.todos.forEach((todo, i) => {
+            console.log(todo);
+
+        })
     }
     editTodo() {}
     removeTodo() {}
@@ -69,6 +69,7 @@ class View {
             $cardFooter.i = i;
             $cardFooter.addEventListener('click', this.bindCardFooter);
         })
+        this.$newCardFooter.addEventListener('click', this.bindNewCardFooter);
     }
     addTodoItem() {}
     removeTodoItem() {}
@@ -92,12 +93,12 @@ class View {
     bindButtonAddTask() {
         toggleActive(that.$newTodoEditArea);
     }
+    bindNewCardFooter() {
+        toggleActive(that.$newTodoEditArea);
+    }
     bindCardFooter(e) {
         toggleActive(that.$pens[this.i].firstElementChild);
         toggleActive(that.$editCards[this.i]);
-        if (e.target.contains(that.$newCancelButton)) {
-            toggleActive(that.$newTodoEditArea);
-        }
     }
     clearClass() {
         that.$navItems.forEach($navItem => $navItem.classList.remove('active'));
@@ -111,7 +112,10 @@ class Controller {
         this.view = view;
         this.upDateToto();
     }
-    upDateToto() {}
+    upDateToto() {
+        // this.model.addTodo();
+        console.log(this.model);
+    }
 }
 
 const app = new Controller(new Model(), new View());
