@@ -236,6 +236,9 @@ nav ul .nav-item.active {
 .icon-wrapper .fa-star.active {
   opacity: 1;
 }
+.icon-wrapper .new-pen .fa-pen {
+  cursor: not-allowed;
+}
 .icon-wrapper .fa-star,
 .icon-wrapper .fa-pen {
   font-size: 20px;

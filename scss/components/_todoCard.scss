@@ -151,6 +151,9 @@
     .fa-star.active {
         opacity: 1;
     }
+    .new-pen .fa-pen {
+        cursor: not-allowed;
+    }
     .fa-star,
     .fa-pen {
         font-size: 20px;

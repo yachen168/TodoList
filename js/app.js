@@ -14,7 +14,7 @@ class Model {
         }
         this.todos.push(todo);
     }
-    getToto() {
+    getTodo() {
         this.todos.forEach((todo, i) => {
             console.log(todo);
 
@@ -37,6 +37,7 @@ class View {
             this.$todoCounter = document.querySelector('.todo-count');
             this.$navItems = document.querySelectorAll('.nav-item');
             this.$todoBars = document.querySelectorAll('.todo-bar');
+            this.$todoNames = document.querySelectorAll('.todo-name');
             this.$stars = document.querySelectorAll('.star');
             this.$pens = document.querySelectorAll('.pen');
             this.$todoTitles = document.querySelectorAll('.todo-title');
@@ -87,8 +88,12 @@ class View {
         toggleActive(that.$todoTitles[this.i].lastElementChild);
     }
     bindClickPen() {
-        toggleActive(this.firstElementChild);
+        if (!this.classList.contains('new-pen')) {
+            toggleActive(this.firstElementChild);
+        }
         toggleActive(that.$editCards[this.i]);
+        that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
+
     }
     bindButtonAddTask() {
         toggleActive(that.$newTodoEditArea);
@@ -99,6 +104,7 @@ class View {
     bindCardFooter(e) {
         toggleActive(that.$pens[this.i].firstElementChild);
         toggleActive(that.$editCards[this.i]);
+        that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
     clearClass() {
         that.$navItems.forEach($navItem => $navItem.classList.remove('active'));
