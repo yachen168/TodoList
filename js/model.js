@@ -1,30 +1,31 @@
 export default class Model {
     constructor() {
-        this.todos = [];
-        this.addTodo();
-    }
-    addTodo(todoTitle, todoComment) {
-        const todo = {
-            id: this.todos.length > 0 ? this.todos.length + 1 : 1,
-            title: todoTitle,
-            deadline: [],
-            comment: todoComment,
+        const localStorage = window.localStorage;
+        this.todos = [{
+            id: 1,
+            title: '吃飯',
+            todoDate: '2020/05/05',
+            todoTime: '12:00',
+            comment: '二碗',
             isStared: false,
             isCompleted: false
-        }
+        }, {
+            id: 2,
+            title: '睡覺',
+            todoDate: '',
+            todoTime: '',
+            comment: '一天',
+            isStared: false,
+            isCompleted: false
+        }];
+    }
+    addTodo(todo) {
         this.todos.push(todo);
     }
-    getTodo() {
-        this.todos.forEach((todo, i) => {})
-    }
-    orderTodos() {}
     toggleStar() {
-        this.isStared = !this.isStared;
+        // this.isStared = !this.isStared;
     }
     toggleCompleted(todo) {
         this.isCompleted = !this.isCompleted;
     }
-    editTodo() {}
-    removeTodo() {}
-    toggleTodo() {}
 }
