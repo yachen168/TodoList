@@ -45,14 +45,18 @@ export default class View {
             $cardFooter.addEventListener('click', this.bindCardFooter);
         })
         this.$newCardFooter.addEventListener('click', this.bindNewCardFooter);
-        // this.$newConfirmButton.addEventListener('click', this.addNewTodo);
+        this.$newCancelButton.addEventListener('click', this.clearInputValue);
+
     }
-    bindConfirmButton(listener) {
+    bindNewConfirmButton(listener) {
         this.$newConfirmButton.addEventListener('click', listener);
     }
-    bindEvent(element, event, listener) {
-            element.addEventListener(event, listener);
+    bindNewCancelButton(listener) {
+            this.$newConfirmButton.addEventListener('click', listener);
         }
+        // bindEvent(element, event, listener) {
+        //         element.addEventListener(event, listener);
+        //     }
         // 更新動態產生的節點
     updateNode() {
         this.$todoBars = this.$todoList.querySelectorAll('.todo-bar');
@@ -127,10 +131,6 @@ export default class View {
             that.init();
         })
     }
-    clearInputValue() {
-        that.$newTodoName.value = '';
-        that.$newTodoComment.value = '';
-    }
     addNewTodo() {
         const todoTitle = that.$newTodoName.value;
         const todoComment = that.$newTodoComment.value;
@@ -143,6 +143,13 @@ export default class View {
             todoDate,
             todoTime
         }
+    }
+    clearInputValue() {
+        that.$newTodoName.value = '';
+        that.$newTodoComment.value = '';
+    }
+    todoCount(leftTodo) {
+        this.$todoCounter.innerHTML = `${leftTodo} tasks left`
     }
 
     removeTodoItem() {}

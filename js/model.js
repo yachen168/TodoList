@@ -30,6 +30,15 @@ export default class Model {
             isCompleted: false
         });
     }
+    todoCount() {
+        let leftTodo = 0;
+        this.todos.forEach((todo) => {
+            if (!todo.isCompleted) {
+                leftTodo++;
+            }
+        })
+        return leftTodo;
+    }
     toggleStar() {
         // this.isStared = !this.isStared;
     }
