@@ -209,6 +209,7 @@ nav ul .nav-item.active {
   width: 100%;
   background-color: #F2F2F2;
   border: none;
+  margin-left: 5px;
 }
 .todo-bar label .todo-name::placeholder {
   color: #000000;

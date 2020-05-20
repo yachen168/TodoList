@@ -3,24 +3,32 @@ export default class Model {
         const localStorage = window.localStorage;
         this.todos = [{
             id: 1,
-            title: '吃飯',
-            todoDate: '2020/05/05',
+            todoTitle: '吃飯',
+            todoDate: '2020-05-05',
             todoTime: '12:00',
-            comment: '二碗',
+            todoComment: '二碗',
             isStared: false,
             isCompleted: false
         }, {
             id: 2,
-            title: '睡覺',
+            todoTitle: '睡覺',
             todoDate: '',
             todoTime: '',
-            comment: '一天',
+            todoComment: '一天',
             isStared: false,
             isCompleted: false
         }];
     }
-    addTodo(todo) {
-        this.todos.push(todo);
+    addNewTodo(newTodo) {
+        this.todos.push({
+            id: 3,
+            todoTitle: newTodo.todoTitle,
+            todoDate: newTodo.todoDate,
+            todoTime: newTodo.todoTime,
+            todoComment: newTodo.todoComment,
+            isStared: false,
+            isCompleted: false
+        });
     }
     toggleStar() {
         // this.isStared = !this.isStared;
