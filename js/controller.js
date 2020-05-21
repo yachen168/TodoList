@@ -3,12 +3,12 @@ export default class Controller {
         this.model = model;
         this.view = view;
         this.renderTodos();
-        this.todoCount();
         this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
     }
     renderTodos() {
         this.view.renderTodos(this.model.todos);
         // 重新綁定
+        this.todoCount();
         this.editDone();
         this.editCancel();
         this.deleteTodo();

@@ -30,9 +30,6 @@ export default class Model {
                 } else {
                     leftTodo--;
                 }
-                if (leftTodo < 0) {
-                    leftTodo = 0;
-                }
             })
             return leftTodo;
         }
