@@ -11,6 +11,7 @@ export default class Controller {
         // 重新綁定
         this.editDone();
         this.editCancel();
+        this.deleteTodo();
     }
     addNewTodo() {
         this.model.addNewTodo(this.view.addNewTodo());
@@ -30,7 +31,12 @@ export default class Controller {
             console.log(this.model.todos);
         }.bind(this));
     }
-
+    deleteTodo() {
+        this.view.bindDeleteButton(function(e, index) {
+            this.model.deleteTodo(index);
+            this.renderTodos();
+        }.bind(this));
+    }
     todoCount() {
         this.view.todoCount(this.model.todoCount());
     }

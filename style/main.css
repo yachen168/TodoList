@@ -242,8 +242,16 @@ nav ul .nav-item.active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 60px;
   position: relative;
+}
+.icon-wrapper span {
+  font-size: 20px;
+  width: 20px;
+  cursor: pointer;
+  color: #757575;
+}
+.icon-wrapper span + span {
+  margin-left: 20px;
 }
 .icon-wrapper .fa-star {
   opacity: 0;
@@ -260,17 +268,11 @@ nav ul .nav-item.active {
 .icon-wrapper .new-pen .fa-pen {
   cursor: not-allowed;
 }
-.icon-wrapper .fa-star,
-.icon-wrapper .fa-pen {
-  font-size: 20px;
-  cursor: pointer;
-  color: #757575;
-}
-.icon-wrapper .pen {
-  margin-left: 20px;
-}
 .icon-wrapper .fa-pen.active {
   color: #4A90E2;
+}
+.icon-wrapper .fa-trash-alt:hover {
+  color: #D0021B;
 }
 
 .card-body {

@@ -19,23 +19,26 @@ export default class Model {
     editDone(editTodo, index) {
         this.todos[index] = editTodo;
     }
+    deleteTodo(index) {
+        this.todos.splice(this.todos.length - 1 - index, 1);
+    }
     todoCount() {
-        let leftTodo = 0;
-        this.todos.forEach((todo) => {
-            if (!todo.isCompleted) {
-                leftTodo++;
-            } else {
-                leftTodo--;
-            }
-            if (leftTodo < 0) {
-                leftTodo = 0;
-            }
-        })
-        return leftTodo;
-    }
-    toggleStar() {
-        // this.isStared = !this.isStared;
-    }
+            let leftTodo = 0;
+            this.todos.forEach((todo) => {
+                if (!todo.isCompleted) {
+                    leftTodo++;
+                } else {
+                    leftTodo--;
+                }
+                if (leftTodo < 0) {
+                    leftTodo = 0;
+                }
+            })
+            return leftTodo;
+        }
+        // toggleStar(index) {
+        //     this.todos.isStared = !this.isStared;
+        // }
     toggleCompleted(todo) {
         todo.isCompleted = !todo.isCompleted;
     }

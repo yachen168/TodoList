@@ -63,9 +63,18 @@ export default class heView {
             });
         })
     }
+
     bindConfirmEditButton(listener) {
             this.$confirmButtons.forEach(($confirmButton, i) => {
                 $confirmButton.addEventListener('click', function(e) {
+                    listener(e, i);
+                });
+            })
+        }
+        ///////////// 寫到這 ////////////////
+    bindDeleteButton(listener) {
+            this.$deleteButtons.forEach(($deleteButton, i) => {
+                $deleteButton.addEventListener('click', function(e) {
                     listener(e, i);
                 });
             })
@@ -83,6 +92,7 @@ export default class heView {
         this.$confirmButtons = this.$todoList.querySelectorAll('.button-confirm');
         this.$stars = this.$todoList.querySelectorAll('.star');
         this.$pens = this.$todoList.querySelectorAll('.pen');
+        this.$deleteButtons = this.$todoList.querySelectorAll('.delete');
         this.$todoNames = this.$todoList.querySelectorAll('.todo-name');
         this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
     }
@@ -108,6 +118,7 @@ export default class heView {
                         <div class="icon-wrapper">
                             <span class="star"><i class="fas fa-star"></i><i class="far fa-star active"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
+                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
                         <div class="hint-icons">
                             <i class="far fa-calendar-alt"></i><span></span>
