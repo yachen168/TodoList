@@ -28,7 +28,7 @@ export default class heView {
     init() {
         this.updateNode();
         this.$addTaskButtons.addEventListener('click', this.toggleNewCard);
-        this.$newConfirmButton.addEventListener('click', this.toggleNewCard);
+        this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler);
         this.$newCancelButton.addEventListener('click', this.toggleNewCard);
         this.$newCancelButton.addEventListener('click', this.clearNewTodo);
         this.$newStar.addEventListener('click', this.bindNewStar);
@@ -153,7 +153,7 @@ export default class heView {
                         </div>
                     </div>
                 </div>
-            `
+            `;
             that.$todoList.insertAdjacentHTML('afterbegin', item);
             that.init();
         })
@@ -164,11 +164,13 @@ export default class heView {
         const todoComment = that.$newTodoComment.value;
         const todoDate = that.$newTodoDate.value;
         const todoTime = that.$newTodoTime.value;
-        return {
-            todoTitle,
-            todoComment,
-            todoDate,
-            todoTime
+        if (todoTitle) {
+            return {
+                todoTitle,
+                todoComment,
+                todoDate,
+                todoTime
+            }
         }
     }
     editDone(index) {
@@ -214,6 +216,14 @@ export default class heView {
     }
     toggleNewCard() {
         toggleActive(that.$newTodoEditArea);
+    }
+    newConfirmButtonHandler() {
+        const todoTitle = that.$newTodoName.value;
+        if (!todoTitle) {
+            confirm('尚未輸入代辦事項名稱');
+        } else {
+            toggleActive(that.$newTodoEditArea);
+        }
     }
     bindNewCardFooter() {
         toggleActive(that.$newTodoEditArea);
