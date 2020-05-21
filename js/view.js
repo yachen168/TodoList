@@ -10,18 +10,18 @@ export default class heView {
             this.template = template;
             this.$todoList = document.querySelector('.todo-list');
             this.$addTaskButtons = document.querySelector('.add-todo');
-            this.$todoCounter = document.querySelector('.todo-count');
             this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
+            this.$newStar = document.querySelector('.new-todo .star');
             this.$newTodoName = document.querySelector('.new-todo-name');
             this.$newTodoEditArea = document.querySelector('.new-todo-edit-area');
             this.$newTodoDate = document.querySelector('.new-date');
             this.$newTodoTime = document.querySelector('.new-time');
-            this.$newStar = document.querySelector('.new-todo .star');
             this.$newTodoComment = document.querySelector('.add-comment');
             this.$newCardFooter = document.querySelector('.new-todo .new-card-footer');
             this.$newCancelButton = document.querySelector('.new-button-cancel');
             this.$newConfirmButton = document.querySelector('.new-button-confirm');
             this.$navItems = document.querySelectorAll('.nav-item');
+            this.$todoCounter = document.querySelector('.todo-count');
             this.init();
         }
         // 初始化綁定事件
@@ -186,6 +186,8 @@ export default class heView {
     clearNewTodo() {
         that.$newTodoName.value = '';
         that.$newTodoComment.value = '';
+        that.$newTodoDate.value = '';
+        that.$newTodoTime.value = '';
     }
     todoCount(leftTodo) {
         this.$todoCounter.innerHTML = `${leftTodo} tasks left`
