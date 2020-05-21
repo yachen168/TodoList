@@ -193,7 +193,7 @@ export default class heView {
     }
     dragTodo() {}
     bindClickNavItem() {
-        that.clearClass(that.$navItems);
+        that.clearAllNavItems();
         toggleActive(this);
     }
     bindNewStar() {
@@ -233,6 +233,9 @@ export default class heView {
         toggleActive(that.$pens[this.i].firstElementChild);
         toggleActive(that.$editCards[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
+    }
+    clearAllNavItems() {
+        that.$navItems.forEach($navItem => $navItem.classList.remove('active'));
     }
     clearAllCards() {
         that.$editCards.forEach($editCard => $editCard.classList.remove('active'));
