@@ -143,7 +143,7 @@ export default class heView {
                     </div>
                 </div>
             `
-            that.$todoList.insertAdjacentHTML('beforeend', item);
+            that.$todoList.insertAdjacentHTML('afterbegin', item);
             that.init();
         })
     }
