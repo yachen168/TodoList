@@ -65,13 +65,12 @@ export default class heView {
     }
 
     bindConfirmEditButton(listener) {
-            this.$confirmButtons.forEach(($confirmButton, i) => {
-                $confirmButton.addEventListener('click', function(e) {
-                    listener(e, i);
-                });
-            })
-        }
-        ///////////// 寫到這 ////////////////
+        this.$confirmButtons.forEach(($confirmButton, i) => {
+            $confirmButton.addEventListener('click', function(e) {
+                listener(e, i);
+            });
+        })
+    }
     bindDeleteButton(listener) {
             this.$deleteButtons.forEach(($deleteButton, i) => {
                 $deleteButton.addEventListener('click', function(e) {
@@ -194,7 +193,7 @@ export default class heView {
     }
     dragTodo() {}
     bindClickNavItem() {
-        that.clearClass();
+        that.clearClass(that.$navItems);
         toggleActive(this);
     }
     bindNewStar() {
@@ -210,6 +209,8 @@ export default class heView {
         toggleActive(that.$todoNames[this.i]);
     }
     bindClickPen() {
+        that.clearAllCards();
+        that.clearAllPens();
         toggleActive(this.firstElementChild);
         toggleActive(that.$editCards[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
@@ -233,7 +234,12 @@ export default class heView {
         toggleActive(that.$editCards[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
-    clearClass() {
-        that.$navItems.forEach($navItem => $navItem.classList.remove('active'));
+    clearAllCards() {
+        that.$editCards.forEach($editCard => $editCard.classList.remove('active'));
+    }
+    clearAllPens() {
+        that.$pens.forEach($pen => {
+            $pen.firstElementChild.classList.remove('active');
+        })
     }
 }
