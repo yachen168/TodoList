@@ -1,3 +1,5 @@
+'use strict'
+
 export default class Model {
     constructor() {
         const localStorage = window.localStorage;
@@ -30,11 +32,20 @@ export default class Model {
             isCompleted: false
         });
     }
+    editDone(editTodo, index) {
+        // const copyTodos = this.todos.map(item => item);
+        this.todos[index] = editTodo;
+    }
     todoCount() {
         let leftTodo = 0;
         this.todos.forEach((todo) => {
             if (!todo.isCompleted) {
                 leftTodo++;
+            } else {
+                leftTodo--;
+            }
+            if (leftTodo < 0) {
+                leftTodo = 0;
             }
         })
         return leftTodo;
@@ -43,6 +54,6 @@ export default class Model {
         // this.isStared = !this.isStared;
     }
     toggleCompleted(todo) {
-        this.isCompleted = !this.isCompleted;
+        todo.isCompleted = !todo.isCompleted;
     }
 }
