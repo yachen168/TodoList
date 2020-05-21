@@ -218,8 +218,8 @@ export default class heView {
         toggleActive(that.$newTodoEditArea);
     }
     newConfirmButtonHandler() {
-        const todoTitle = that.$newTodoName.value;
-        if (!todoTitle) {
+        const isTodoTitleEmpty = !(that.$newTodoName.value);
+        if (isTodoTitleEmpty) {
             confirm('尚未輸入代辦事項名稱');
         } else {
             toggleActive(that.$newTodoEditArea);
