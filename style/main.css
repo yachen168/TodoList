@@ -230,8 +230,12 @@ nav ul .nav-item.active {
 .todo-bar .hint-icons i:not(:first-of-type) {
   margin-left: 10px;
 }
-.todo-bar .hint-icons span {
+.todo-bar .hint-icons i {
+  display: none;
   margin-left: 5px;
+}
+.todo-bar .hint-icons i.active {
+  display: inline;
 }
 
 .new-todo .hint-icons {

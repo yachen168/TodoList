@@ -144,8 +144,12 @@
         i:not(:first-of-type) {
             margin-left: 10px;
         }
-        span {
+        i {
+            display: none;
             margin-left: 5px;
+        }
+        i.active {
+            display: inline;
         }
     }
 }
