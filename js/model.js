@@ -12,7 +12,7 @@ export default class Model {
             todoDate: newTodo.todoDate,
             todoTime: newTodo.todoTime,
             todoComment: newTodo.todoComment,
-            isStared: false,
+            isStared: newTodo.isStared,
             isCompleted: false
         });
     }

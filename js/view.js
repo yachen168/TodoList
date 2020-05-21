@@ -98,13 +98,15 @@ export default class heView {
     renderTodos(todos) {
         this.$todoList.innerHTML = '';
         todos.forEach((todo, i) => {
-            let todoTitle = todo.todoTitle;
-            let todoComment = todo.todoComment;
-            let todoDate = todo.todoDate;
-            let todoTime = todo.todoTime;
-            let item = `
+            const todoTitle = todo.todoTitle;
+            const todoComment = todo.todoComment;
+            const todoDate = todo.todoDate;
+            const todoTime = todo.todoTime;
+            const isStared = todo.isStared;
+            const isCompleted = todo.isCompleted;
+            const item = `
             <div class="edit-area">
-                    <div class="todo-bar" data-id="${i}">
+                    <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
                             <span>∙</span>
@@ -112,10 +114,10 @@ export default class heView {
                         </div>
                         <label class="todo-title">
                         <input class="checkbox" type="checkbox">
-                        <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                     </label>
                         <div class="icon-wrapper">
-                            <span class="star"><i class="fas fa-star"></i><i class="far fa-star active"></i></span>
+                            <span class="star"><i class="fas fa-star ${isStared?'active':''}"></i><i class="far fa-star ${isStared?'':'active'}"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
@@ -162,12 +164,14 @@ export default class heView {
         const todoComment = that.$newTodoComment.value;
         const todoDate = that.$newTodoDate.value;
         const todoTime = that.$newTodoTime.value;
+        const isStared = that.$newStar.firstElementChild.classList.contains('active');
         if (todoTitle) {
             return {
                 todoTitle,
                 todoComment,
                 todoDate,
-                todoTime
+                todoTime,
+                isStared
             }
         }
     }
@@ -188,6 +192,13 @@ export default class heView {
         that.$newTodoComment.value = '';
         that.$newTodoDate.value = '';
         that.$newTodoTime.value = '';
+        let isStared = that.$newStar.firstElementChild.classList.contains('active');
+        if (isStared) {
+            toggleActive(that.$newStar.firstElementChild);
+            toggleActive(that.$newStar.lastElementChild);
+            toggleActive(that.$newTodoName);
+            toggleActive(that.$newTodoBar);
+        }
     }
     todoCount(leftTodo) {
         this.$todoCounter.innerHTML = `${leftTodo} tasks left`
