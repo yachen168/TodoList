@@ -3,27 +3,11 @@
 export default class Model {
     constructor() {
         const localStorage = window.localStorage;
-        this.todos = [{
-            id: 1,
-            todoTitle: '吃飯',
-            todoDate: '2020-05-05',
-            todoTime: '12:00',
-            todoComment: '二碗',
-            isStared: false,
-            isCompleted: false
-        }, {
-            id: 2,
-            todoTitle: '睡覺',
-            todoDate: '',
-            todoTime: '',
-            todoComment: '一天',
-            isStared: false,
-            isCompleted: false
-        }];
+        this.todos = [];
     }
     addNewTodo(newTodo) {
         this.todos.push({
-            id: 3,
+            id: this.todos.length > 0 ? this.todos.length + 1 : 1,
             todoTitle: newTodo.todoTitle,
             todoDate: newTodo.todoDate,
             todoTime: newTodo.todoTime,
@@ -33,7 +17,6 @@ export default class Model {
         });
     }
     editDone(editTodo, index) {
-        // const copyTodos = this.todos.map(item => item);
         this.todos[index] = editTodo;
     }
     todoCount() {
