@@ -211,6 +211,10 @@ export default class heView {
             toggleActive(that.$newTodoName);
             toggleActive(that.$newTodoBar);
         }
+        let isCompleted = that.$newCheckbox.checked;
+        if (isCompleted) {
+            that.$newCheckbox.checked = !that.$newCheckbox.checked;
+        }
     }
     todoCount(leftTodo) {
         this.$todoCounter.innerHTML = `${leftTodo} tasks left`

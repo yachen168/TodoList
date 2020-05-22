@@ -25,9 +25,7 @@ export default class Model {
     todoCount() {
         let leftTodo = 0;
         this.todos.forEach((todo) => {
-            if (!todo.isCompleted) {
-                leftTodo++;
-            }
+            if (!todo.isCompleted) leftTodo++;
         })
         return leftTodo;
     }
