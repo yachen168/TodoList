@@ -27,8 +27,6 @@ export default class Model {
         this.todos.forEach((todo) => {
             if (!todo.isCompleted) {
                 leftTodo++;
-            } else {
-                leftTodo--;
             }
         })
         return leftTodo;
