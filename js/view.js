@@ -43,7 +43,7 @@ export default class heView {
         })
         this.$navItems.forEach(($navItem, i) => {
             $navItem.i = i;
-            $navItem.addEventListener('click', this.bindClickNavItem);
+            $navItem.addEventListener('click', this.toggleNavItem);
         })
         this.$cancelButtons.forEach(($cancelButton, i) => {
             $cancelButton.i = i;
@@ -80,11 +80,21 @@ export default class heView {
         })
     }
     bindStar(listener) {
-            this.$stars.forEach(($star, i) => {
-                $star.addEventListener('click', function(e) {
-                    listener(e, i);
-                });
-            })
+        this.$stars.forEach(($star, i) => {
+            $star.addEventListener('click', function(e) {
+                listener(e, i);
+            });
+        })
+    }
+    bindCheckbox(listener) {
+        this.$checkboxes.forEach(($checkbox, i) => {
+            $checkbox.addEventListener('click', function(e) {
+                listener(e, i);
+            });
+        })
+    }
+    bindNavItem(listener) {
+            this.$navItems[2].addEventListener('click', listener);
         }
         // 更新動態產生的節點
     updateNode() {
@@ -108,7 +118,7 @@ export default class heView {
         todos.forEach((todo, i) => {
             const todoTitle = todo.todoTitle;
             const todoComment = todo.todoComment;
-            const todoDate = todo.todoDate || '';
+            const todoDate = todo.todoDate;
             const todoTime = todo.todoTime;
             const isStared = todo.isStared;
             const isCompleted = todo.isCompleted;
@@ -190,8 +200,8 @@ export default class heView {
         const todoComment = that.$todoComments[index].value;
         const todoDate = that.$todoDates[index].value;
         const todoTime = that.$todoTimes[index].value;
-        const isStared = that.$newStar.firstElementChild.classList.contains('active');
-        const isCompleted = that.$newCheckbox.checked;
+        const isStared = that.$stars[index].firstElementChild.classList.contains('active');
+        const isCompleted = that.$checkboxes[index].checked;
         return {
             todoTitle,
             todoComment,
@@ -222,7 +232,7 @@ export default class heView {
         this.$todoCounter.innerHTML = `${leftTodo} tasks left`
     }
     dragTodo() {}
-    bindClickNavItem() {
+    toggleNavItem() {
         that.clearAllNavItems();
         toggleActive(this);
     }

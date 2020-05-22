@@ -3,16 +3,32 @@ export default class Controller {
         this.model = model;
         this.view = view;
         this.renderTodos();
+        this.bindNavItem();
         this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
     }
     renderTodos() {
         this.view.renderTodos(this.model.todos);
-        // 重新綁定
+        this.bindEventHandler();
+    }
+    renderCompletedTodos() {
+        this.view.renderTodos(this.model.completedFilter());
+        console.log(this.model.completedFilter());
+        this.bindEventHandler();
+    }
+    renderInProgressTodos() {
+        this.view.renderTodos(this.model.inProgressTodos());
+        this.bindInProgressStar();
+    }
+    bindNavItem() {
+        this.view.bindNavItem(this.renderCompletedTodos.bind(this));
+    }
+    bindEventHandler() {
         this.todoCount();
         this.editCancel();
         this.deleteTodo();
-        this.bindStar();
+        this.bindAllStar();
         this.editDone();
+        this.bindCheckbox();
     }
     addNewTodo() {
         this.model.addNewTodo(this.view.addNewTodo());
@@ -27,7 +43,6 @@ export default class Controller {
         this.view.bindConfirmEditButton(function(e, index) {
             // console.log(e.target);
             this.model.editDone(this.view.editDone(index), index);
-            console.log(this.model.todos);
             this.renderTodos();
         }.bind(this));
     }
@@ -40,16 +55,23 @@ export default class Controller {
     todoCount() {
         this.view.todoCount(this.model.todoCount());
     }
-    bindStar() {
+    bindAllStar() {
         this.view.bindStar(function(e, index) {
-            this.view.bindStar(this.model.todos);
-            this.model.bindStared(index);
+            this.model.bindStar(index);
             this.renderTodos();
         }.bind(this));
     }
-
-    toggleCompeted() {}
-    findTodo() {
-        this.view.findTodo(this.model.todos);
+    bindInProgressStar() {
+        this.view.bindStar(function(e, index) {
+            this.model.bindStar(index);
+            this.renderInProgressTodos();
+        }.bind(this));
+    }
+    bindCheckbox() {
+        this.view.bindCheckbox(function(e, index) {
+            this.model.bindCheckbox(index);
+            console.log(index);
+            this.renderTodos();
+        }.bind(this));
     }
 }
