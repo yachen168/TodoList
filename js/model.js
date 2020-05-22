@@ -34,7 +34,7 @@ export default class Model {
         return leftTodo;
     }
     bindStared(index) {
-        this.todos[this.todos.length - index - 1].isStared = !this.todos[index].isStared;
+        this.todos[this.todos.length - index - 1].isStared = !this.todos[this.todos.length - index - 1].isStared;
     }
     toggleCompleted() {}
 }

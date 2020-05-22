@@ -228,6 +228,7 @@ export default class heView {
         toggleActive(this.lastElementChild);
         toggleActive(that.$todoBars[this.i]);
         toggleActive(that.$todoNames[this.i]);
+        console.log(this.i);
     }
     bindClickPen() {
         that.clearAllCards();
