@@ -34,7 +34,7 @@ export default class heView {
         this.$newStar.addEventListener('click', this.bindNewStar);
         this.$stars.forEach(($star, i) => {
             $star.i = i;
-            $star.addEventListener('click', this.bindStars);
+            $star.addEventListener('click', this.toggleStared);
         })
         this.$pens.forEach(($pen, i) => {
             $pen.i = i;
@@ -72,8 +72,15 @@ export default class heView {
         })
     }
     bindDeleteButton(listener) {
-            this.$deleteButtons.forEach(($deleteButton, i) => {
-                $deleteButton.addEventListener('click', function(e) {
+        this.$deleteButtons.forEach(($deleteButton, i) => {
+            $deleteButton.addEventListener('click', function(e) {
+                listener(e, i);
+            });
+        })
+    }
+    bindStar(listener) {
+            this.$stars.forEach(($star, i) => {
+                $star.addEventListener('click', function(e) {
                     listener(e, i);
                 });
             })
@@ -180,11 +187,13 @@ export default class heView {
         const editComment = that.$todoComments[index].value;
         const editDate = that.$todoDates[index].value;
         const editTime = that.$todoTimes[index].value;
+        const isStared = that.$newStar.firstElementChild.classList.contains('active');
         return {
             editTitle,
             editComment,
             editDate,
-            editTime
+            editTime,
+            isStared
         }
     }
     clearNewTodo() {
@@ -214,7 +223,7 @@ export default class heView {
         toggleActive(that.$newTodoName);
         toggleActive(that.$newTodoBar);
     }
-    bindStars() {
+    toggleStared() {
         toggleActive(this.firstElementChild);
         toggleActive(this.lastElementChild);
         toggleActive(that.$todoBars[this.i]);

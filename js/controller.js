@@ -12,6 +12,7 @@ export default class Controller {
         this.editDone();
         this.editCancel();
         this.deleteTodo();
+        this.bindStar();
     }
     addNewTodo() {
         this.model.addNewTodo(this.view.addNewTodo());
@@ -26,9 +27,9 @@ export default class Controller {
     editDone() {
         this.view.bindConfirmEditButton(function(e, index) {
             // console.log(e.target);
-            console.log(index);
             this.model.editDone(this.view.editDone(index), index);
-            console.log(this.model.todos);
+            // console.log(this.model.todos);
+            renderTodos();
         }.bind(this));
     }
     deleteTodo() {
@@ -39,6 +40,13 @@ export default class Controller {
     }
     todoCount() {
         this.view.todoCount(this.model.todoCount());
+    }
+    bindStar() {
+        this.view.bindStar(function(e, index) {
+            this.view.bindStar(this.model.todos);
+            this.model.bindStared(index);
+            this.renderTodos();
+        }.bind(this));
     }
 
     toggleCompeted() {}

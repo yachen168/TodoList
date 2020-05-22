@@ -17,26 +17,24 @@ export default class Model {
         });
     }
     editDone(editTodo, index) {
-        this.todos[index] = editTodo;
+        this.todos.splice(index, 1, editTodo);
     }
     deleteTodo(index) {
-        this.todos.splice(this.todos.length - 1 - index, 1);
+        this.todos.splice(this.todos.length - index - 1, 1);
     }
     todoCount() {
-            let leftTodo = 0;
-            this.todos.forEach((todo) => {
-                if (!todo.isCompleted) {
-                    leftTodo++;
-                } else {
-                    leftTodo--;
-                }
-            })
-            return leftTodo;
-        }
-        // toggleStar(index) {
-        //     this.todos.isStared = !this.isStared;
-        // }
-    toggleCompleted(todo) {
-        todo.isCompleted = !todo.isCompleted;
+        let leftTodo = 0;
+        this.todos.forEach((todo) => {
+            if (!todo.isCompleted) {
+                leftTodo++;
+            } else {
+                leftTodo--;
+            }
+        })
+        return leftTodo;
     }
+    bindStared(index) {
+        this.todos[this.todos.length - index - 1].isStared = !this.todos[index].isStared;
+    }
+    toggleCompleted() {}
 }
