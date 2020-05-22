@@ -9,17 +9,16 @@ export default class Controller {
         this.view.renderTodos(this.model.todos);
         // 重新綁定
         this.todoCount();
-        this.editDone();
         this.editCancel();
         this.deleteTodo();
         this.bindStar();
+        this.editDone();
     }
     addNewTodo() {
         this.model.addNewTodo(this.view.addNewTodo());
         this.view.clearNewTodo();
         this.todoCount();
         this.renderTodos();
-        console.log(this.model.todos);
     }
     editCancel() {
         this.view.bindCancelEditButton(this.renderTodos.bind(this));
@@ -28,8 +27,8 @@ export default class Controller {
         this.view.bindConfirmEditButton(function(e, index) {
             // console.log(e.target);
             this.model.editDone(this.view.editDone(index), index);
-            // console.log(this.model.todos);
-            renderTodos();
+            console.log(this.model.todos);
+            // this.renderTodos.call(this);
         }.bind(this));
     }
     deleteTodo() {

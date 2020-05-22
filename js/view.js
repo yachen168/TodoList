@@ -108,7 +108,7 @@ export default class heView {
         todos.forEach((todo, i) => {
             const todoTitle = todo.todoTitle;
             const todoComment = todo.todoComment;
-            const todoDate = todo.todoDate;
+            const todoDate = todo.todoDate || '';
             const todoTime = todo.todoTime;
             const isStared = todo.isStared;
             const isCompleted = todo.isCompleted;
@@ -163,7 +163,7 @@ export default class heView {
                     </div>
                 </div>
             `;
-            that.$todoList.insertAdjacentHTML('afterbegin', item);
+            that.$todoList.insertAdjacentHTML('beforeend', item);
             that.init();
         })
     }
@@ -186,17 +186,19 @@ export default class heView {
         }
     }
     editDone(index) {
-        const editTitle = that.$todoNames[index].value;
-        const editComment = that.$todoComments[index].value;
-        const editDate = that.$todoDates[index].value;
-        const editTime = that.$todoTimes[index].value;
+        const todoTitle = that.$todoNames[index].value;
+        const todoComment = that.$todoComments[index].value;
+        const todoDate = that.$todoDates[index].value;
+        const todoTime = that.$todoTimes[index].value;
         const isStared = that.$newStar.firstElementChild.classList.contains('active');
+        const isCompleted = that.$newCheckbox.checked;
         return {
-            editTitle,
-            editComment,
-            editDate,
-            editTime,
-            isStared
+            todoTitle,
+            todoComment,
+            todoDate,
+            todoTime,
+            isStared,
+            isCompleted
         }
     }
     clearNewTodo() {
