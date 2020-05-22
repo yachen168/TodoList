@@ -28,7 +28,7 @@ export default class Controller {
             // console.log(e.target);
             this.model.editDone(this.view.editDone(index), index);
             console.log(this.model.todos);
-            // this.renderTodos.call(this);
+            this.renderTodos();
         }.bind(this));
     }
     deleteTodo() {

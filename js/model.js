@@ -20,7 +20,8 @@ export default class Model {
         this.todos[index] = editTodo;
     }
     deleteTodo(index) {
-        this.todos.splice(index, 1);
+        const i = this.todos.length - index - 1;
+        this.todos.splice(i, 1);
     }
     todoCount() {
         let leftTodo = 0;
@@ -30,7 +31,8 @@ export default class Model {
         return leftTodo;
     }
     bindStared(index) {
-        this.todos[index].isStared = !this.todos[index].isStared;
+        const i = this.todos.length - index - 1;
+        this.todos[i].isStared = !this.todos[i].isStared;
     }
     toggleCompleted() {}
 }
