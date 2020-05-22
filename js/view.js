@@ -12,6 +12,7 @@ export default class heView {
             this.$addTaskButtons = document.querySelector('.add-todo');
             this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
             this.$newStar = document.querySelector('.new-todo .star');
+            this.$newCheckbox = document.querySelector('.new-todo .checkbox');
             this.$newTodoName = document.querySelector('.new-todo-name');
             this.$newTodoEditArea = document.querySelector('.new-todo-edit-area');
             this.$newTodoDate = document.querySelector('.new-date');
@@ -120,7 +121,7 @@ export default class heView {
                             <span>∙</span>
                         </div>
                         <label class="todo-title">
-                        <input class="checkbox" type="checkbox">
+                        <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
                         <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                     </label>
                         <div class="icon-wrapper">
@@ -172,13 +173,15 @@ export default class heView {
         const todoDate = that.$newTodoDate.value;
         const todoTime = that.$newTodoTime.value;
         const isStared = that.$newStar.firstElementChild.classList.contains('active');
+        const isCompleted = that.$newCheckbox.checked;
         if (todoTitle) {
             return {
                 todoTitle,
                 todoComment,
                 todoDate,
                 todoTime,
-                isStared
+                isStared,
+                isCompleted
             }
         }
     }
@@ -223,12 +226,11 @@ export default class heView {
         toggleActive(that.$newTodoName);
         toggleActive(that.$newTodoBar);
     }
-    toggleStared() {
+    toggleStar() {
         toggleActive(this.firstElementChild);
         toggleActive(this.lastElementChild);
         toggleActive(that.$todoBars[this.i]);
         toggleActive(that.$todoNames[this.i]);
-        console.log(this.i);
     }
     bindClickPen() {
         that.clearAllCards();

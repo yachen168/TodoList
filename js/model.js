@@ -13,7 +13,7 @@ export default class Model {
             todoTime: newTodo.todoTime,
             todoComment: newTodo.todoComment,
             isStared: newTodo.isStared,
-            isCompleted: false
+            isCompleted: newTodo.isCompleted
         });
     }
     editDone(editTodo, index) {
