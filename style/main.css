@@ -161,7 +161,7 @@ nav ul .nav-item.active {
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   padding-right: 25px;
@@ -224,7 +224,6 @@ nav ul .nav-item.active {
 .todo-bar .hint-icons {
   width: 100%;
   margin-left: 40px;
-  margin-top: 10px;
   color: #757575;
 }
 .todo-bar .hint-icons i:not(:first-of-type) {
@@ -233,9 +232,10 @@ nav ul .nav-item.active {
 .todo-bar .hint-icons i {
   display: none;
   margin-left: 5px;
+  margin-top: 10px;
 }
 .todo-bar .hint-icons i.active {
-  display: inline;
+  display: inline-block;
 }
 
 .new-todo .hint-icons {

@@ -77,7 +77,7 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-content: center;
     flex-wrap: wrap;
     padding: 20px;
     padding-right: 25px;
@@ -139,7 +139,6 @@
     .hint-icons {
         width: 100%;
         margin-left: 40px;
-        margin-top: 10px;
         color: $grey-500;
         i:not(:first-of-type) {
             margin-left: 10px;
@@ -147,9 +146,10 @@
         i {
             display: none;
             margin-left: 5px;
+            margin-top: 10px;
         }
         i.active {
-            display: inline;
+            display: inline-block;
         }
     }
 }
