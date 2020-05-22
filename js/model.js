@@ -17,7 +17,8 @@ export default class Model {
         });
     }
     editDone(editTodo, index) {
-        this.todos[index] = editTodo;
+        const i = this.todos.length - index - 1;
+        this.todos[i] = editTodo;
     }
     deleteTodo(index) {
         const i = this.todos.length - index - 1;
