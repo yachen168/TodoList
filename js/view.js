@@ -133,10 +133,10 @@ export default class heView {
                         </div>
                         <label class="todo-title">
                         <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                        <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                     </label>
                         <div class="icon-wrapper">
-                            <span class="star"><i class="fas fa-star ${isStared?'active':''}"></i><i class="far fa-star ${isStared?'':'active'}"></i></span>
+                            <span class="star"><i class="far fa-star ${isStared?'':'active'}"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
@@ -184,10 +184,10 @@ export default class heView {
                         </div>
                         <label class="todo-title">
                         <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                        <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                     </label>
                         <div class="icon-wrapper">
-                            <span class="star"><i class="fas fa-star ${isStared?'active':''}"></i><i class="far fa-star ${isStared?'':'active'}"></i></span>
+                            <span class="star"><i class="far fa-star"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
@@ -238,7 +238,7 @@ export default class heView {
                         <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                     </label>
                         <div class="icon-wrapper">
-                            <span class="star"><i class="fas fa-star ${isStared?'active':''}"></i><i class="far fa-star ${isStared?'':'active'}"></i></span>
+                            <span class="star"><i class="far fa-star ${isStared?'':'active'}"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
@@ -296,7 +296,7 @@ export default class heView {
         const todoComment = that.$newTodoComment.value;
         const todoDate = that.$newTodoDate.value;
         const todoTime = that.$newTodoTime.value;
-        const isStared = that.$newStar.firstElementChild.classList.contains('active');
+        const isStared = that.$newTodoBar.classList.contains('active');
         const isCompleted = that.$newCheckbox.checked;
         if (todoTitle) {
             return {
@@ -314,7 +314,7 @@ export default class heView {
         const todoComment = that.$todoComments[index].value;
         const todoDate = that.$todoDates[index].value;
         const todoTime = that.$todoTimes[index].value;
-        const isStared = that.$stars[index].firstElementChild.classList.contains('active');
+        const isStared = that.$todoBars[index].classList.contains('active');
         const isCompleted = that.$checkboxes[index].checked;
         return {
             todoTitle,
@@ -330,11 +330,8 @@ export default class heView {
         that.$newTodoComment.value = '';
         that.$newTodoDate.value = '';
         that.$newTodoTime.value = '';
-        let isStared = that.$newStar.firstElementChild.classList.contains('active');
+        let isStared = that.$newTodoBar.classList.contains('active');
         if (isStared) {
-            toggleActive(that.$newStar.firstElementChild);
-            toggleActive(that.$newStar.lastElementChild);
-            toggleActive(that.$newTodoName);
             toggleActive(that.$newTodoBar);
         }
         let isCompleted = that.$newCheckbox.checked;
@@ -348,16 +345,10 @@ export default class heView {
         toggleActive(this);
     }
     bindNewStar() {
-        toggleActive(this.firstElementChild);
-        toggleActive(this.lastElementChild);
-        toggleActive(that.$newTodoName);
         toggleActive(that.$newTodoBar);
     }
     toggleStar() {
-        toggleActive(this.firstElementChild);
-        toggleActive(this.lastElementChild);
         toggleActive(that.$todoBars[this.i]);
-        toggleActive(that.$todoNames[this.i]);
     }
     bindClickPen() {
         that.clearAllCards();

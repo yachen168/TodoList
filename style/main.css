@@ -221,9 +221,6 @@ nav ul .nav-item.active {
 .todo-bar label .todo-name:focus::placeholder {
   font-size: 0;
 }
-.todo-bar label .todo-name.active {
-  background-color: #FFF2DC;
-}
 .todo-bar .hint-icons {
   width: 100%;
   margin-left: 40px;
@@ -238,6 +235,18 @@ nav ul .nav-item.active {
 }
 .todo-bar .hint-icons .hint-date {
   padding-left: 8px;
+}
+
+.todo-bar.active {
+  background-color: #FFF2DC;
+}
+.todo-bar.active .todo-name {
+  background-color: #FFF2DC;
+}
+.todo-bar.active .fa-star {
+  opacity: 1;
+  font-weight: 900;
+  color: #F5A623;
 }
 
 .new-todo .hint-icons {
@@ -259,17 +268,10 @@ nav ul .nav-item.active {
 .icon-wrapper span + span {
   margin-left: 20px;
 }
-.icon-wrapper .fa-star {
-  opacity: 0;
+.icon-wrapper .fas-star {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-}
-.icon-wrapper .fas.fa-star {
-  color: #F5A623;
-}
-.icon-wrapper .fa-star.active {
-  opacity: 1;
 }
 .icon-wrapper .new-pen .fa-pen {
   cursor: not-allowed;
@@ -348,10 +350,6 @@ nav ul .nav-item.active {
 .card-body .comment textarea::placeholder {
   color: #C8C8C8;
   font-size: 14px;
-}
-
-.todo-bar.active {
-  background-color: #FFF2DC;
 }
 
 @keyframes open-edit-area {

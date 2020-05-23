@@ -135,9 +135,6 @@
                 font-size: 0;
             }
         }
-        .todo-name.active {
-            background-color: $yellow-100;
-        }
     }
     .hint-icons {
         width: 100%;
@@ -153,6 +150,18 @@
         .hint-date {
             padding-left: 8px;
         }
+    }
+}
+
+.todo-bar.active {
+    background-color: $yellow-100;
+    .todo-name {
+        background-color: $yellow-100;
+    }
+    .fa-star {
+        opacity: 1;
+        font-weight: 900;
+        color: $yellow-200;
     }
 }
 
@@ -174,17 +183,10 @@
     span+span {
         margin-left: 20px;
     }
-    .fa-star {
-        opacity: 0;
+    .fas-star {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-    }
-    .fas.fa-star {
-        color: $yellow-200;
-    }
-    .fa-star.active {
-        opacity: 1;
     }
     .new-pen .fa-pen {
         cursor: not-allowed;
@@ -266,10 +268,6 @@
             }
         }
     }
-}
-
-.todo-bar.active {
-    background-color: $yellow-100;
 }
 
 @keyframes open-edit-area {
