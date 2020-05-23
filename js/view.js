@@ -32,8 +32,6 @@ export default class View {
         this.$newCancelButton.addEventListener('click', this.toggleNewCard);
         this.$newCancelButton.addEventListener('click', this.clearNewTodo);
         this.$newStar.addEventListener('click', this.markNewTodo);
-        this.$allInputs = document.querySelectorAll('input');
-        this.$allTextareas = document.querySelectorAll('textarea');
         this.$stars.forEach(($star, i) => {
             $star.i = i;
             $star.addEventListener('click', this.markTodo);
@@ -120,6 +118,9 @@ export default class View {
         this.$pens = this.$todoList.querySelectorAll('.pen');
         this.$deleteButtons = this.$todoList.querySelectorAll('.delete');
         this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
+        this.$editAreas = this.$todoList.querySelectorAll('.edit-area');
+        this.$allInputs = document.querySelectorAll('input');
+        this.$allTextareas = document.querySelectorAll('textarea');
     }
     renderTodos(todos) {
         this.$todoList.innerHTML = '';
@@ -182,7 +183,7 @@ export default class View {
                 </div>
             `;
             const itemInProgress = `
-            <div class="edit-area" style="${isCompleted?'display: none':''}">
+            <div class="edit-area ${isCompleted?'d-none':''}">
                     <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
@@ -233,7 +234,7 @@ export default class View {
                 </div>
             `;
             const itemCompleted = `
-            <div class="edit-area" style="${isCompleted?'':'display: none'}">
+            <div class="edit-area ${isCompleted?'':'d-none'}">
                     <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
@@ -371,7 +372,7 @@ export default class View {
         that.clearAllCards();
         that.clearAllPens();
         toggleActive(this.firstElementChild);
-        toggleActive(that.$editCards[this.i]);
+        toggleActive(that.$editAreas[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
     toggleNewCard() {

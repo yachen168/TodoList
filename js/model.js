@@ -15,12 +15,6 @@ export default class Model {
             isCompleted: newTodo.isCompleted
         });
     }
-    inProgressFilter() {
-        return this.todos.filter(todo => todo.isCompleted === false);
-    }
-    completedFilter() {
-        return this.todos.filter(todo => todo.isCompleted === true);
-    }
     editDone(editTodo, index) {
         const i = this.todos.length - index - 1;
         this.todos[i] = editTodo;

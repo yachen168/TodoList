@@ -97,34 +97,45 @@ nav ul .nav-item.active {
 .edit-area {
   border-radius: 5px;
   overflow: hidden;
+  margin-top: 5px;
 }
 
-.edit-area.new-todo-edit-area {
+.edit-area.active {
+  box-shadow: 0 4px 4px #C8C8C8;
+}
+.edit-area.active .pen {
+  color: #4A90E2;
+}
+.edit-area.active .card {
+  display: block;
+  animation: open-edit-area 0.01s forwards;
+}
+
+.edit-area.d-none {
+  display: none;
+}
+
+.new-todo-edit-area {
   display: none;
   margin-bottom: 20px;
 }
-.edit-area.new-todo-edit-area .card {
+.new-todo-edit-area .card {
   display: block;
 }
-.edit-area.new-todo-edit-area .todo-bar:hover {
+.new-todo-edit-area .todo-bar:hover {
   cursor: auto;
 }
 
-.edit-area.new-todo-edit-area.active {
+.new-todo-edit-area.active {
   display: block;
 }
-.edit-area.new-todo-edit-area.active .card {
+.new-todo-edit-area.active .card {
   animation: open-edit-area 0.01s forwards;
 }
 
 .card {
   display: none;
   height: 0;
-}
-
-.card.active {
-  display: block;
-  animation: open-edit-area 0.01s forwards;
 }
 
 .card-footer {
@@ -166,7 +177,6 @@ nav ul .nav-item.active {
   flex-wrap: wrap;
   padding: 20px;
   padding-right: 25px;
-  margin-top: 5px;
   background-color: #F2F2F2;
   border-radius: 5px;
 }
@@ -297,9 +307,6 @@ nav ul .nav-item.active {
 }
 .icon-wrapper .new-pen .fa-pen {
   cursor: not-allowed;
-}
-.icon-wrapper .fa-pen.active {
-  color: #4A90E2;
 }
 .icon-wrapper .fa-trash-alt:hover {
   color: #D0021B;
