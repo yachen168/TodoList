@@ -291,13 +291,13 @@ export default class View {
     }
     renderCounter(leftTodo, completedTodo) {
         if (that.$navItems[0].classList.contains('active')) {
-            that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
+            that.$todoCounter.innerHTML = (leftTodo > 1) ? `${leftTodo} tasks left` : `${leftTodo} task left`;
         }
         if (that.$navItems[1].classList.contains('active')) {
-            that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
+            that.$todoCounter.innerHTML = (leftTodo > 1) ? `${leftTodo} tasks left` : `${leftTodo} task left`;
         }
         if (that.$navItems[2].classList.contains('active')) {
-            that.$todoCounter.innerHTML = `${completedTodo} tasks completed`;
+            that.$todoCounter.innerHTML = (completedTodo > 1) ? `${completedTodo} tasks completed` : `${completedTodo} task completed`;
         }
     }
     addNewTodo() {
