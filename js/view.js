@@ -5,9 +5,8 @@ import { qs, toggleActive } from './helpers.js';
 //  View
 export let that;
 export default class View {
-    constructor(template) {
+    constructor() {
         that = this;
-        this.template = template;
         this.$todoList = document.querySelector('.todo-list');
         this.$addTaskButtons = document.querySelector('.add-todo');
         this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
@@ -33,6 +32,8 @@ export default class View {
         this.$newCancelButton.addEventListener('click', this.toggleNewCard);
         this.$newCancelButton.addEventListener('click', this.clearNewTodo);
         this.$newStar.addEventListener('click', this.bindNewStar);
+        this.$allInputs = document.querySelectorAll('input');
+        this.$allTextareas = document.querySelectorAll('textarea');
         this.$stars.forEach(($star, i) => {
             $star.i = i;
             $star.addEventListener('click', this.toggleStared);
@@ -44,6 +45,12 @@ export default class View {
         this.$navItems.forEach(($navItem, i) => {
             $navItem.i = i;
             $navItem.addEventListener('click', this.toggleNavItem);
+        })
+        this.$allInputs.forEach($input => {
+            $input.addEventListener('click', this.autoSelected);
+        })
+        this.$allTextareas.forEach($textarea => {
+            $textarea.addEventListener('click', this.autoSelected);
         })
         this.$cancelButtons.forEach(($cancelButton, i) => {
             $cancelButton.i = i;
@@ -112,7 +119,6 @@ export default class View {
         this.$stars = this.$todoList.querySelectorAll('.star');
         this.$pens = this.$todoList.querySelectorAll('.pen');
         this.$deleteButtons = this.$todoList.querySelectorAll('.delete');
-        this.$todoNames = this.$todoList.querySelectorAll('.todo-name');
         this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
     }
     renderTodos(todos) {
@@ -137,7 +143,7 @@ export default class View {
                         <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                     </label>
                         <div class="icon-wrapper">
-                            <span class="star"><i class="far fa-star ${isStared?'':'active'}"></i></span>
+                            <span class="star"><i class="far fa-star"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
@@ -239,7 +245,7 @@ export default class View {
                         <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                     </label>
                         <div class="icon-wrapper">
-                            <span class="star"><i class="far fa-star ${isStared?'':'active'}"></i></span>
+                            <span class="star"><i class="far fa-star"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
@@ -348,7 +354,9 @@ export default class View {
             that.$newCheckbox.checked = !that.$newCheckbox.checked;
         }
     }
-    dragTodo() {}
+    autoSelected() {
+        this.select();
+    }
     toggleNavItem() {
         that.clearAllNavItems();
         toggleActive(this);
