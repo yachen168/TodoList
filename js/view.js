@@ -94,9 +94,12 @@ export default class heView {
         })
     }
     bindNavItem(listener) {
-            this.$navItems[2].addEventListener('click', listener);
-        }
-        // 更新動態產生的節點
+        this.$navItems.forEach(($navItem, i) => {
+            $navItem.addEventListener('click', function(e) {
+                listener(e, i);
+            });
+        })
+    }
     updateNode() {
         this.$todoBars = this.$todoList.querySelectorAll('.todo-bar');
         this.$todoTitles = this.$todoList.querySelectorAll('.todo-title');
@@ -173,9 +176,119 @@ export default class heView {
                     </div>
                 </div>
             `;
-            that.$todoList.insertAdjacentHTML('afterbegin', item);
-            that.init();
+            const itemInProgress = `
+            <div class="edit-area" style="${isCompleted?'display: none':''}">
+                    <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
+                        <div class="hover-dots">
+                            <span>∙</span>
+                            <span>∙</span>
+                            <span>∙</span>
+                        </div>
+                        <label class="todo-title">
+                        <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                        <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                    </label>
+                        <div class="icon-wrapper">
+                            <span class="star"><i class="fas fa-star ${isStared?'active':''}"></i><i class="far fa-star ${isStared?'':'active'}"></i></span>
+                            <span class="pen"><i class="fas fa-pen"></i></span>
+                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
+                        </div>
+                        <div class="hint-icons">
+                            <i class="far fa-calendar-alt ${todoDate?'active':''}"></i><span></span>
+                            <i class="far fa-file"></i>
+                            <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="deadline">
+                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                                <div class="input-wrapper">
+                                    <input class="date" type="date" value="${todoDate}" placeholder="yyyy/mm/dd">
+                                    <input class="time" type="time" value="${todoTime}" placeholder="hh:mm">
+                                </div>
+                            </div>
+                            <div class="file">
+                                <h3><i class="far fa-file"></i>File</h3>
+                                <label class="upload">
+                                    <input class="upload-input" type="file">
+                                    <span class="upload-icon">+</span>
+                                </label>
+                            </div>
+                            <div class="comment">
+                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                                <textarea class="comment-content" placeholder="Type your memo here...">${todoComment}</textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const itemCompleted = `
+            <div class="edit-area" style="${isCompleted?'':'display: none'}">
+                    <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
+                        <div class="hover-dots">
+                            <span>∙</span>
+                            <span>∙</span>
+                            <span>∙</span>
+                        </div>
+                        <label class="todo-title">
+                        <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                        <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                    </label>
+                        <div class="icon-wrapper">
+                            <span class="star"><i class="fas fa-star ${isStared?'active':''}"></i><i class="far fa-star ${isStared?'':'active'}"></i></span>
+                            <span class="pen"><i class="fas fa-pen"></i></span>
+                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
+                        </div>
+                        <div class="hint-icons">
+                            <i class="far fa-calendar-alt ${todoDate?'active':''}"></i><span></span>
+                            <i class="far fa-file"></i>
+                            <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="deadline">
+                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                                <div class="input-wrapper">
+                                    <input class="date" type="date" value="${todoDate}" placeholder="yyyy/mm/dd">
+                                    <input class="time" type="time" value="${todoTime}" placeholder="hh:mm">
+                                </div>
+                            </div>
+                            <div class="file">
+                                <h3><i class="far fa-file"></i>File</h3>
+                                <label class="upload">
+                                    <input class="upload-input" type="file">
+                                    <span class="upload-icon">+</span>
+                                </label>
+                            </div>
+                            <div class="comment">
+                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                                <textarea class="comment-content" placeholder="Type your memo here...">${todoComment}</textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            if (that.$navItems[0].classList.contains('active')) {
+                that.$todoList.insertAdjacentHTML('afterbegin', item);
+            }
+            if (that.$navItems[1].classList.contains('active')) {
+                that.$todoList.insertAdjacentHTML('afterbegin', itemInProgress);
+            }
+            if (that.$navItems[2].classList.contains('active')) {
+                that.$todoList.insertAdjacentHTML('afterbegin', itemCompleted);
+            }
         })
+        that.init();
     }
     addNewTodo() {
         const todoTitle = that.$newTodoName.value;

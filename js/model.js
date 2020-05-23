@@ -16,17 +16,15 @@ export default class Model {
             isCompleted: newTodo.isCompleted
         });
     }
+    getAllTodos() {
+        return this.todos;
+    }
     inProgressFilter() {
-        const inProgressTodos = this.todos.filter((todo, i) => {
-            todo.isCompleted === false;
-        });
+        const inProgressTodos = this.todos.filter(todo => todo.isCompleted === false);
         return inProgressTodos;
     }
     completedFilter() {
-
-        // const result = words.filter(word => word===3);
         const completedTodos = this.todos.filter(todo => todo.isCompleted === true);
-
         return completedTodos;
     }
     editDone(editTodo, index) {
