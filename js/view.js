@@ -31,12 +31,12 @@ export default class View {
         this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler);
         this.$newCancelButton.addEventListener('click', this.toggleNewCard);
         this.$newCancelButton.addEventListener('click', this.clearNewTodo);
-        this.$newStar.addEventListener('click', this.bindNewStar);
+        this.$newStar.addEventListener('click', this.markNewTodo);
         this.$allInputs = document.querySelectorAll('input');
         this.$allTextareas = document.querySelectorAll('textarea');
         this.$stars.forEach(($star, i) => {
             $star.i = i;
-            $star.addEventListener('click', this.toggleStared);
+            $star.addEventListener('click', this.markTodo);
         })
         this.$pens.forEach(($pen, i) => {
             $pen.i = i;
@@ -139,9 +139,9 @@ export default class View {
                             <span>∙</span>
                         </div>
                         <label class="todo-title">
-                        <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                        <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
-                    </label>
+                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                            <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        </label>
                         <div class="icon-wrapper">
                             <span class="star"><i class="far fa-star"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
@@ -190,9 +190,9 @@ export default class View {
                             <span>∙</span>
                         </div>
                         <label class="todo-title">
-                        <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                        <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
-                    </label>
+                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                            <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        </label>
                         <div class="icon-wrapper">
                             <span class="star"><i class="far fa-star"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
@@ -241,9 +241,9 @@ export default class View {
                             <span>∙</span>
                         </div>
                         <label class="todo-title">
-                        <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                        <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
-                    </label>
+                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                            <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        </label>
                         <div class="icon-wrapper">
                             <span class="star"><i class="far fa-star"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
@@ -361,10 +361,10 @@ export default class View {
         that.clearAllNavItems();
         toggleActive(this);
     }
-    bindNewStar() {
+    markNewTodo() {
         toggleActive(that.$newTodoBar);
     }
-    toggleStar() {
+    markTodo() {
         toggleActive(that.$todoBars[this.i]);
     }
     bindClickPen() {

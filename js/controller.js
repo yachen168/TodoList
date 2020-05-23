@@ -43,20 +43,17 @@ export default class Controller {
     deleteTodo() {
         this.view.bindDeleteButton(function(e, index) {
             this.model.deleteTodo(index);
-            console.log(this.model.todos);
             this.renderTodos();
         }.bind(this));
     }
     bindAllStar() {
         this.view.bindStar(function(e, index) {
             this.model.bindStar(index);
-            this.renderTodos();
         }.bind(this));
     }
     bindCheckbox() {
         this.view.bindCheckbox(function(e, index) {
             this.model.bindCheckbox(index);
-            console.log(index);
             this.renderTodos();
         }.bind(this));
     }
