@@ -3,6 +3,7 @@ export default class Controller {
         this.model = model;
         this.view = view;
         this.renderTodos();
+        this.bindNavItem();
         this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
     }
     renderTodos() {
@@ -21,7 +22,6 @@ export default class Controller {
         this.bindAllStar();
         this.editDone();
         this.bindCheckbox();
-        this.bindNavItem();
     }
     addNewTodo() {
         this.model.addNewTodo(this.view.addNewTodo());

@@ -4,7 +4,7 @@ import { qs, toggleActive } from './helpers.js';
 
 //  View
 export let that;
-export default class heView {
+export default class View {
     constructor(template) {
         that = this;
         this.template = template;
@@ -23,6 +23,7 @@ export default class heView {
         this.$newConfirmButton = document.querySelector('.new-button-confirm');
         this.$navItems = document.querySelectorAll('.nav-item');
         this.$todoCounter = document.querySelector('.todo-count');
+        this.$nav = document.querySelector('nav ul');
         this.init();
     }
     init() {
@@ -92,10 +93,11 @@ export default class heView {
         })
     }
     bindNavItem(listener) {
-        this.$navItems.forEach(($navItem, i) => {
-            $navItem.addEventListener('click', function(e) {
-                listener(e, i);
-            });
+        this.$nav.addEventListener('click', function(e) {
+            if (e.target.matches('li')) {
+                console.log(123);
+                listener();
+            }
         })
     }
     updateNode() {
@@ -278,15 +280,15 @@ export default class heView {
             `;
             if (that.$navItems[0].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', item);
-                that.$todoCounter.innerHTML = `${leftTodo} tasks left`
+                that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
             }
             if (that.$navItems[1].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', itemInProgress);
-                that.$todoCounter.innerHTML = `${leftTodo} tasks left`
+                that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
             }
             if (that.$navItems[2].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', itemCompleted);
-                that.$todoCounter.innerHTML = `${completedTodo} tasks completed`
+                that.$todoCounter.innerHTML = `${completedTodo} tasks completed`;
             }
         })
         that.init();
