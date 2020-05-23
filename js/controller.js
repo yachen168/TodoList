@@ -7,16 +7,19 @@ export default class Controller {
         this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
     }
     renderTodos() {
-        let todos = this.model.todos;
+        this.view.renderTodos(this.model.todos);
+        this.bindEventHandler();
+    }
+    renderCounter() {
         let leftTodo = this.model.leftCounter();
         let completedTodo = this.model.completedCounter();
-        this.view.renderTodos(todos, leftTodo, completedTodo);
-        this.bindEventHandler();
+        this.view.renderCounter(leftTodo, completedTodo);
     }
     bindNavItem() {
         this.view.bindNavItem(this.renderTodos.bind(this));
     }
     bindEventHandler() {
+        this.renderCounter();
         this.editCancel();
         this.deleteTodo();
         this.bindAllStar();
@@ -40,6 +43,7 @@ export default class Controller {
     deleteTodo() {
         this.view.bindDeleteButton(function(e, index) {
             this.model.deleteTodo(index);
+            console.log(this.model.todos);
             this.renderTodos();
         }.bind(this));
     }

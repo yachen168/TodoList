@@ -95,7 +95,6 @@ export default class View {
     bindNavItem(listener) {
         this.$nav.addEventListener('click', function(e) {
             if (e.target.matches('li')) {
-                console.log(123);
                 listener();
             }
         })
@@ -116,7 +115,7 @@ export default class View {
         this.$todoNames = this.$todoList.querySelectorAll('.todo-name');
         this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
     }
-    renderTodos(todos, leftTodo, completedTodo) {
+    renderTodos(todos) {
         this.$todoList.innerHTML = '';
         todos.forEach((todo, i) => {
             const todoTitle = todo.todoTitle;
@@ -280,18 +279,26 @@ export default class View {
             `;
             if (that.$navItems[0].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', item);
-                that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
             }
             if (that.$navItems[1].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', itemInProgress);
-                that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
             }
             if (that.$navItems[2].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', itemCompleted);
-                that.$todoCounter.innerHTML = `${completedTodo} tasks completed`;
             }
         })
         that.init();
+    }
+    renderCounter(leftTodo, completedTodo) {
+        if (that.$navItems[0].classList.contains('active')) {
+            that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
+        }
+        if (that.$navItems[1].classList.contains('active')) {
+            that.$todoCounter.innerHTML = `${leftTodo} tasks left`;
+        }
+        if (that.$navItems[2].classList.contains('active')) {
+            that.$todoCounter.innerHTML = `${completedTodo} tasks completed`;
+        }
     }
     addNewTodo() {
         const todoTitle = that.$newTodoName.value;
