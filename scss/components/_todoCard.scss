@@ -93,11 +93,14 @@
     .hover-dots {
         opacity: 0;
         position: absolute;
+        left: 5px;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         height: 20px;
-        left: 5px;
         transition-duration: 0.3s;
         span {
             line-height: 10px;
@@ -140,13 +143,9 @@
         width: 100%;
         margin-left: 40px;
         color: $grey-500;
-        i:not(:first-of-type) {
-            margin-left: 10px;
-        }
         i {
             display: none;
-            margin-left: 5px;
-            margin-top: 10px;
+            margin: 10px 10px 0 5px;
         }
         i.active {
             display: inline-block;
@@ -162,7 +161,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // width: 80px;
     position: relative;
     span {
         font-size: 20px;

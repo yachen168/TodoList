@@ -178,11 +178,14 @@ nav ul .nav-item.active {
 .todo-bar .hover-dots {
   opacity: 0;
   position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 20px;
-  left: 5px;
   transition-duration: 0.3s;
 }
 .todo-bar .hover-dots span {
@@ -226,13 +229,9 @@ nav ul .nav-item.active {
   margin-left: 40px;
   color: #757575;
 }
-.todo-bar .hint-icons i:not(:first-of-type) {
-  margin-left: 10px;
-}
 .todo-bar .hint-icons i {
   display: none;
-  margin-left: 5px;
-  margin-top: 10px;
+  margin: 10px 10px 0 5px;
 }
 .todo-bar .hint-icons i.active {
   display: inline-block;
