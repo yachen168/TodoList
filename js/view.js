@@ -158,8 +158,8 @@ export default class View {
                             <div class="deadline">
                                 <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
                                 <div class="input-wrapper">
-                                    <input class="date" type="date" value="${todoDate}" placeholder="yyyy/mm/dd">
-                                    <input class="time" type="time" value="${todoTime}" placeholder="hh:mm">
+                                    <input class="date" type="date" value="${todoDate}">
+                                    <input class="time" type="time" value="${todoTime}">
                                 </div>
                             </div>
                             <div class="file">
@@ -209,8 +209,8 @@ export default class View {
                             <div class="deadline">
                                 <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
                                 <div class="input-wrapper">
-                                    <input class="date" type="date" value="${todoDate}" placeholder="yyyy/mm/dd">
-                                    <input class="time" type="time" value="${todoTime}" placeholder="hh:mm">
+                                    <input class="date" type="date" value="${todoDate}">
+                                    <input class="time" type="time" value="${todoTime}">
                                 </div>
                             </div>
                             <div class="file">
@@ -260,8 +260,8 @@ export default class View {
                             <div class="deadline">
                                 <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
                                 <div class="input-wrapper">
-                                    <input class="date" type="date" value="${todoDate}" placeholder="yyyy/mm/dd">
-                                    <input class="time" type="time" value="${todoTime}" placeholder="hh:mm">
+                                    <input class="date" type="date" value="${todoDate}">
+                                    <input class="time" type="time" value="${todoTime}">
                                 </div>
                             </div>
                             <div class="file">

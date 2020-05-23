@@ -2,7 +2,6 @@
 
 export default class Model {
     constructor() {
-        const localStorage = window.localStorage;
         this.todos = [];
     }
     addNewTodo(newTodo) {

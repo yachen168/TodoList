@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   margin: 0;
 }
@@ -199,18 +200,39 @@ nav ul .nav-item.active {
   margin-left: 10px;
 }
 .todo-bar label .checkbox {
-  zoom: 210%;
+  position: relative;
+  width: 24px;
+  height: 24px;
   border: none;
-  margin: 0;
+  cursor: pointer;
 }
-.todo-bar label .checkbox:checked ~ input {
+.todo-bar label .checkbox::after {
+  position: absolute;
+  content: "";
+  width: 24px;
+  height: 24px;
+  background-color: #ffffff;
+  text-align: center;
+  line-height: 24px;
+  border-radius: 2px;
+}
+.todo-bar label .checkbox:checked::after {
+  content: "✓";
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #5197E7;
+}
+.todo-bar label .checkbox:checked ~ .todo-name {
   color: #757575;
   text-decoration: line-through;
+}
+.todo-bar label .checkbox:checked ~ .todo-name::placeholder {
+  color: #757575;
 }
 .todo-bar label .todo-name {
   width: 100%;
   margin-left: 8px;
-  font-size: 20px;
+  font-size: 22px;
   background-color: #F2F2F2;
   border: none;
 }
@@ -332,13 +354,16 @@ nav ul .nav-item.active {
   flex-wrap: wrap;
 }
 .card-body .input-wrapper input {
-  width: 150px;
+  width: 160px;
   margin: 0 5px 5px 0;
   padding: 5px 15px;
 }
 .card-body .input-wrapper input::placeholder {
   font-size: 14px;
   color: #C8C8C8;
+}
+.card-body .input-wrapper input[type=date]::-webkit-inner-spin-button {
+  display: none;
 }
 .card-body .comment textarea {
   width: 100%;

@@ -113,18 +113,39 @@
         align-items: center;
         margin-left: 10px;
         .checkbox {
-            zoom: 210%;
+            position: relative;
+            width: 24px;
+            height: 24px;
             border: none;
-            margin: 0;
+            cursor: pointer;
         }
-        .checkbox:checked~input {
+        .checkbox::after {
+            position: absolute;
+            content: "";
+            width: 24px;
+            height: 24px;
+            background-color: $white;
+            text-align: center;
+            line-height: 24px;
+            border-radius: 2px;
+        }
+        .checkbox:checked::after {
+            content: "✓";
+            font-size: 18px;
+            color: $white;
+            background-color: $blue-200;
+        }
+        .checkbox:checked~.todo-name {
             color: $grey-500;
             text-decoration: line-through;
+        }
+        .checkbox:checked~.todo-name::placeholder {
+            color: $grey-500;
         }
         .todo-name {
             width: 100%;
             margin-left: 8px;
-            font-size: 20px;
+            font-size: 22px;
             background-color: $grey-200;
             border: none;
             &::placeholder {
@@ -246,13 +267,16 @@
         display: flex;
         flex-wrap: wrap;
         input {
-            width: 150px;
+            width: 160px;
             margin: 0 5px 5px 0;
             padding: 5px 15px;
             &::placeholder {
                 font-size: 14px;
                 color: $grey-400;
             }
+        }
+        input[type="date"]::-webkit-inner-spin-button {
+            display: none;
         }
     }
     .comment {
