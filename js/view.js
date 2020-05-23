@@ -6,26 +6,25 @@ import { qs, toggleActive } from './helpers.js';
 export let that;
 export default class heView {
     constructor(template) {
-            that = this;
-            this.template = template;
-            this.$todoList = document.querySelector('.todo-list');
-            this.$addTaskButtons = document.querySelector('.add-todo');
-            this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
-            this.$newStar = document.querySelector('.new-todo .star');
-            this.$newCheckbox = document.querySelector('.new-todo .checkbox');
-            this.$newTodoName = document.querySelector('.new-todo-name');
-            this.$newTodoEditArea = document.querySelector('.new-todo-edit-area');
-            this.$newTodoDate = document.querySelector('.new-date');
-            this.$newTodoTime = document.querySelector('.new-time');
-            this.$newTodoComment = document.querySelector('.add-comment');
-            this.$newCardFooter = document.querySelector('.new-todo .new-card-footer');
-            this.$newCancelButton = document.querySelector('.new-button-cancel');
-            this.$newConfirmButton = document.querySelector('.new-button-confirm');
-            this.$navItems = document.querySelectorAll('.nav-item');
-            this.$todoCounter = document.querySelector('.todo-count');
-            this.init();
-        }
-        // 初始化綁定事件
+        that = this;
+        this.template = template;
+        this.$todoList = document.querySelector('.todo-list');
+        this.$addTaskButtons = document.querySelector('.add-todo');
+        this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
+        this.$newStar = document.querySelector('.new-todo .star');
+        this.$newCheckbox = document.querySelector('.new-todo .checkbox');
+        this.$newTodoName = document.querySelector('.new-todo-name');
+        this.$newTodoEditArea = document.querySelector('.new-todo-edit-area');
+        this.$newTodoDate = document.querySelector('.new-date');
+        this.$newTodoTime = document.querySelector('.new-time');
+        this.$newTodoComment = document.querySelector('.add-comment');
+        this.$newCardFooter = document.querySelector('.new-todo .new-card-footer');
+        this.$newCancelButton = document.querySelector('.new-button-cancel');
+        this.$newConfirmButton = document.querySelector('.new-button-confirm');
+        this.$navItems = document.querySelectorAll('.nav-item');
+        this.$todoCounter = document.querySelector('.todo-count');
+        this.init();
+    }
     init() {
         this.updateNode();
         this.$addTaskButtons.addEventListener('click', this.toggleNewCard);
@@ -64,7 +63,6 @@ export default class heView {
             });
         })
     }
-
     bindConfirmEditButton(listener) {
         this.$confirmButtons.forEach(($confirmButton, i) => {
             $confirmButton.addEventListener('click', function(e) {
@@ -116,7 +114,7 @@ export default class heView {
         this.$todoNames = this.$todoList.querySelectorAll('.todo-name');
         this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
     }
-    renderTodos(todos) {
+    renderTodos(todos, leftTodo, completedTodo) {
         this.$todoList.innerHTML = '';
         todos.forEach((todo, i) => {
             const todoTitle = todo.todoTitle;
@@ -280,12 +278,15 @@ export default class heView {
             `;
             if (that.$navItems[0].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', item);
+                that.$todoCounter.innerHTML = `${leftTodo} tasks left`
             }
             if (that.$navItems[1].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', itemInProgress);
+                that.$todoCounter.innerHTML = `${leftTodo} tasks left`
             }
             if (that.$navItems[2].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', itemCompleted);
+                that.$todoCounter.innerHTML = `${completedTodo} tasks completed`
             }
         })
         that.init();
@@ -340,9 +341,6 @@ export default class heView {
         if (isCompleted) {
             that.$newCheckbox.checked = !that.$newCheckbox.checked;
         }
-    }
-    todoCount(leftTodo) {
-        this.$todoCounter.innerHTML = `${leftTodo} tasks left`
     }
     dragTodo() {}
     toggleNavItem() {

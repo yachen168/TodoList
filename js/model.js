@@ -16,16 +16,11 @@ export default class Model {
             isCompleted: newTodo.isCompleted
         });
     }
-    getAllTodos() {
-        return this.todos;
-    }
     inProgressFilter() {
-        const inProgressTodos = this.todos.filter(todo => todo.isCompleted === false);
-        return inProgressTodos;
+        return this.todos.filter(todo => todo.isCompleted === false);
     }
     completedFilter() {
-        const completedTodos = this.todos.filter(todo => todo.isCompleted === true);
-        return completedTodos;
+        return this.todos.filter(todo => todo.isCompleted === true);
     }
     editDone(editTodo, index) {
         const i = this.todos.length - index - 1;
@@ -35,15 +30,19 @@ export default class Model {
         const i = this.todos.length - index - 1;
         this.todos.splice(i, 1);
     }
-    todoFilter(index) {
-
-    }
-    todoCount() {
+    leftCounter() {
         let leftTodo = 0;
-        this.todos.forEach((todo) => {
+        this.todos.forEach(todo => {
             if (!todo.isCompleted) leftTodo++;
         })
         return leftTodo;
+    }
+    completedCounter() {
+        let completedTodo = 0;
+        this.todos.forEach(todo => {
+            if (todo.isCompleted) completedTodo++;
+        })
+        return completedTodo;
     }
     bindStar(index) {
         const i = this.todos.length - index - 1;
