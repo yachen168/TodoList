@@ -141,7 +141,7 @@ export default class heView {
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
                         <div class="hint-icons">
-                            <i class="far fa-calendar-alt ${todoDate?'active':''}"></i><span></span>
+                            <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
                             <i class="far fa-file"></i>
                             <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
                         </div>
@@ -192,7 +192,7 @@ export default class heView {
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
                         <div class="hint-icons">
-                            <i class="far fa-calendar-alt ${todoDate?'active':''}"></i><span></span>
+                            <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
                             <i class="far fa-file"></i>
                             <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
                         </div>
@@ -243,7 +243,7 @@ export default class heView {
                             <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
                         </div>
                         <div class="hint-icons">
-                            <i class="far fa-calendar-alt ${todoDate?'active':''}"></i><span></span>
+                            <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
                             <i class="far fa-file"></i>
                             <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
                         </div>
