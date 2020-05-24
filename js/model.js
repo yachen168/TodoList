@@ -3,17 +3,24 @@
 export default class Model {
     constructor() {
         this.todos = [];
+        this.sortTodos();
     }
     addNewTodo(newTodo) {
         this.todos.push({
-            id: this.todos.length > 0 ? this.todos.length + 1 : 1,
             todoTitle: newTodo.todoTitle,
             todoDate: newTodo.todoDate,
             todoTime: newTodo.todoTime,
             todoComment: newTodo.todoComment,
             isStared: newTodo.isStared,
-            isCompleted: newTodo.isCompleted
+            isCompleted: newTodo.isCompleted,
         });
+    }
+    sortTodos() {
+        return this.todos.sort((a, b) => {
+            let scoreA = (a.isStared ? 100 : 0) + (a.isCompleted ? -200 : 0)
+            let scoreB = (b.isStared ? 100 : 0) + (b.isCompleted ? -200 : 0)
+            return scoreA - scoreB;
+        })
     }
     editDone(editTodo, index) {
         const i = this.todos.length - index - 1;

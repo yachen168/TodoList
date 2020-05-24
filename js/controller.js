@@ -4,9 +4,11 @@ export default class Controller {
         this.view = view;
         this.renderTodos();
         this.bindNavItem();
-        this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
+        this.bindNewConfirmButton();
+
     }
     renderTodos() {
+        this.model.sortTodos();
         this.view.renderTodos(this.model.todos);
         this.bindEventHandler();
     }
@@ -14,17 +16,6 @@ export default class Controller {
         let leftTodo = this.model.leftCounter();
         let completedTodo = this.model.completedCounter();
         this.view.renderCounter(leftTodo, completedTodo);
-    }
-    bindNavItem() {
-        this.view.bindNavItem(this.renderTodos.bind(this));
-    }
-    bindEventHandler() {
-        this.renderCounter();
-        this.editCancel();
-        this.deleteTodo();
-        this.bindAllStar();
-        this.editDone();
-        this.bindCheckbox();
     }
     addNewTodo() {
         this.model.addNewTodo(this.view.addNewTodo());
@@ -49,6 +40,7 @@ export default class Controller {
     bindAllStar() {
         this.view.bindStar(function(e, index) {
             this.model.bindStar(index);
+            this.renderTodos();
         }.bind(this));
     }
     bindCheckbox() {
@@ -56,5 +48,19 @@ export default class Controller {
             this.model.bindCheckbox(index);
             this.renderTodos();
         }.bind(this));
+    }
+    bindNavItem() {
+        this.view.bindNavItem(this.renderTodos.bind(this));
+    }
+    bindNewConfirmButton() {
+        this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
+    }
+    bindEventHandler() {
+        this.renderCounter();
+        this.editCancel();
+        this.deleteTodo();
+        this.bindAllStar();
+        this.editDone();
+        this.bindCheckbox();
     }
 }
