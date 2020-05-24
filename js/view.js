@@ -38,11 +38,11 @@ export default class View {
         })
         this.$pens.forEach(($pen, i) => {
             $pen.i = i;
-            $pen.addEventListener('click', this.bindClickPen);
+            $pen.addEventListener('click', this.penEventHandler);
         })
         this.$navItems.forEach(($navItem, i) => {
             $navItem.i = i;
-            $navItem.addEventListener('click', this.toggleNavItem);
+            $navItem.addEventListener('click', this.navItemEventHandler);
         })
         this.$allInputs.forEach($input => {
             $input.addEventListener('click', this.autoSelected);
@@ -52,11 +52,11 @@ export default class View {
         })
         this.$cancelButtons.forEach(($cancelButton, i) => {
             $cancelButton.i = i;
-            $cancelButton.addEventListener('click', this.toggleCard);
+            $cancelButton.addEventListener('click', this.toggleEditCard);
         })
         this.$confirmButtons.forEach(($confirmButton, i) => {
             $confirmButton.i = i;
-            $confirmButton.addEventListener('click', this.toggleCard);
+            $confirmButton.addEventListener('click', this.toggleEditCard);
         })
     }
     bindNewConfirmButton(listener) {
@@ -358,8 +358,8 @@ export default class View {
     autoSelected() {
         this.select();
     }
-    toggleNavItem() {
-        that.clearAllNavItems();
+    navItemEventHandler() {
+        that.clearAllClass(that.$navItems);
         toggleActive(this);
     }
     markNewTodo() {
@@ -368,9 +368,8 @@ export default class View {
     markTodo() {
         toggleActive(that.$todoBars[this.i]);
     }
-    bindClickPen() {
-        that.clearAllCards();
-        that.clearAllPens();
+    penEventHandler() {
+        that.clearAllClass(that.$editAreas);
         toggleActive(this.firstElementChild);
         toggleActive(that.$editAreas[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
@@ -386,23 +385,12 @@ export default class View {
             toggleActive(that.$newTodoEditArea);
         }
     }
-    bindNewCardFooter() {
-        toggleActive(that.$newTodoEditArea);
-    }
-    toggleCard() {
+    toggleEditCard() {
         toggleActive(that.$pens[this.i].firstElementChild);
         toggleActive(that.$editCards[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
-    clearAllNavItems() {
-        that.$navItems.forEach($navItem => $navItem.classList.remove('active'));
-    }
-    clearAllCards() {
-        that.$editCards.forEach($editCard => $editCard.classList.remove('active'));
-    }
-    clearAllPens() {
-        that.$pens.forEach($pen => {
-            $pen.firstElementChild.classList.remove('active');
-        })
+    clearAllClass(nodeItems) {
+        nodeItems.forEach(nodeItem => nodeItem.classList.remove('active'));
     }
 }
