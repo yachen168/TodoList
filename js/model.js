@@ -2,7 +2,7 @@
 
 export default class Model {
     constructor() {
-        this.todos = [];
+        this.todos = JSON.parse(localStorage.getItem('todos')) || [];
     }
     addNewTodo(newTodo) {
         this.todos.push({
@@ -13,6 +13,10 @@ export default class Model {
             isStared: newTodo.isStared,
             isCompleted: newTodo.isCompleted,
         });
+        this.storage();
+    }
+    storage() {
+        localStorage.setItem('todos', JSON.stringify(this.todos));
     }
     sortTodos() {
         return this.todos.sort((a, b) => {
@@ -24,10 +28,12 @@ export default class Model {
     editDone(editTodo, index) {
         const i = this.todos.length - index - 1;
         this.todos[i] = editTodo;
+        this.storage();
     }
     deleteTodo(index) {
         const i = this.todos.length - index - 1;
         this.todos.splice(i, 1);
+        this.storage();
     }
     leftCounter() {
         let leftTodo = 0;
@@ -46,9 +52,11 @@ export default class Model {
     bindStar(index) {
         const i = this.todos.length - index - 1;
         this.todos[i].isStared = !this.todos[i].isStared;
+        this.storage();
     }
     bindCheckbox(index) {
         const i = this.todos.length - index - 1;
         this.todos[i].isCompleted = !this.todos[i].isCompleted;
+        this.storage();
     }
 }
