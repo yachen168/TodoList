@@ -5,7 +5,6 @@ export default class Controller {
         this.renderTodos();
         this.bindNavItem();
         this.bindNewConfirmButton();
-
     }
     renderTodos() {
         this.model.sortTodos();

@@ -27,6 +27,7 @@ export default class View {
     }
     init() {
         this.updateNode();
+        this.dragTodo();
         this.$addTaskButtons.addEventListener('click', this.toggleNewCard);
         this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler);
         this.$newCancelButton.addEventListener('click', this.toggleNewCard);
@@ -390,4 +391,28 @@ export default class View {
         toggleActive(that.$editCards[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
+    dragTodo() {
+        Sortable.create(list, {
+            group: "TodoList",
+            options: {
+                animation: 100,
+                draggable: "#list form",
+                handle: "#list form",
+                sort: true,
+                filter: ".sortable-disabled",
+                chosenClass: "active"
+            }
+            // store: {
+            //     get: function(sortable) {
+            //         var order = localStorage.getItem(sortable.options.group.name);
+            //         return order ? order.split("|") : [];
+            //     },
+            //     set: function(sortable) {
+            //         var order = sortable.toArray();
+            //         localStorage.setItem(sortable.options.group.name, order.join("|"));
+            //     }
+            // }
+        });
+    }
+
 }
