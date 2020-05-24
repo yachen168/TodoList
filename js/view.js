@@ -373,13 +373,12 @@ export default class View {
         e.preventDefault();
         const isTodoTitleEmpty = !(that.$newTodoName.value);
         if (isTodoTitleEmpty)
-            confirm('尚未輸入代辦事項名稱');
+            alert('尚未輸入代辦事項名稱');
         else
             toggleActive(that.$newTodoEditArea);
     }
     penEventHandler() {
         clearAllClass(that.$editAreas);
-        toggleActive(this.firstElementChild);
         toggleActive(that.$editAreas[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
