@@ -59,6 +59,24 @@ export default class View {
             $confirmButton.addEventListener('click', this.toggleEditCard);
         })
     }
+    updateNode() {
+        this.$todoBars = this.$todoList.querySelectorAll('.todo-bar');
+        this.$todoTitles = this.$todoList.querySelectorAll('.todo-title');
+        this.$editCards = this.$todoList.querySelectorAll('.card');
+        this.$todoNames = this.$todoList.querySelectorAll('.todo-name');
+        this.$todoDates = this.$todoList.querySelectorAll('.date');
+        this.$todoTimes = this.$todoList.querySelectorAll('.time');
+        this.$todoComments = this.$todoList.querySelectorAll('.comment-content')
+        this.$cancelButtons = this.$todoList.querySelectorAll('.button-cancel');
+        this.$confirmButtons = this.$todoList.querySelectorAll('.button-confirm');
+        this.$stars = this.$todoList.querySelectorAll('.star');
+        this.$pens = this.$todoList.querySelectorAll('.pen');
+        this.$deleteButtons = this.$todoList.querySelectorAll('.delete');
+        this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
+        this.$editAreas = this.$todoList.querySelectorAll('.edit-area');
+        this.$allInputs = document.querySelectorAll('input');
+        this.$allTextareas = document.querySelectorAll('textarea');
+    }
     bindNewConfirmButton(listener) {
         this.$newConfirmButton.addEventListener('click', listener);
     }
@@ -79,6 +97,7 @@ export default class View {
     bindDeleteButton(listener) {
         this.$deleteButtons.forEach(($deleteButton, i) => {
             $deleteButton.addEventListener('click', function(e) {
+                // e.preventDefault();
                 listener(e, i);
             });
         })
@@ -104,24 +123,6 @@ export default class View {
             }
         })
     }
-    updateNode() {
-        this.$todoBars = this.$todoList.querySelectorAll('.todo-bar');
-        this.$todoTitles = this.$todoList.querySelectorAll('.todo-title');
-        this.$editCards = this.$todoList.querySelectorAll('.card');
-        this.$todoNames = this.$todoList.querySelectorAll('.todo-name');
-        this.$todoDates = this.$todoList.querySelectorAll('.date');
-        this.$todoTimes = this.$todoList.querySelectorAll('.time');
-        this.$todoComments = this.$todoList.querySelectorAll('.comment-content')
-        this.$cancelButtons = this.$todoList.querySelectorAll('.button-cancel');
-        this.$confirmButtons = this.$todoList.querySelectorAll('.button-confirm');
-        this.$stars = this.$todoList.querySelectorAll('.star');
-        this.$pens = this.$todoList.querySelectorAll('.pen');
-        this.$deleteButtons = this.$todoList.querySelectorAll('.delete');
-        this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
-        this.$editAreas = this.$todoList.querySelectorAll('.edit-area');
-        this.$allInputs = document.querySelectorAll('input');
-        this.$allTextareas = document.querySelectorAll('textarea');
-    }
     renderTodos(todos) {
         this.$todoList.innerHTML = '';
         todos.forEach((todo, i) => {
@@ -132,7 +133,7 @@ export default class View {
             const isStared = todo.isStared;
             const isCompleted = todo.isCompleted;
             const item = `
-            <div class="edit-area">
+            <form class="edit-area">
                     <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
@@ -176,14 +177,14 @@ export default class View {
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
                         </div>
                     </div>
-                </div>
+                </form>
             `;
             const itemInProgress = `
-            <div class="edit-area ${isCompleted?'d-none':''}">
+            <form class="edit-area ${isCompleted?'d-none':''}">
                     <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
@@ -227,14 +228,14 @@ export default class View {
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
                         </div>
                     </div>
-                </div>
+                </form>
             `;
             const itemCompleted = `
-            <div class="edit-area ${isCompleted?'':'d-none'}">
+            <form class="edit-area ${isCompleted?'':'d-none'}">
                     <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
@@ -278,11 +279,11 @@ export default class View {
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
                         </div>
                     </div>
-                </div>
+                </form>
             `;
             if (that.$navItems[0].classList.contains('active')) {
                 that.$todoList.insertAdjacentHTML('afterbegin', item);
@@ -368,13 +369,13 @@ export default class View {
         clearAllClass(that.$navItems);
         toggleActive(this);
     }
-    newConfirmButtonHandler() {
+    newConfirmButtonHandler(e) {
+        e.preventDefault();
         const isTodoTitleEmpty = !(that.$newTodoName.value);
-        if (isTodoTitleEmpty) {
+        if (isTodoTitleEmpty)
             confirm('尚未輸入代辦事項名稱');
-        } else {
+        else
             toggleActive(that.$newTodoEditArea);
-        }
     }
     penEventHandler() {
         clearAllClass(that.$editAreas);
@@ -382,11 +383,11 @@ export default class View {
         toggleActive(that.$editAreas[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
-    toggleNewCard() {
+    toggleNewCard(e) {
+        e.preventDefault();
         toggleActive(that.$newTodoEditArea);
     }
     toggleEditCard() {
-        toggleActive(that.$pens[this.i].firstElementChild);
         toggleActive(that.$editCards[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
     }
