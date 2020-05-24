@@ -3,7 +3,6 @@
 export default class Model {
     constructor() {
         this.todos = [];
-        this.sortTodos();
     }
     addNewTodo(newTodo) {
         this.todos.push({
@@ -17,8 +16,8 @@ export default class Model {
     }
     sortTodos() {
         return this.todos.sort((a, b) => {
-            let scoreA = (a.isStared ? 100 : 0) + (a.isCompleted ? -200 : 0)
-            let scoreB = (b.isStared ? 100 : 0) + (b.isCompleted ? -200 : 0)
+            let scoreA = (a.isStared ? 100 : 0) + (a.isCompleted ? -200 : 0);
+            let scoreB = (b.isStared ? 100 : 0) + (b.isCompleted ? -200 : 0);
             return scoreA - scoreB;
         })
     }

@@ -1,6 +1,6 @@
 'use strict'
 
-import { qs, toggleActive } from './helpers.js';
+import { qs, toggleActive, clearAllClass } from './helpers.js';
 
 //  View
 export let that;
@@ -358,24 +358,15 @@ export default class View {
     autoSelected() {
         this.select();
     }
-    navItemEventHandler() {
-        that.clearAllClass(that.$navItems);
-        toggleActive(this);
-    }
     markNewTodo() {
         toggleActive(that.$newTodoBar);
     }
     markTodo() {
         toggleActive(that.$todoBars[this.i]);
     }
-    penEventHandler() {
-        that.clearAllClass(that.$editAreas);
-        toggleActive(this.firstElementChild);
-        toggleActive(that.$editAreas[this.i]);
-        that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
-    }
-    toggleNewCard() {
-        toggleActive(that.$newTodoEditArea);
+    navItemEventHandler() {
+        clearAllClass(that.$navItems);
+        toggleActive(this);
     }
     newConfirmButtonHandler() {
         const isTodoTitleEmpty = !(that.$newTodoName.value);
@@ -385,12 +376,18 @@ export default class View {
             toggleActive(that.$newTodoEditArea);
         }
     }
+    penEventHandler() {
+        clearAllClass(that.$editAreas);
+        toggleActive(this.firstElementChild);
+        toggleActive(that.$editAreas[this.i]);
+        that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
+    }
+    toggleNewCard() {
+        toggleActive(that.$newTodoEditArea);
+    }
     toggleEditCard() {
         toggleActive(that.$pens[this.i].firstElementChild);
         toggleActive(that.$editCards[this.i]);
         that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
-    }
-    clearAllClass(nodeItems) {
-        nodeItems.forEach(nodeItem => nodeItem.classList.remove('active'));
     }
 }
