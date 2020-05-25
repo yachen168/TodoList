@@ -2,7 +2,7 @@
 
 export default class Model {
     constructor() {
-        this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+        this.todos = this.getLocalStorage() || [];
     }
     addNewTodo(newTodo) {
         this.todos.push({
@@ -11,12 +11,15 @@ export default class Model {
             todoTime: newTodo.todoTime,
             todoComment: newTodo.todoComment,
             isStared: newTodo.isStared,
-            isCompleted: newTodo.isCompleted,
+            isCompleted: newTodo.isCompleted
         });
-        this.storage();
+        this.setLocalStorage();
     }
-    storage() {
+    setLocalStorage() {
         localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+    getLocalStorage() {
+        return JSON.parse(localStorage.getItem('todos'));
     }
     sortTodos() {
         return this.todos.sort((a, b) => {
@@ -28,12 +31,12 @@ export default class Model {
     editDone(editTodo, index) {
         const i = this.todos.length - index - 1;
         this.todos[i] = editTodo;
-        this.storage();
+        this.setLocalStorage();
     }
     deleteTodo(index) {
         const i = this.todos.length - index - 1;
         this.todos.splice(i, 1);
-        this.storage();
+        this.setLocalStorage();
     }
     leftCounter() {
         let leftTodo = 0;
@@ -52,11 +55,11 @@ export default class Model {
     bindStar(index) {
         const i = this.todos.length - index - 1;
         this.todos[i].isStared = !this.todos[i].isStared;
-        this.storage();
+        this.setLocalStorage();
     }
     bindCheckbox(index) {
         const i = this.todos.length - index - 1;
         this.todos[i].isCompleted = !this.todos[i].isCompleted;
-        this.storage();
+        this.setLocalStorage();
     }
 }
