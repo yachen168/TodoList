@@ -98,7 +98,6 @@ export default class View {
     bindDeleteButton(listener) {
         this.$deleteButtons.forEach(($deleteButton, i) => {
             $deleteButton.addEventListener('click', function(e) {
-                // e.preventDefault();
                 listener(e, i);
             });
         })
