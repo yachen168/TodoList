@@ -287,13 +287,13 @@ export default class View {
                 </form>
             `;
             if (that.$navItems[0].classList.contains('active')) {
-                that.$todoList.insertAdjacentHTML('afterbegin', item);
+                that.$todoList.insertAdjacentHTML('beforeend', item);
             }
             if (that.$navItems[1].classList.contains('active')) {
-                that.$todoList.insertAdjacentHTML('afterbegin', itemInProgress);
+                that.$todoList.insertAdjacentHTML('beforeend', itemInProgress);
             }
             if (that.$navItems[2].classList.contains('active')) {
-                that.$todoList.insertAdjacentHTML('afterbegin', itemCompleted);
+                that.$todoList.insertAdjacentHTML('beforeend', itemCompleted);
             }
         })
         that.init();

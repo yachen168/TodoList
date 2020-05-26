@@ -29,13 +29,11 @@ export default class Model {
         })
     }
     editDone(editTodo, index) {
-        const i = this.todos.length - index - 1;
-        this.todos[i] = editTodo;
+        this.todos[index] = editTodo;
         this.setLocalStorage();
     }
     deleteTodo(index) {
-        const i = this.todos.length - index - 1;
-        this.todos.splice(i, 1);
+        this.todos.splice(index, 1);
         this.setLocalStorage();
     }
     leftCounter() {
@@ -53,13 +51,11 @@ export default class Model {
         return completedTodo;
     }
     bindStar(index) {
-        const i = this.todos.length - index - 1;
-        this.todos[i].isStared = !this.todos[i].isStared;
+        this.todos[index].isStared = !this.todos[index].isStared;
         this.setLocalStorage();
     }
     bindCheckbox(index) {
-        const i = this.todos.length - index - 1;
-        this.todos[i].isCompleted = !this.todos[i].isCompleted;
+        this.todos[index].isCompleted = !this.todos[index].isCompleted;
         this.setLocalStorage();
     }
 }

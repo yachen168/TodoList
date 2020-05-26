@@ -81,6 +81,11 @@ nav ul .nav-item.active {
   box-shadow: inset 0 -5px #00408B;
 }
 
+.todo-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .add-todo {
   width: 100%;
   height: 65px;
