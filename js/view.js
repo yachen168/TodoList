@@ -310,37 +310,25 @@ export default class View {
         }
     }
     addNewTodo() {
-        const todoTitle = that.$newTodoName.value;
-        const todoComment = that.$newTodoComment.value;
-        const todoDate = that.$newTodoDate.value;
-        const todoTime = that.$newTodoTime.value;
-        const isStared = that.$newTodoBar.classList.contains('active');
-        const isCompleted = that.$newCheckbox.checked;
-        if (todoTitle) {
+        if (that.$newTodoName.value) {
             return {
-                todoTitle,
-                todoComment,
-                todoDate,
-                todoTime,
-                isStared,
-                isCompleted
+                todoTitle: that.$newTodoName.value,
+                todoComment: that.$newTodoComment.value,
+                todoDate: that.$newTodoDate.value,
+                todoTime: that.$newTodoTime.value,
+                isStared: that.$newTodoBar.classList.contains('active'),
+                isCompleted: that.$newCheckbox.checked
             }
         }
     }
     editDone(index) {
-        const todoTitle = that.$todoNames[index].value;
-        const todoComment = that.$todoComments[index].value;
-        const todoDate = that.$todoDates[index].value;
-        const todoTime = that.$todoTimes[index].value;
-        const isStared = that.$todoBars[index].classList.contains('active');
-        const isCompleted = that.$checkboxes[index].checked;
         return {
-            todoTitle,
-            todoComment,
-            todoDate,
-            todoTime,
-            isStared,
-            isCompleted
+            todoTitle: that.$todoNames[index].value,
+            todoComment: that.$todoComments[index].value,
+            todoDate: that.$todoDates[index].value,
+            todoTime: that.$todoTimes[index].value,
+            isStared: that.$todoBars[index].classList.contains('active'),
+            isCompleted: that.$checkboxes[index].checked
         }
     }
     clearNewTodo() {
