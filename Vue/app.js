@@ -58,6 +58,9 @@
                 this.newTodo.todoTime = '';
                 this.newTodo.isStared = false;
                 this.newTodo.isCompleted = false;
+            },
+            deleteTodo(index) {
+                this.todos.splice(index, 1);
             }
         }
     })
