@@ -67,6 +67,12 @@
             },
             markTodo(index) {
                 this.todos[index].isStared = !this.todos[index].isStared;
+            },
+            leftCounter() {
+                return this.todos.filter(todo => !todo.isCompleted).length;
+            },
+            completedCounter() {
+                return this.todos.filter(todo => todo.isCompleted).length;
             }
         }
     })
