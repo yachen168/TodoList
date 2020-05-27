@@ -61,6 +61,12 @@
             },
             deleteTodo(index) {
                 this.todos.splice(index, 1);
+            },
+            markNewTodo() {
+                this.newTodo.isStared = !this.newTodo.isStared;
+            },
+            markTodo(index) {
+                this.todos[index].isStared = !this.todos[index].isStared;
             }
         }
     })
