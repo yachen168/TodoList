@@ -15,9 +15,9 @@
         <header>
             <nav>
                 <ul>
-                    <li @click="state='all';todoFilter" :class="{active: state==='all'}" class="nav-item">My Tasks</li>
-                    <li @click="state='inProgress';todoFilter" :class="{active: state==='inProgress'}" class="nav-item">In progress</li>
-                    <li @click="state='completed';todoFilter" :class="{active: state==='completed'}" class="nav-item">Completed</li>
+                    <li @click="state='all'" :class="{active: state==='all'}" class="nav-item">My Tasks</li>
+                    <li @click="state='inProgress'" :class="{active: state==='inProgress'}" class="nav-item">In progress</li>
+                    <li @click="state='completed'" :class="{active: state==='completed'}" class="nav-item">Completed</li>
                 </ul>
             </nav>
         </header>
@@ -32,7 +32,7 @@
                 </label>
                         <div class="icon-wrapper">
                             <span @click="markNewTodo" class="star"><i class="far fa-star active"></i></span>
-                            <span @click="toggleEditCard()" class="pen new-pen"><i class="fas fa-pen active"></i></span>
+                            <span @click="toggleNewEditCard(todo)" class="pen new-pen"><i class="fas fa-pen active"></i></span>
                         </div>
                     </div>
                     <div class="card">
@@ -64,7 +64,7 @@
                 </form>
             </section>
             <section class="todo-list" id="list">
-                <form v-for="(todo,index) in sortTodos" :key="todo.id" class="edit-area" :class="{active: todo.isEditing}">
+                <form v-for="(todo,index) in todoFilter" :key="todo.id" class="edit-area" :class="{active: todo.isEditing}">
                     <div class="todo-bar" :class="{active: todo.isStared}">
                         <div class="hover-dots">
                             <span>∙</span>

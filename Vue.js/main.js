@@ -9,9 +9,9 @@ const app = new Vue({
             todoTime: '',
             isStared: false,
             isCompleted: false,
+            isEditing: false,
         },
         state: 'all',
-        isEditing: false,
         isEditingNewTodo: false
     },
     methods: {
@@ -24,6 +24,7 @@ const app = new Vue({
                 todoTime: this.newTodo.todoTime,
                 isStared: this.newTodo.isStared,
                 isCompleted: this.newTodo.isCompleted,
+                isEditing: false,
             });
             this.clearNewTodo();
             this.setLocalStorage();
@@ -64,21 +65,21 @@ const app = new Vue({
         toggleCompleted(todo) {
             todo.isCompleted = !todo.isCompleted;
             this.setLocalStorage();
-        },
-        todoFilter() {
-            return this.todos.filter(todo => {
-                if (this.state === 'all') return this.todos;
-                if (this.state === 'inProgress') return !todo.isCompleted;
-                if (this.state === 'completed') return todo.isCompleted;
-            })
         }
     },
     computed: {
         sortTodos() {
-            return this.todoFilter().sort((a, b) => {
+            return this.todos.sort((a, b) => {
                 let scoreA = (a.isStared ? 100 : 0) + (a.isCompleted ? -200 : 0);
                 let scoreB = (b.isStared ? 100 : 0) + (b.isCompleted ? -200 : 0);
                 return scoreA - scoreB;
+            })
+        },
+        todoFilter() {
+            return this.sortTodos.filter(todo => {
+                if (this.state === 'all') return this.sortTodos;
+                if (this.state === 'inProgress') return !todo.isCompleted;
+                if (this.state === 'completed') return todo.isCompleted;
             })
         },
         leftCounter() {
