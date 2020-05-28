@@ -2,7 +2,7 @@
 
 export default class Model {
     constructor() {
-        this.todos = this.getLocalStorage() || [];
+        this.todos = this.getLocalStorage();
     }
     addNewTodo(newTodo) {
         this.todos.push({
@@ -19,7 +19,7 @@ export default class Model {
         localStorage.setItem('todos', JSON.stringify(this.todos));
     }
     getLocalStorage() {
-        return JSON.parse(localStorage.getItem('todos'));
+        return JSON.parse(localStorage.getItem('todos')) || [];
     }
     sortTodos() {
         return this.todos.sort((a, b) => {
