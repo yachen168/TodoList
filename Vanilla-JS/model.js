@@ -10,7 +10,7 @@ export default class Model {
             todoDate: newTodo.todoDate,
             todoTime: newTodo.todoTime,
             todoComment: newTodo.todoComment,
-            isStared: newTodo.isStared,
+            isStarred: newTodo.isStarred,
             isCompleted: newTodo.isCompleted
         });
         this.setLocalStorage();
@@ -23,8 +23,8 @@ export default class Model {
     }
     sortTodos() {
         return this.todos.sort((a, b) => {
-            let scoreA = (a.isStared ? 100 : 0) + (a.isCompleted ? -200 : 0);
-            let scoreB = (b.isStared ? 100 : 0) + (b.isCompleted ? -200 : 0);
+            let scoreA = (a.isStarred ? 100 : 0) + (a.isCompleted ? -200 : 0);
+            let scoreB = (b.isStarred ? 100 : 0) + (b.isCompleted ? -200 : 0);
             return scoreA - scoreB;
         })
     }
@@ -43,7 +43,7 @@ export default class Model {
         return this.todos.filter(todo => todo.isCompleted).length;
     }
     bindStar(index) {
-        this.todos[index].isStared = !this.todos[index].isStared;
+        this.todos[index].isStarred = !this.todos[index].isStarred;
         this.setLocalStorage();
     }
     bindCheckbox(index) {

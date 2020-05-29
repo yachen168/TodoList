@@ -129,11 +129,11 @@ export default class View {
             const todoComment = todo.todoComment;
             const todoDate = todo.todoDate;
             const todoTime = todo.todoTime;
-            const isStared = todo.isStared;
+            const isStarred = todo.isStarred;
             const isCompleted = todo.isCompleted;
             const item = `
             <form class="edit-area">
-                    <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
+                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
                             <span>∙</span>
@@ -184,7 +184,7 @@ export default class View {
             `;
             const itemInProgress = `
             <form class="edit-area ${isCompleted?'d-none':''}">
-                    <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
+                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
                             <span>∙</span>
@@ -235,7 +235,7 @@ export default class View {
             `;
             const itemCompleted = `
             <form class="edit-area ${isCompleted?'':'d-none'}">
-                    <div class="todo-bar ${isStared?'active':''}" data-id="${i}">
+                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
                         <div class="hover-dots">
                             <span>∙</span>
                             <span>∙</span>
@@ -243,7 +243,7 @@ export default class View {
                         </div>
                         <label class="todo-title">
                             <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                            <input class="todo-name ${isStared?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                            <input class="todo-name ${isStarred?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                         </label>
                         <div class="icon-wrapper">
                             <span class="star"><i class="far fa-star"></i></span>
@@ -314,7 +314,7 @@ export default class View {
                 todoComment: that.$newTodoComment.value,
                 todoDate: that.$newTodoDate.value,
                 todoTime: that.$newTodoTime.value,
-                isStared: that.$newTodoBar.classList.contains('active'),
+                isStarred: that.$newTodoBar.classList.contains('active'),
                 isCompleted: that.$newCheckbox.checked
             }
         }
@@ -325,7 +325,7 @@ export default class View {
             todoComment: that.$todoComments[index].value,
             todoDate: that.$todoDates[index].value,
             todoTime: that.$todoTimes[index].value,
-            isStared: that.$todoBars[index].classList.contains('active'),
+            isStarred: that.$todoBars[index].classList.contains('active'),
             isCompleted: that.$checkboxes[index].checked
         }
     }
@@ -334,8 +334,8 @@ export default class View {
         that.$newTodoComment.value = '';
         that.$newTodoDate.value = '';
         that.$newTodoTime.value = '';
-        let isStared = that.$newTodoBar.classList.contains('active');
-        if (isStared) {
+        let isStarred = that.$newTodoBar.classList.contains('active');
+        if (isStarred) {
             toggleActive(that.$newTodoBar);
         }
         let isCompleted = that.$newCheckbox.checked;
