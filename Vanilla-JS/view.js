@@ -1,6 +1,5 @@
 import { qs, toggleActive, clearAllClass } from './helpers.js';
 
-//  View
 export let that;
 export default class View {
     constructor() {
@@ -30,10 +29,6 @@ export default class View {
         this.$newCancelButton.addEventListener('click', this.toggleNewCard);
         this.$newCancelButton.addEventListener('click', this.clearNewTodo);
         this.$newStar.addEventListener('click', this.markNewTodo);
-        this.$stars.forEach(($star, i) => {
-            $star.i = i;
-            $star.addEventListener('click', this.markTodo);
-        })
         this.$pens.forEach(($pen, i) => {
             $pen.i = i;
             $pen.addEventListener('click', this.penEventHandler);
@@ -113,17 +108,16 @@ export default class View {
             });
         })
     }
-    witchState(listener) {
+    bindNavItem(listener) {
         this.$nav.addEventListener('click', function(e) {
             if (e.target.matches('li')) {
-                listener(e);
+                listener();
             }
         })
     }
-    renderTodos(stateFilter) {
+    renderTodos(todos) {
         this.$todoList.innerHTML = '';
-        console.log(stateFilter);
-        stateFilter.forEach((todo, i) => {
+        todos.forEach((todo, i) => {
             const todoTitle = todo.todoTitle;
             const todoComment = todo.todoComment;
             const todoDate = todo.todoDate;
@@ -181,7 +175,117 @@ export default class View {
                     </div>
                 </form>
             `;
-            that.$todoList.insertAdjacentHTML('beforeend', item);
+            const itemInProgress = `
+            <form class="edit-area ${isCompleted?'d-none':''}">
+                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
+                        <div class="hover-dots">
+                            <span>∙</span>
+                            <span>∙</span>
+                            <span>∙</span>
+                        </div>
+                        <label class="todo-title">
+                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                            <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        </label>
+                        <div class="icon-wrapper">
+                            <span class="star"><i class="far fa-star"></i></span>
+                            <span class="pen"><i class="fas fa-pen"></i></span>
+                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
+                        </div>
+                        <div class="hint-icons">
+                            <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
+                            <i class="far fa-file"></i>
+                            <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="deadline">
+                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                                <div class="input-wrapper">
+                                    <input class="date" type="date" value="${todoDate}">
+                                    <input class="time" type="time" value="${todoTime}">
+                                </div>
+                            </div>
+                            <div class="file">
+                                <h3><i class="far fa-file"></i>File</h3>
+                                <label class="upload">
+                                    <input class="upload-input" type="file">
+                                    <span class="upload-icon">+</span>
+                                </label>
+                            </div>
+                            <div class="comment">
+                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                                <textarea class="comment-content" placeholder="Type your memo here...">${todoComment}</textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                        </div>
+                    </div>
+                </form>
+            `;
+            const itemCompleted = `
+            <form class="edit-area ${isCompleted?'':'d-none'}">
+                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
+                        <div class="hover-dots">
+                            <span>∙</span>
+                            <span>∙</span>
+                            <span>∙</span>
+                        </div>
+                        <label class="todo-title">
+                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                            <input class="todo-name ${isStarred?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
+                        </label>
+                        <div class="icon-wrapper">
+                            <span class="star"><i class="far fa-star"></i></span>
+                            <span class="pen"><i class="fas fa-pen"></i></span>
+                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
+                        </div>
+                        <div class="hint-icons">
+                            <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
+                            <i class="far fa-file"></i>
+                            <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="deadline">
+                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                                <div class="input-wrapper">
+                                    <input class="date" type="date" value="${todoDate}">
+                                    <input class="time" type="time" value="${todoTime}">
+                                </div>
+                            </div>
+                            <div class="file">
+                                <h3><i class="far fa-file"></i>File</h3>
+                                <label class="upload">
+                                    <input class="upload-input" type="file">
+                                    <span class="upload-icon">+</span>
+                                </label>
+                            </div>
+                            <div class="comment">
+                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                                <textarea class="comment-content" placeholder="Type your memo here...">${todoComment}</textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
+                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                        </div>
+                    </div>
+                </form>
+            `;
+            if (that.$navItems[0].classList.contains('active')) {
+                that.$todoList.insertAdjacentHTML('beforeend', item);
+            }
+            if (that.$navItems[1].classList.contains('active')) {
+                that.$todoList.insertAdjacentHTML('beforeend', itemInProgress);
+            }
+            if (that.$navItems[2].classList.contains('active')) {
+                that.$todoList.insertAdjacentHTML('beforeend', itemCompleted);
+            }
         })
         that.init();
     }
@@ -237,9 +341,6 @@ export default class View {
     }
     markNewTodo() {
         toggleActive(that.$newTodoBar);
-    }
-    markTodo() {
-        toggleActive(that.$todoBars[this.i]);
     }
     navItemEventHandler() {
         clearAllClass(that.$navItems);

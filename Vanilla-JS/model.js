@@ -1,7 +1,8 @@
+'use strict'
+
 export default class Model {
     constructor() {
         this.todos = this.getLocalStorage();
-        this.state = 'all';
     }
     addNewTodo(newTodo) {
         this.todos.push({
@@ -25,13 +26,6 @@ export default class Model {
             let scoreA = (a.isStarred ? 100 : 0) + (a.isCompleted ? -200 : 0);
             let scoreB = (b.isStarred ? 100 : 0) + (b.isCompleted ? -200 : 0);
             return scoreA - scoreB;
-        })
-    }
-    stateFilter(state = 'all') {
-        return this.sortTodos().filter(todo => {
-            if (state === 'all') return this.sortTodos();
-            if (state === 'inProgress') return !todo.isCompleted;
-            if (state === 'completed') return todo.isCompleted;
         })
     }
     editDone(editTodo, index) {
