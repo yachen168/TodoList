@@ -2,14 +2,21 @@ export default class Controller {
     constructor(model, view) {
         this.model = model;
         this.view = view;
+        this.state = 'all';
         this.renderTodos();
-        this.bindNavItem();
         this.bindNewConfirmButton();
     }
+
     renderTodos() {
-        this.model.sortTodos();
-        this.view.renderTodos(this.model.todos);
+        this.view.renderTodos(this.model.stateFilter(this.state));
         this.bindEventHandler();
+
+        this.view.witchState(function(e) {
+            this.state = e.target.dataset.name;
+            this.view.renderTodos(this.model.stateFilter(this.state));
+            this.bindEventHandler();
+        }.bind(this));
+
     }
     renderCounter() {
         let leftTodo = this.model.leftCounter();
@@ -47,9 +54,6 @@ export default class Controller {
             this.model.bindCheckbox(index);
             this.renderTodos();
         }.bind(this));
-    }
-    bindNavItem() {
-        this.view.bindNavItem(this.renderTodos.bind(this));
     }
     bindNewConfirmButton() {
         this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
