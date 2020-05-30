@@ -1,5 +1,3 @@
-'use strict'
-
 import { qs, toggleActive, clearAllClass } from './helpers.js';
 
 //  View
