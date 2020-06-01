@@ -1,5 +1,5 @@
 # to-do-list
-[Vanilla JS](./Vanilla-JS/index.html) | [Vue.js](./Vue.js/index.html) | [jQuery](./jQuery/index.html)
+Vanilla JS | Vue.js | jQuery
 
 
 ![](./images/demo.gif)
