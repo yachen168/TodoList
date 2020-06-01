@@ -1,4 +1,4 @@
-import { qs, toggleActive, clearAllClass } from './helpers.js';
+import { toggleActive, clearAllClass } from './helpers.js';
 
 export let that;
 export default class View {
@@ -301,7 +301,8 @@ export default class View {
         }
     }
     addNewTodo() {
-        if (that.$newTodoName.value) {
+        const isTodoTitleEmpty = that.$newTodoName.value.trim();
+        if (!!isTodoTitleEmpty) {
             return {
                 todoTitle: that.$newTodoName.value,
                 todoComment: that.$newTodoComment.value,
@@ -311,6 +312,14 @@ export default class View {
                 isCompleted: that.$newCheckbox.checked
             }
         }
+    }
+    newConfirmButtonHandler(e) {
+        e.preventDefault();
+        const isTodoTitleEmpty = that.$newTodoName.value.trim();
+        if (!isTodoTitleEmpty)
+            alert('尚未輸入代辦事項名稱');
+        else
+            toggleActive(that.$newTodoEditArea);
     }
     editDone(index) {
         return {
@@ -345,14 +354,6 @@ export default class View {
     navItemEventHandler() {
         clearAllClass(that.$navItems);
         toggleActive(this);
-    }
-    newConfirmButtonHandler(e) {
-        e.preventDefault();
-        const isTodoTitleEmpty = !(that.$newTodoName.value);
-        if (isTodoTitleEmpty)
-            alert('尚未輸入代辦事項名稱');
-        else
-            toggleActive(that.$newTodoEditArea);
     }
     penEventHandler() {
         clearAllClass(that.$editAreas);
