@@ -1,4 +1,4 @@
-import { qs, toggleActive, clearAllClass } from './helpers.js';
+import { toggleActive, clearAllClass } from './helpers.js';
 
 export let that;
 export default class View {
@@ -29,7 +29,7 @@ export default class View {
     init() {
         this.updateNode();
         this.$pens.each((i, $pen) => {
-            // $pen.i = i;
+            $pen.i = i;
             $pen.addEventListener('click', this.penEventHandler);
         })
         this.$navItems.each((i, $navItem) => {
