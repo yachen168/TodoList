@@ -1,6 +1,9 @@
 # to-do-list
+[Vanilla JS](./Vanilla-JS/index.html) | [Vue.js](./Vue.js/index.html) | [jQuery](./jQuery/index.html)
+
 
 ![](./images/demo.gif)
+
 
 ## 功能實現
 - 新增任務
