@@ -1,5 +1,5 @@
 # to-do-list
-[Vanilla JS](https://yachen168.github.io/TodoList/Vanilla-JS/) | [Vue.js](https://yachen168.github.io/TodoList/Vue.js) | [jQuery](https://yachen168.github.io/TodoList/jQuery)
+[Vanilla JS](https://yachen168.github.io/TodoList/) | [Vue.js](https://yachen168.github.io/TodoList/Vue.js) | [jQuery](https://yachen168.github.io/TodoList/jQuery)
 
 
 ![](./images/demo.gif)
@@ -14,7 +14,6 @@
 - 標記任務並置頂(點擊星星)
 - 任務完成即置底(勾選 checkbox)
 - 計算剩餘/已完成任務總數
-- 拖曳任務
 
 <br>
 
