@@ -1,5 +1,3 @@
-'use strict'
-
 export default class Model {
     constructor() {
         this.todos = this.getLocalStorage();

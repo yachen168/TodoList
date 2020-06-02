@@ -45,6 +45,7 @@ export default class Controller {
     bindCheckbox() {
         this.view.bindCheckbox(function(e, index) {
             this.model.bindCheckbox(index);
+            console.log(e)
             this.renderTodos();
         }.bind(this));
     }
