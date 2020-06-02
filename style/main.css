@@ -81,6 +81,26 @@ nav ul .nav-item.active {
   box-shadow: inset 0 -5px #00408B;
 }
 
+section.version {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px auto 0px;
+  text-align: center;
+  max-width: 400px;
+}
+section.version a {
+  display: inline-block;
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #757575;
+  color: #ffffff;
+}
+section.version a:hover {
+  background-color: #C8C8C8;
+  color: #757575;
+}
+
 .todo-list {
   display: flex;
   flex-direction: column-reverse;

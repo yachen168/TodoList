@@ -21,6 +21,11 @@
                 </ul>
             </nav>
         </header>
+        <section class="version">
+            <a href="https://yachen168.github.io/TodoList/">Vanilla JS</a>
+            <a href="https://yachen168.github.io/TodoList/Vue.js">Vue.js</a>
+            <a href="https://yachen168.github.io/TodoList/jQuery">jQuery</a>
+        </section>
         <main>
             <section class="new-todo">
                 <button class="add-todo" @click="toggleNewEditCard">+ Add Task</button>
@@ -81,7 +86,7 @@
                         <div class="icon-wrapper">
                             <span class="star" @click="markTodo(todo)"><i class="far fa-star"></i></span>
                             <span class="pen" @click="toggleEditCard(todo)"><i class="fas fa-pen"></i></span>
-                            <span class="delete" @click="deleteTodo(index)"><i class="fas fa-trash-alt"></i></span>
+                            <span class="delete" @click="deleteTodo(todo.id)"><i class="fas fa-trash-alt"></i></span>
                         </div>
                         <div class="hint-icons">
                             <i class="far fa-calendar-alt" :class="{active: todo.todoDate!=''}"><span class="hint-date">{{todo.todoDate}}</span></i>
@@ -118,7 +123,7 @@
                 </form>
             </section>
             <h4 v-if="state!=='completed'" class="todo-count">{{leftCounter}} <span v-if="leftCounter>1">tasks</span><span v-else>task</span> left</h4>
-            <h4 v-if="state==='completed'" class="todo-count">{{completedCounter}} <span v-if="completedCounter>1">tasks</span><span v-else>task</span> completed</h4>
+            <h4 v-else class="todo-count">{{completedCounter}} <span v-if="completedCounter>1">tasks</span><span v-else>task</span> completed</h4>
         </main>
     </div>
     <script src="./main.js"></script>
