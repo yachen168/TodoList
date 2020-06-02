@@ -1,5 +1,5 @@
 # to-do-list
-[Vanilla JS](https://yachen168.github.io/TodoList/) | [Vue.js](https://yachen168.github.io/TodoList/Vue.js) | [jQuery](https://yachen168.github.io/TodoList/jQuery)
+[Vanilla JS](https://yachen168.github.io/TodoList/Vanilla-JS) | [Vue.js](https://yachen168.github.io/TodoList/Vue.js) | [jQuery](https://yachen168.github.io/TodoList/jQuery)
 
 
 ![](./images/demo.gif)
