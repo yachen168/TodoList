@@ -56,9 +56,9 @@
                                 <textarea v-model="newTodo.todoComment" class="add-comment" placeholder="Type your memo here..."></textarea>
                             </div>
                         </div>
-                        <div class="card-footer new-card-footer">
+                        <div @click="clearNewTodo" class="card-footer new-card-footer">
                             <button @click.prevent="toggleNewEditCard" type="submit" class="button-cancel new-button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button @click.prevent="addNewTodo();toggleNewEditCard()" class="button-confirm new-button-confirm"><i class="fas fa-plus"></i>Add Task</button>
+                            <button @click.prevent="addNewTodo" class="button-confirm new-button-confirm"><i class="fas fa-plus"></i>Add Task</button>
                         </div>
                     </div>
                 </form>
@@ -111,13 +111,13 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button @click.prevent="toggleEditCard(todo)" type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button @click.prevent="editDone(todo,index)" type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                            <button @click.prevent="toggleEditCard(todo) " type="submit " class="button-cancel "><i class="fas fa-times "></i>Cancel</button>
+                            <button @click.prevent="editDone(todo,index) " type="submit " class="button-confirm "><i class="fas fa-plus "></i>Save</button>
                         </div>
                     </div>
                 </form>
             </section>
-            <h4 v-if="state!=='completed'" class="todo-count">{{leftCounter}} <span v-if="leftCounter>1">tasks</span><span v-else>task</span> left</h4>
+            <h4 v-if="state!=='completed' " class="todo-count ">{{leftCounter}} <span v-if="leftCounter>1">tasks</span><span v-else>task</span> left</h4>
             <h4 v-else class="todo-count">{{completedCounter}} <span v-if="completedCounter>1">tasks</span><span v-else>task</span> completed</h4>
         </main>
         <footer>點擊 ☆ 任務置頂，任務完成置底</footer>

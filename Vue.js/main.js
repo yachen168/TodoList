@@ -17,18 +17,24 @@
         },
         methods: {
             addNewTodo() {
-                this.todos.push({
-                    id: Date.now(),
-                    todoTitle: this.newTodo.todoTitle,
-                    todoComment: this.newTodo.todoComment,
-                    todoDate: this.newTodo.todoDate,
-                    todoTime: this.newTodo.todoTime,
-                    isStared: this.newTodo.isStared,
-                    isCompleted: this.newTodo.isCompleted,
-                    isEditing: false,
-                });
-                this.clearNewTodo();
-                this.setLocalStorage();
+                const todoTitleEmpty = /^$|^\s*$/;
+                const isTodoTitleEmpty = todoTitleEmpty.test(this.newTodo.todoTitle);
+                if (isTodoTitleEmpty) {
+                    alert(`尚未輸入代辦事項名稱`);
+                } else {
+                    this.todos.push({
+                        id: Date.now(),
+                        todoTitle: this.newTodo.todoTitle,
+                        todoComment: this.newTodo.todoComment,
+                        todoDate: this.newTodo.todoDate,
+                        todoTime: this.newTodo.todoTime,
+                        isStared: this.newTodo.isStared,
+                        isCompleted: this.newTodo.isCompleted,
+                        isEditing: false,
+                    });
+                    this.toggleNewEditCard();
+                    this.setLocalStorage();
+                }
             },
             clearNewTodo() {
                 this.newTodo.todoTitle = '';
