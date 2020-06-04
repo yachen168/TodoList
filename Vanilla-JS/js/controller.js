@@ -17,12 +17,14 @@ export default class Controller {
         this.view.renderCounter(leftTodo, completedTodo);
     }
     addNewTodo() {
-        this.model.addNewTodo(this.view.addNewTodo());
-        this.view.clearNewTodo();
-        this.renderTodos();
-    }
-    editCancel() {
-        this.view.bindCancelEditButton(this.renderTodos.bind(this));
+        const newTodo = this.view.addNewTodo();
+        const todoTitleEmpty = /^$|^\s*$/;
+        const isTodoTitleEmpty = todoTitleEmpty.test(newTodo.todoTitle);
+        if (!isTodoTitleEmpty) {
+            this.model.addNewTodo(this.view.addNewTodo());
+            this.view.clearNewTodo();
+            this.renderTodos();
+        }
     }
     editDone() {
         this.view.bindConfirmEditButton(function(e, index) {
@@ -57,7 +59,6 @@ export default class Controller {
     }
     bindEventHandler() {
         this.renderCounter();
-        this.editCancel();
         this.deleteTodo();
         this.bindAllStar();
         this.editDone();

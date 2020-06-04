@@ -1,9 +1,7 @@
 import { toggleActive, clearAllClass } from './helpers.js';
 
-export let that;
 export default class View {
     constructor() {
-        that = this;
         this.$todoList = document.querySelector('.todo-list');
         this.$addTaskButtons = document.querySelector('.add-todo');
         this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
@@ -20,22 +18,21 @@ export default class View {
         this.$navItems = document.querySelectorAll('.nav-item');
         this.$todoCounter = document.querySelector('.todo-count');
         this.$nav = document.querySelector('nav ul');
+        this.$addTaskButtons.addEventListener('click', this.toggleNewCard.bind(this.$newTodoEditArea));
+        this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler.bind(this));
+        this.$newCancelButton.addEventListener('click', this.toggleNewCard.bind(this.$newTodoEditArea));
+        this.$newCancelButton.addEventListener('click', this.clearNewTodo.bind(this));
+        this.$newStar.addEventListener('click', this.markNewTodo.bind(this));
         this.init();
     }
     init() {
         this.updateNode();
-        this.$addTaskButtons.addEventListener('click', this.toggleNewCard);
-        this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler);
-        this.$newCancelButton.addEventListener('click', this.toggleNewCard);
-        this.$newCancelButton.addEventListener('click', this.clearNewTodo);
-        this.$newStar.addEventListener('click', this.markNewTodo);
         this.$pens.forEach(($pen, i) => {
-            $pen.i = i;
-            $pen.addEventListener('click', this.penEventHandler);
+            $pen.addEventListener('click', this.toggleEditCard.bind(this.$editAreas, i));
+            $pen.addEventListener('click', this.toggleInput.bind(this.$todoNames[i]));
         })
         this.$navItems.forEach(($navItem, i) => {
-            $navItem.i = i;
-            $navItem.addEventListener('click', this.navItemEventHandler);
+            $navItem.addEventListener('click', this.navItemEventHandler.bind(this.$navItems, i));
         })
         this.$allInputs.forEach($input => {
             $input.addEventListener('click', this.autoSelected);
@@ -43,13 +40,8 @@ export default class View {
         this.$allTextareas.forEach($textarea => {
             $textarea.addEventListener('click', this.autoSelected);
         })
-        this.$cancelButtons.forEach(($cancelButton, i) => {
-            $cancelButton.i = i;
-            $cancelButton.addEventListener('click', this.toggleEditCard);
-        })
-        this.$confirmButtons.forEach(($confirmButton, i) => {
-            $confirmButton.i = i;
-            $confirmButton.addEventListener('click', this.toggleEditCard);
+        this.$cardFooters.forEach($cardFooter => {
+            $cardFooter.addEventListener('click', this.toggleEditCard)
         })
     }
     updateNode() {
@@ -62,6 +54,7 @@ export default class View {
         this.$todoComments = this.$todoList.querySelectorAll('.comment-content')
         this.$cancelButtons = this.$todoList.querySelectorAll('.button-cancel');
         this.$confirmButtons = this.$todoList.querySelectorAll('.button-confirm');
+        this.$cardFooters = this.$todoList.querySelectorAll('.card-footer');
         this.$stars = this.$todoList.querySelectorAll('.star');
         this.$pens = this.$todoList.querySelectorAll('.pen');
         this.$deleteButtons = this.$todoList.querySelectorAll('.delete');
@@ -277,95 +270,90 @@ export default class View {
                     </div>
                 </form>
             `;
-            if (that.$navItems[0].classList.contains('active')) {
-                that.$todoList.insertAdjacentHTML('beforeend', item);
+            if (this.$navItems[0].classList.contains('active')) {
+                this.$todoList.insertAdjacentHTML('beforeend', item);
             }
-            if (that.$navItems[1].classList.contains('active')) {
-                that.$todoList.insertAdjacentHTML('beforeend', itemInProgress);
+            if (this.$navItems[1].classList.contains('active')) {
+                this.$todoList.insertAdjacentHTML('beforeend', itemInProgress);
             }
-            if (that.$navItems[2].classList.contains('active')) {
-                that.$todoList.insertAdjacentHTML('beforeend', itemCompleted);
+            if (this.$navItems[2].classList.contains('active')) {
+                this.$todoList.insertAdjacentHTML('beforeend', itemCompleted);
             }
         })
-        that.init();
+        this.init();
     }
     renderCounter(leftTodo, completedTodo) {
-        if (that.$navItems[0].classList.contains('active')) {
-            that.$todoCounter.innerHTML = (leftTodo > 1) ? `${leftTodo} tasks left` : `${leftTodo} task left`;
+        if (this.$navItems[0].classList.contains('active')) {
+            this.$todoCounter.innerHTML = (leftTodo > 1) ? `${leftTodo} tasks left` : `${leftTodo} task left`;
         }
-        if (that.$navItems[1].classList.contains('active')) {
-            that.$todoCounter.innerHTML = (leftTodo > 1) ? `${leftTodo} tasks left` : `${leftTodo} task left`;
+        if (this.$navItems[1].classList.contains('active')) {
+            this.$todoCounter.innerHTML = (leftTodo > 1) ? `${leftTodo} tasks left` : `${leftTodo} task left`;
         }
-        if (that.$navItems[2].classList.contains('active')) {
-            that.$todoCounter.innerHTML = (completedTodo > 1) ? `${completedTodo} tasks completed` : `${completedTodo} task completed`;
+        if (this.$navItems[2].classList.contains('active')) {
+            this.$todoCounter.innerHTML = (completedTodo > 1) ? `${completedTodo} tasks completed` : `${completedTodo} task completed`;
         }
     }
     addNewTodo() {
-        const isTodoTitleEmpty = that.$newTodoName.value.trim();
-        if (!!isTodoTitleEmpty) {
-            return {
-                todoTitle: that.$newTodoName.value,
-                todoComment: that.$newTodoComment.value,
-                todoDate: that.$newTodoDate.value,
-                todoTime: that.$newTodoTime.value,
-                isStarred: that.$newTodoBar.classList.contains('active'),
-                isCompleted: that.$newCheckbox.checked
-            }
+        return {
+            todoTitle: this.$newTodoName.value,
+            todoComment: this.$newTodoComment.value,
+            todoDate: this.$newTodoDate.value,
+            todoTime: this.$newTodoTime.value,
+            isStarred: this.$newTodoBar.classList.contains('active'),
+            isCompleted: this.$newCheckbox.checked
         }
     }
     newConfirmButtonHandler(e) {
         e.preventDefault();
-        const isTodoTitleEmpty = that.$newTodoName.value.trim();
+        const isTodoTitleEmpty = this.$newTodoName.value.trim();
         if (!isTodoTitleEmpty)
             alert('尚未輸入代辦事項名稱');
         else
-            toggleActive(that.$newTodoEditArea);
+            toggleActive(this.$newTodoEditArea);
     }
     editDone(index) {
         return {
-            todoTitle: that.$todoNames[index].value,
-            todoComment: that.$todoComments[index].value,
-            todoDate: that.$todoDates[index].value,
-            todoTime: that.$todoTimes[index].value,
-            isStarred: that.$todoBars[index].classList.contains('active'),
-            isCompleted: that.$checkboxes[index].checked
+            todoTitle: this.$todoNames[index].value,
+            todoComment: this.$todoComments[index].value,
+            todoDate: this.$todoDates[index].value,
+            todoTime: this.$todoTimes[index].value,
+            isStarred: this.$todoBars[index].classList.contains('active'),
+            isCompleted: this.$checkboxes[index].checked
         }
     }
     clearNewTodo() {
-        that.$newTodoName.value = '';
-        that.$newTodoComment.value = '';
-        that.$newTodoDate.value = '';
-        that.$newTodoTime.value = '';
-        let isStarred = that.$newTodoBar.classList.contains('active');
+        this.$newTodoName.value = '';
+        this.$newTodoComment.value = '';
+        this.$newTodoDate.value = '';
+        this.$newTodoTime.value = '';
+        let isStarred = this.$newTodoBar.classList.contains('active');
         if (isStarred) {
-            toggleActive(that.$newTodoBar);
+            toggleActive(this.$newTodoBar);
         }
-        let isCompleted = that.$newCheckbox.checked;
+        let isCompleted = this.$newCheckbox.checked;
         if (isCompleted) {
-            that.$newCheckbox.checked = !that.$newCheckbox.checked;
+            this.$newCheckbox.checked = !this.$newCheckbox.checked;
         }
     }
     autoSelected() {
         this.select();
     }
     markNewTodo() {
-        toggleActive(that.$newTodoBar);
+        toggleActive(this.$newTodoBar);
     }
-    navItemEventHandler() {
-        clearAllClass(that.$navItems);
-        toggleActive(this);
-    }
-    penEventHandler() {
-        clearAllClass(that.$editAreas);
-        toggleActive(that.$editAreas[this.i]);
-        that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
+    navItemEventHandler(index) {
+        clearAllClass(this);
+        toggleActive(this[index]);
     }
     toggleNewCard(e) {
         e.preventDefault();
-        toggleActive(that.$newTodoEditArea);
+        toggleActive(this);
     }
-    toggleEditCard() {
-        toggleActive(that.$editCards[this.i]);
-        that.$todoNames[this.i].disabled = !that.$todoNames[this.i].disabled;
+    toggleEditCard(index) {
+        clearAllClass(this)
+        toggleActive(this[index]);
+    }
+    toggleInput() {
+        this.disabled = !this.disabled;
     }
 }
