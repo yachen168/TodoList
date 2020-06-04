@@ -120,6 +120,7 @@
             <h4 v-if="state!=='completed'" class="todo-count">{{leftCounter}} <span v-if="leftCounter>1">tasks</span><span v-else>task</span> left</h4>
             <h4 v-else class="todo-count">{{completedCounter}} <span v-if="completedCounter>1">tasks</span><span v-else>task</span> completed</h4>
         </main>
+        <footer>點擊 ☆ 任務置頂，任務完成置底</footer>
     </div>
     <script src="./main.js"></script>
 </body>
