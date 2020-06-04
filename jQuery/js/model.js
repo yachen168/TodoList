@@ -16,10 +16,10 @@ export default class Model {
         this.setLocalStorage();
     }
     setLocalStorage() {
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+        localStorage.setItem('todos-jquery', JSON.stringify(this.todos));
     }
     getLocalStorage() {
-        return JSON.parse(localStorage.getItem('todos')) || [];
+        return JSON.parse(localStorage.getItem('todos-jquery')) || [];
     }
     sortTodos() {
         return this.todos.sort((a, b) => {

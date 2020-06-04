@@ -2,7 +2,7 @@
     const app = new Vue({
         el: '#app',
         data: {
-            todos: JSON.parse(localStorage.getItem('todos')) || [],
+            todos: JSON.parse(localStorage.getItem('todos-vue')) || [],
             newTodo: {
                 todoTitle: '',
                 todoComment: '',
@@ -55,7 +55,7 @@
                 this.setLocalStorage();
             },
             setLocalStorage() {
-                localStorage.setItem('todos', JSON.stringify(this.sortTodos));
+                localStorage.setItem('todos-vue', JSON.stringify(this.sortTodos));
             },
             markNewTodo() {
                 this.newTodo.isStared = !this.newTodo.isStared;

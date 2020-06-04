@@ -22,10 +22,10 @@ export default class Model {
         })
     }
     setLocalStorage() {
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+        localStorage.setItem('todos-js', JSON.stringify(this.todos));
     }
     getLocalStorage() {
-        return JSON.parse(localStorage.getItem('todos')) || [];
+        return JSON.parse(localStorage.getItem('todos-js')) || [];
     }
     sortTodos() {
         return this.todos.sort((a, b) => {
