@@ -18,9 +18,9 @@ export default class View {
         this.$navItems = document.querySelectorAll('.nav-item');
         this.$todoCounter = document.querySelector('.todo-count');
         this.$nav = document.querySelector('nav ul');
-        this.$addTaskButtons.addEventListener('click', this.toggleNewCard.bind(this.$newTodoEditArea));
+        this.$addTaskButtons.addEventListener('click', this.toggleNewCard.bind(this));
         this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler.bind(this));
-        this.$newCancelButton.addEventListener('click', this.toggleNewCard.bind(this.$newTodoEditArea));
+        this.$newCancelButton.addEventListener('click', this.toggleNewCard.bind(this));
         this.$newCancelButton.addEventListener('click', this.clearNewTodo.bind(this));
         this.$newStar.addEventListener('click', this.markNewTodo.bind(this));
         this.init();
@@ -347,7 +347,7 @@ export default class View {
     }
     toggleNewCard(e) {
         e.preventDefault();
-        toggleActive(this);
+        toggleActive(this.$newTodoEditArea);
     }
     toggleEditCard(index) {
         clearAllClass(this)
