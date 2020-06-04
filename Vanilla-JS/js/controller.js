@@ -10,7 +10,7 @@ export default class Controller {
         this.view.renderTodos(this.model.stateFilter(this.state));
         this.bindEventHandler();
 
-        this.view.witchState(function(e) {
+        this.view.switchState(function(e) {
             this.state = e.target.dataset.name;
             this.view.renderTodos(this.model.stateFilter(this.state));
             this.bindEventHandler();

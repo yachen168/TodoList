@@ -28,11 +28,11 @@ export default class View {
     init() {
         this.updateNode();
         this.$pens.forEach(($pen, i) => {
-            $pen.addEventListener('click', this.toggleEditCard.bind(this.$editAreas, i));
+            $pen.addEventListener('click', this.switchToggle.bind(this.$editAreas, i));
             $pen.addEventListener('click', this.toggleInput.bind(this.$todoNames[i]));
         })
         this.$navItems.forEach(($navItem, i) => {
-            $navItem.addEventListener('click', this.navItemEventHandler.bind(this.$navItems, i));
+            $navItem.addEventListener('click', this.switchToggle.bind(this.$navItems, i));
         })
         this.$allInputs.forEach($input => {
             $input.addEventListener('click', this.autoSelected);
@@ -41,7 +41,7 @@ export default class View {
             $textArea.addEventListener('click', this.autoSelected);
         })
         this.$cardFooters.forEach(($cardFooter, i) => {
-            $cardFooter.addEventListener('click', this.toggleEditCard.bind(this.$editAreas, i))
+            $cardFooter.addEventListener('click', this.switchToggle.bind(this.$editAreas, i))
         })
     }
     updateNode() {
@@ -101,7 +101,7 @@ export default class View {
             });
         })
     }
-    witchState(listener) {
+    switchState(listener) {
         this.$nav.addEventListener('click', function(e) {
             if (e.target.matches('li')) {
                 listener(e);
@@ -232,17 +232,13 @@ export default class View {
     markNewTodo() {
         toggleActive(this.$newTodoBar);
     }
-    navItemEventHandler(index) {
-        clearAllClass(this);
+    switchToggle(index) {
+        clearAllClass(this)
         toggleActive(this[index]);
     }
     toggleNewCard(e) {
         e.preventDefault();
         toggleActive(this.$newTodoEditArea);
-    }
-    toggleEditCard(index) {
-        clearAllClass(this)
-        toggleActive(this[index]);
     }
     toggleInput() {
         this.disabled = !this.disabled;
