@@ -2,14 +2,19 @@ export default class Controller {
     constructor(model, view) {
         this.model = model;
         this.view = view;
+        this.state = 'all';
         this.renderTodos();
-        this.bindNavItem();
         this.bindNewConfirmButton();
     }
     renderTodos() {
-        this.model.sortTodos();
-        this.view.renderTodos(this.model.todos);
+        this.view.renderTodos(this.model.stateFilter(this.state));
         this.bindEventHandler();
+
+        this.view.witchState(function(e) {
+            this.state = e.target.dataset.name;
+            this.view.renderTodos(this.model.stateFilter(this.state));
+            this.bindEventHandler();
+        }.bind(this));
     }
     renderCounter() {
         let leftTodo = this.model.leftCounter();
@@ -28,31 +33,28 @@ export default class Controller {
     }
     editDone() {
         this.view.bindConfirmEditButton(function(e, index) {
-            this.model.editDone(this.view.editDone(index), index);
+            this.model.editDone(this.view.editDone(index), e.target.dataset.id);
+            console.log(this.view.editDone(index))
             this.renderTodos();
         }.bind(this));
     }
     deleteTodo() {
-        this.view.bindDeleteButton(function(e, index) {
-            this.model.deleteTodo(index);
+        this.view.bindDeleteButton(function(e) {
+            this.model.deleteTodo(e.target.dataset.id);
             this.renderTodos();
         }.bind(this));
     }
     bindAllStar() {
-        this.view.bindStar(function(e, index) {
-            this.model.bindStar(index);
+        this.view.bindStar(function(e) {
+            this.model.bindStar(e.target.dataset.id);
             this.renderTodos();
         }.bind(this));
     }
     bindCheckbox() {
-        this.view.bindCheckbox(function(e, index) {
-            this.model.bindCheckbox(index);
-            console.log(e)
+        this.view.bindCheckbox(function(e) {
+            this.model.bindCheckbox(e.target.dataset.id);
             this.renderTodos();
         }.bind(this));
-    }
-    bindNavItem() {
-        this.view.bindNavItem(this.renderTodos.bind(this));
     }
     bindNewConfirmButton() {
         this.view.bindNewConfirmButton(this.addNewTodo.bind(this));

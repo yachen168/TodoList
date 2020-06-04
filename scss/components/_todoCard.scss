@@ -86,6 +86,9 @@
         &:hover {
             background-color: $blue-200;
         }
+        i {
+            pointer-events: none;
+        }
     }
 }
 

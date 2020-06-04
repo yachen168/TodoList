@@ -37,11 +37,11 @@ export default class View {
         this.$allInputs.forEach($input => {
             $input.addEventListener('click', this.autoSelected);
         })
-        this.$allTextareas.forEach($textarea => {
-            $textarea.addEventListener('click', this.autoSelected);
+        this.$allTextAreas.forEach($textArea => {
+            $textArea.addEventListener('click', this.autoSelected);
         })
-        this.$cardFooters.forEach($cardFooter => {
-            $cardFooter.addEventListener('click', this.toggleEditCard)
+        this.$cardFooters.forEach(($cardFooter, i) => {
+            $cardFooter.addEventListener('click', this.toggleEditCard.bind(this.$editAreas, i))
         })
     }
     updateNode() {
@@ -61,7 +61,7 @@ export default class View {
         this.$checkboxes = this.$todoList.querySelectorAll('.checkbox');
         this.$editAreas = this.$todoList.querySelectorAll('.edit-area');
         this.$allInputs = document.querySelectorAll('input');
-        this.$allTextareas = document.querySelectorAll('textarea');
+        this.$allTextAreas = document.querySelectorAll('textarea');
     }
     bindNewConfirmButton(listener) {
         this.$newConfirmButton.addEventListener('click', listener);
@@ -81,36 +81,37 @@ export default class View {
         })
     }
     bindDeleteButton(listener) {
-        this.$deleteButtons.forEach(($deleteButton, i) => {
+        this.$deleteButtons.forEach($deleteButton => {
             $deleteButton.addEventListener('click', function(e) {
-                listener(e, i);
+                listener(e);
             });
         })
     }
     bindStar(listener) {
-        this.$stars.forEach(($star, i) => {
+        this.$stars.forEach($star => {
             $star.addEventListener('click', function(e) {
-                listener(e, i);
+                listener(e);
             });
         })
     }
     bindCheckbox(listener) {
-        this.$checkboxes.forEach(($checkbox, i) => {
+        this.$checkboxes.forEach($checkbox => {
             $checkbox.addEventListener('click', function(e) {
-                listener(e, i);
+                listener(e);
             });
         })
     }
-    bindNavItem(listener) {
+    witchState(listener) {
         this.$nav.addEventListener('click', function(e) {
             if (e.target.matches('li')) {
-                listener();
+                listener(e);
             }
         })
     }
-    renderTodos(todos) {
+    renderTodos(stateFilter) {
         this.$todoList.innerHTML = '';
-        todos.forEach((todo, i) => {
+        stateFilter.forEach((todo, i) => {
+            const todoId = todo.todoId;
             const todoTitle = todo.todoTitle;
             const todoComment = todo.todoComment;
             const todoDate = todo.todoDate;
@@ -119,20 +120,20 @@ export default class View {
             const isCompleted = todo.isCompleted;
             const item = `
             <form class="edit-area">
-                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
+                    <div class="todo-bar ${isStarred?'active':''}" data-id="${todoId}">
                         <div class="hover-dots">
                             <span>∙</span>
                             <span>∙</span>
                             <span>∙</span>
                         </div>
                         <label class="todo-title">
-                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
+                            <input class="checkbox" data-id="${todoId}" type="checkbox" ${isCompleted?'checked':''}>
                             <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
                         </label>
                         <div class="icon-wrapper">
-                            <span class="star"><i class="far fa-star"></i></span>
+                            <span class="star"><i class="far fa-star" data-id="${todoId}"></i></span>
                             <span class="pen"><i class="fas fa-pen"></i></span>
-                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
+                            <span class="delete"><i class="fas fa-trash-alt" data-id="${todoId}"></i></span>
                         </div>
                         <div class="hint-icons">
                             <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
@@ -162,123 +163,13 @@ export default class View {
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
+                            <button type="submit" class="button-cancel"><i class="fas fa-times"> Cancel </i></button>
+                            <button type="submit" class="button-confirm" data-id="${todoId}"><i class="fas fa-plus"> Save </i></button>
                         </div>
                     </div>
                 </form>
             `;
-            const itemInProgress = `
-            <form class="edit-area ${isCompleted?'d-none':''}">
-                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
-                        <div class="hover-dots">
-                            <span>∙</span>
-                            <span>∙</span>
-                            <span>∙</span>
-                        </div>
-                        <label class="todo-title">
-                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                            <input class="todo-name" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
-                        </label>
-                        <div class="icon-wrapper">
-                            <span class="star"><i class="far fa-star"></i></span>
-                            <span class="pen"><i class="fas fa-pen"></i></span>
-                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
-                        </div>
-                        <div class="hint-icons">
-                            <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
-                            <i class="far fa-file"></i>
-                            <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="deadline">
-                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
-                                <div class="input-wrapper">
-                                    <input class="date" type="date" value="${todoDate}">
-                                    <input class="time" type="time" value="${todoTime}">
-                                </div>
-                            </div>
-                            <div class="file">
-                                <h3><i class="far fa-file"></i>File</h3>
-                                <label class="upload">
-                                    <input class="upload-input" type="file">
-                                    <span class="upload-icon">+</span>
-                                </label>
-                            </div>
-                            <div class="comment">
-                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                                <textarea class="comment-content" placeholder="Type your memo here...">${todoComment}</textarea>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
-                        </div>
-                    </div>
-                </form>
-            `;
-            const itemCompleted = `
-            <form class="edit-area ${isCompleted?'':'d-none'}">
-                    <div class="todo-bar ${isStarred?'active':''}" data-id="${i}">
-                        <div class="hover-dots">
-                            <span>∙</span>
-                            <span>∙</span>
-                            <span>∙</span>
-                        </div>
-                        <label class="todo-title">
-                            <input class="checkbox" type="checkbox" ${isCompleted?'checked':''}>
-                            <input class="todo-name ${isStarred?'active':''}" type="text" value="${todoTitle}" placeholder="Type Something Here…" disabled>
-                        </label>
-                        <div class="icon-wrapper">
-                            <span class="star"><i class="far fa-star"></i></span>
-                            <span class="pen"><i class="fas fa-pen"></i></span>
-                            <span class="delete"><i class="fas fa-trash-alt" data-id="${i}"></i></span>
-                        </div>
-                        <div class="hint-icons">
-                            <i class="far fa-calendar-alt ${todoDate?'active':''}"><span class="hint-date">${todoDate}</span></i>
-                            <i class="far fa-file"></i>
-                            <i class="far fa-comment-dots ${todoComment?'active':''}"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="deadline">
-                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
-                                <div class="input-wrapper">
-                                    <input class="date" type="date" value="${todoDate}">
-                                    <input class="time" type="time" value="${todoTime}">
-                                </div>
-                            </div>
-                            <div class="file">
-                                <h3><i class="far fa-file"></i>File</h3>
-                                <label class="upload">
-                                    <input class="upload-input" type="file">
-                                    <span class="upload-icon">+</span>
-                                </label>
-                            </div>
-                            <div class="comment">
-                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                                <textarea class="comment-content" placeholder="Type your memo here...">${todoComment}</textarea>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button type="submit" class="button-confirm"><i class="fas fa-plus"></i>Save</button>
-                        </div>
-                    </div>
-                </form>
-            `;
-            if (this.$navItems[0].classList.contains('active')) {
-                this.$todoList.insertAdjacentHTML('beforeend', item);
-            }
-            if (this.$navItems[1].classList.contains('active')) {
-                this.$todoList.insertAdjacentHTML('beforeend', itemInProgress);
-            }
-            if (this.$navItems[2].classList.contains('active')) {
-                this.$todoList.insertAdjacentHTML('beforeend', itemCompleted);
-            }
+            this.$todoList.insertAdjacentHTML('beforeend', item);
         })
         this.init();
     }
