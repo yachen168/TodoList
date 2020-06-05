@@ -19,7 +19,7 @@ export default class Controller {
     renderCounter() {
         let leftTodo = this.model.leftCounter();
         let completedTodo = this.model.completedCounter();
-        this.view.renderCounter(leftTodo, completedTodo);
+        this.view.renderCounter(leftTodo, completedTodo, this.state);
     }
     addNewTodo() {
         const newTodo = this.view.addNewTodo();
