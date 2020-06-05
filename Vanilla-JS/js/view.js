@@ -217,14 +217,8 @@ export default class View {
         this.$newTodoComment.value = '';
         this.$newTodoDate.value = '';
         this.$newTodoTime.value = '';
-        let isStarred = this.$newTodoBar.classList.contains('active');
-        if (isStarred) {
-            toggleActive(this.$newTodoBar);
-        }
-        let isCompleted = this.$newCheckbox.checked;
-        if (isCompleted) {
-            this.$newCheckbox.checked = !this.$newCheckbox.checked;
-        }
+        this.$newTodoBar.classList.remove('active');
+        this.$newCheckbox.checked = false;
     }
     autoSelected() {
         this.select();
