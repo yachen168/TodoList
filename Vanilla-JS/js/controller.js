@@ -34,7 +34,12 @@ export default class Controller {
     editDone() {
         this.view.bindConfirmEditButton(function(e, index) {
             this.model.editDone(this.view.editDone(index), e.target.dataset.id);
-            console.log(this.view.editDone(index))
+            this.renderTodos();
+        }.bind(this));
+    }
+    editCanceled() {
+        this.view.bindCancelEditButton(function(e) {
+            console.log(123)
             this.renderTodos();
         }.bind(this));
     }
@@ -64,6 +69,7 @@ export default class Controller {
         this.deleteTodo();
         this.bindAllStar();
         this.editDone();
+        this.editCanceled();
         this.bindCheckbox();
     }
 }
