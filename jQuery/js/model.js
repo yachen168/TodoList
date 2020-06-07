@@ -1,11 +1,10 @@
-'use strict'
-
 export default class Model {
     constructor() {
         this.todos = this.getLocalStorage();
     }
     addNewTodo(newTodo) {
         this.todos.push({
+            todoId: Date.now(),
             todoTitle: newTodo.todoTitle,
             todoDate: newTodo.todoDate,
             todoTime: newTodo.todoTime,
@@ -15,11 +14,18 @@ export default class Model {
         });
         this.setLocalStorage();
     }
+    stateFilter(state = 'all') {
+        return this.sortTodos().filter(todo => {
+            if (state === 'all') return this.sortTodos();
+            if (state === 'inProgress') return !todo.isCompleted;
+            if (state === 'completed') return todo.isCompleted;
+        })
+    }
     setLocalStorage() {
-        localStorage.setItem('todos-jquery', JSON.stringify(this.todos));
+        localStorage.setItem('todos-js', JSON.stringify(this.todos));
     }
     getLocalStorage() {
-        return JSON.parse(localStorage.getItem('todos-jquery')) || [];
+        return JSON.parse(localStorage.getItem('todos-js')) || [];
     }
     sortTodos() {
         return this.todos.sort((a, b) => {
@@ -28,11 +34,20 @@ export default class Model {
             return scoreA - scoreB;
         })
     }
-    editDone(editTodo, index) {
-        this.todos[index] = editTodo;
+    editDone(editTodo, todoId) {
+        const isSameId = (todo) => todo.todoId === +todoId;
+        const index = this.todos.findIndex(isSameId);
+        this.todos[index].todoTitle = editTodo.todoTitle;
+        this.todos[index].todoComment = editTodo.todoComment;
+        this.todos[index].todoDate = editTodo.todoDate;
+        this.todos[index].todoTime = editTodo.todoTime;
+        this.todos[index].isStarred = editTodo.isStarred;
+        this.todos[index].isCompleted = editTodo.isCompleted;
         this.setLocalStorage();
     }
-    deleteTodo(index) {
+    deleteTodo(todoId) {
+        const isSameId = (todo) => todo.todoId === +todoId;
+        const index = this.todos.findIndex(isSameId);
         this.todos.splice(index, 1);
         this.setLocalStorage();
     }
@@ -42,11 +57,15 @@ export default class Model {
     completedCounter() {
         return this.todos.filter(todo => todo.isCompleted).length;
     }
-    bindStar(index) {
+    bindStar(todoId) {
+        const isSameId = (todo) => todo.todoId === +todoId;
+        const index = this.todos.findIndex(isSameId);
         this.todos[index].isStarred = !this.todos[index].isStarred;
         this.setLocalStorage();
     }
-    bindCheckbox(index) {
+    bindCheckbox(todoId) {
+        const isSameId = (todo) => todo.todoId === +todoId;
+        const index = this.todos.findIndex(isSameId);
         this.todos[index].isCompleted = !this.todos[index].isCompleted;
         this.setLocalStorage();
     }
