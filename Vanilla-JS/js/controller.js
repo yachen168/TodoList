@@ -39,7 +39,6 @@ export default class Controller {
     }
     editCanceled() {
         this.view.bindCancelEditButton(function(e) {
-            console.log(123)
             this.renderTodos();
         }.bind(this));
     }

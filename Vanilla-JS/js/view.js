@@ -4,7 +4,7 @@ import template from './template.js';
 export default class View {
     constructor() {
         this.$todoList = document.querySelector('.todo-list');
-        this.$addTaskButtons = document.querySelector('.add-todo');
+        this.$addTaskButton = document.querySelector('.add-todo');
         this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
         this.$newStar = document.querySelector('.new-todo .star');
         this.$newCheckbox = document.querySelector('.new-todo .checkbox');
@@ -19,7 +19,8 @@ export default class View {
         this.$navItems = document.querySelectorAll('.nav-item');
         this.$todoCounter = document.querySelector('.todo-count');
         this.$nav = document.querySelector('nav ul');
-        this.$addTaskButtons.addEventListener('click', this.toggleNewCard.bind(this));
+
+        this.$addTaskButton.addEventListener('click', this.toggleNewCard.bind(this));
         this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler.bind(this));
         this.$newCancelButton.addEventListener('click', this.toggleNewCard.bind(this));
         this.$newCancelButton.addEventListener('click', this.clearNewTodo.bind(this));
@@ -41,14 +42,9 @@ export default class View {
         this.$allTextAreas.forEach($textArea => {
             $textArea.addEventListener('click', this.autoSelected);
         })
-        this.$cardFooters.forEach(($cardFooter, i) => {
-            $cardFooter.addEventListener('click', this.switchToggle.bind(this.$editAreas, i))
-        })
     }
     updateNode() {
         this.$todoBars = this.$todoList.querySelectorAll('.todo-bar');
-        this.$todoTitles = this.$todoList.querySelectorAll('.todo-title');
-        this.$editCards = this.$todoList.querySelectorAll('.card');
         this.$todoNames = this.$todoList.querySelectorAll('.todo-name');
         this.$todoDates = this.$todoList.querySelectorAll('.date');
         this.$todoTimes = this.$todoList.querySelectorAll('.time');
@@ -109,16 +105,15 @@ export default class View {
             }
         })
     }
-    renderTodos(stateFilter) {
-        this.$todoList.innerHTML = template.todoItem(stateFilter);
+    renderTodos(todos) {
+        this.$todoList.innerHTML = template.todoItem(todos);
         this.init();
     }
     renderCounter(leftTodo, completedTodo, state) {
-        if (state === 'completed') {
+        if (state === 'completed')
             this.$todoCounter.innerHTML = template.completedCounter(completedTodo);
-        } else {
+        else
             this.$todoCounter.innerHTML = template.leftCounter(leftTodo);
-        }
     }
     addNewTodo() {
         return {
