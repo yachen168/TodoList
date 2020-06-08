@@ -29,21 +29,17 @@ export default class View {
     init() {
         this.updateNode();
         this.$pens.each((i, $pen) => {
-            $pen.addEventListener('click', this.switchToggle.bind(this.$editAreas, i));
-            $pen.addEventListener('click', this.toggleInput.bind(this.$todoNames[i]));
+            $($pen).on('click', this.switchToggle.bind(this.$editAreas, i));
+            $($pen).on('click', this.toggleInput.bind(this.$todoNames[i]));
         })
         this.$navItems.each((i, $navItem) => {
-            $navItem.addEventListener('click', this.switchToggle.bind(this.$navItems, i));
+            $($navItem).on('click', this.switchToggle.bind(this.$navItems, i));
         })
         this.$cardFooters.each((i, $cardFooter) => {
-            $cardFooter.addEventListener('click', this.switchToggle.bind(this.$editAreas, i))
+            $($cardFooter).on('click', this.switchToggle.bind(this.$editAreas, i))
         })
-        this.$allInputs.each((i, $input) => {
-            $input.addEventListener('click', this.autoSelected);
-        })
-        this.$allTextAreas.each((i, $textArea) => {
-            $textArea.addEventListener('click', this.autoSelected);
-        })
+        this.$allInputs.on('click', this.autoSelected);
+        this.$allTextAreas.on('click', this.autoSelected);
     }
     updateNode() {
         this.$todoBars = $('.todo-list .todo-bar');
@@ -133,12 +129,12 @@ export default class View {
     }
     editDone(index) {
         return {
-            todoTitle: this.$todoNames[index].value,
-            todoComment: this.$todoComments[index].value,
-            todoDate: this.$todoDates[index].value,
-            todoTime: this.$todoTimes[index].value,
-            isStarred: this.$todoBars[index].classList.contains('active'),
-            isCompleted: this.$checkboxes[index].checked
+            todoTitle: $(this.$todoNames[index]).val(),
+            todoComment: $(this.$todoComments[index]).val(),
+            todoDate: $(this.$todoDates[index]).val(),
+            todoTime: $(this.$todoTimes[index]).val(),
+            isStarred: $(this.$todoBars[index]).hasClass('active'),
+            isCompleted: $(this.$checkboxes[index]).checked
         }
     }
     clearNewTodo() {
@@ -157,7 +153,7 @@ export default class View {
     }
     switchToggle(index, e) {
         this.removeClass('active')
-        this[index].classList.add('active')
+        $(this[index]).addClass('active')
     }
     toggleNewCard(e) {
         e.preventDefault();
