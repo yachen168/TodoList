@@ -17,7 +17,7 @@
         },
         methods: {
             addNewTodo() {
-                const todoTitleEmpty = /^$|^\s*$/;
+                const todoTitleEmpty = /^\s*$/;
                 const isTodoTitleEmpty = todoTitleEmpty.test(this.newTodo.todoTitle);
                 if (isTodoTitleEmpty) {
                     alert(`尚未輸入代辦事項名稱`);

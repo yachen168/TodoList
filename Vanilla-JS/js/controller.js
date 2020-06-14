@@ -23,7 +23,7 @@ export default class Controller {
     }
     addNewTodo() {
         const newTodo = this.view.addNewTodo();
-        const todoTitleEmpty = /^$|^\s*$/;
+        const todoTitleEmpty = /^\s*$/;
         const isTodoTitleEmpty = todoTitleEmpty.test(newTodo.todoTitle);
         if (!isTodoTitleEmpty) {
             this.model.addNewTodo(this.view.addNewTodo());
