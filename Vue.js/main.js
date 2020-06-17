@@ -17,7 +17,7 @@
         },
         methods: {
             addNewTodoHandler() {
-                if (this.isTodoTitleEmpty()) {
+                if (this.isTodoTitleEmpty) {
                     alert(`尚未輸入代辦事項名稱`);
                 } else {
                     this.todos.push(this.addNewTodo);
@@ -25,10 +25,6 @@
                     this.toggleNewEditCard();
                     this.setLocalStorage();
                 }
-            },
-            isTodoTitleEmpty() {
-                const todoTitleEmpty = /^\s*$/;
-                return todoTitleEmpty.test(this.newTodo.todoTitle);
             },
             clearNewTodo() {
                 this.newTodo = Object.assign({}, this.initNewTodo);
@@ -87,6 +83,10 @@
                     isCompleted: this.newTodo.isCompleted,
                     isEditing: false
                 }
+            },
+            isTodoTitleEmpty() {
+                const todoTitleEmpty = /^\s*$/;
+                return todoTitleEmpty.test(this.newTodo.todoTitle);
             },
             sortTodos() {
                 return this.todos.sort((a, b) => {
