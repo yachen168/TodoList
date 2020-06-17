@@ -16,26 +16,19 @@
             isEditingNewTodo: false
         },
         methods: {
-            addNewTodo() {
-                const todoTitleEmpty = /^\s*$/;
-                const isTodoTitleEmpty = todoTitleEmpty.test(this.newTodo.todoTitle);
-                if (isTodoTitleEmpty) {
+            addNewTodoHandler() {
+                if (this.isTodoTitleEmpty()) {
                     alert(`尚未輸入代辦事項名稱`);
                 } else {
-                    this.todos.push({
-                        id: Date.now(),
-                        todoTitle: this.newTodo.todoTitle,
-                        todoComment: this.newTodo.todoComment,
-                        todoDate: this.newTodo.todoDate,
-                        todoTime: this.newTodo.todoTime,
-                        isStared: this.newTodo.isStared,
-                        isCompleted: this.newTodo.isCompleted,
-                        isEditing: false,
-                    });
+                    this.todos.push(this.addNewTodo);
                     this.clearNewTodo();
                     this.toggleNewEditCard();
                     this.setLocalStorage();
                 }
+            },
+            isTodoTitleEmpty() {
+                const todoTitleEmpty = /^\s*$/;
+                return todoTitleEmpty.test(this.newTodo.todoTitle);
             },
             clearNewTodo() {
                 this.newTodo = Object.assign({}, this.initNewTodo);
@@ -81,6 +74,18 @@
                     isStared: false,
                     isCompleted: false,
                     isEditing: false,
+                }
+            },
+            addNewTodo() {
+                return {
+                    id: Date.now(),
+                    todoTitle: this.newTodo.todoTitle,
+                    todoComment: this.newTodo.todoComment,
+                    todoDate: this.newTodo.todoDate,
+                    todoTime: this.newTodo.todoTime,
+                    isStared: this.newTodo.isStared,
+                    isCompleted: this.newTodo.isCompleted,
+                    isEditing: false
                 }
             },
             sortTodos() {
