@@ -23,7 +23,7 @@
         </header>
         <main>
             <section class="new-todo">
-                <button class="add-todo" @click="toggleNewEditCard">+ Add Task</button>
+                <button @click="toggleNewEditCard" class="add-todo">+ Add Task</button>
                 <form class="edit-area new-todo-edit-area" :class="{active: isEditingNewTodo}">
                     <div :class="{active: newTodo.isStared}" class="todo-bar">
                         <label class="todo-title">
@@ -32,7 +32,7 @@
                 </label>
                         <div class="icon-wrapper">
                             <span @click="markNewTodo" class="star"><i class="far fa-star active"></i></span>
-                            <span @click="toggleNewEditCard(todo)" class="pen new-pen"><i class="fas fa-pen active"></i></span>
+                            <span class="pen new-pen"><i class="fas fa-pen active"></i></span>
                         </div>
                     </div>
                     <div class="card">
@@ -58,7 +58,7 @@
                         </div>
                         <div @click="clearNewTodo" class="card-footer new-card-footer">
                             <button @click.prevent="toggleNewEditCard" type="submit" class="button-cancel new-button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button @click.prevent="addNewTodoHandler" class="button-confirm new-button-confirm"><i class="fas fa-plus"></i>Add Task</button>
+                            <button @click.prevent="addNewTodo" class="button-confirm new-button-confirm"><i class="fas fa-plus"></i>Add Task</button>
                         </div>
                     </div>
                 </form>
