@@ -1,5 +1,5 @@
 (function() {
-    const app = new Vue({
+    return new Vue({
         el: '#app',
         data: {
             todos: JSON.parse(localStorage.getItem('todos-vue')) || [],
@@ -32,17 +32,13 @@
                         isCompleted: this.newTodo.isCompleted,
                         isEditing: false,
                     });
+                    this.clearNewTodo();
                     this.toggleNewEditCard();
                     this.setLocalStorage();
                 }
             },
             clearNewTodo() {
-                this.newTodo.todoTitle = '';
-                this.newTodo.todoComment = '';
-                this.newTodo.todoDate = '';
-                this.newTodo.todoTime = '';
-                this.newTodo.isStared = false;
-                this.newTodo.isCompleted = false;
+                this.newTodo = Object.assign({}, this.initNewTodo);
             },
             editDone(todo, index) {
                 this.todos[index] = todo;
@@ -76,6 +72,17 @@
             }
         },
         computed: {
+            initNewTodo() {
+                return {
+                    todoTitle: '',
+                    todoComment: '',
+                    todoDate: '',
+                    todoTime: '',
+                    isStared: false,
+                    isCompleted: false,
+                    isEditing: false,
+                }
+            },
             sortTodos() {
                 return this.todos.sort((a, b) => {
                     let scoreA = (a.isStared ? 100 : 0) + (a.isCompleted ? -200 : 0);
