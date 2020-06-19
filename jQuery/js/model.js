@@ -5,12 +5,7 @@ export default class Model {
     addNewTodo(newTodo) {
         this.todos.push({
             todoId: Date.now(),
-            todoTitle: newTodo.todoTitle,
-            todoDate: newTodo.todoDate,
-            todoTime: newTodo.todoTime,
-            todoComment: newTodo.todoComment,
-            isStarred: newTodo.isStarred,
-            isCompleted: newTodo.isCompleted
+            ...newTodo
         });
         this.setLocalStorage();
     }
@@ -37,12 +32,7 @@ export default class Model {
     editDone(editTodo, todoId) {
         const isSameId = (todo) => todo.todoId === +todoId;
         const index = this.todos.findIndex(isSameId);
-        this.todos[index].todoTitle = editTodo.todoTitle;
-        this.todos[index].todoComment = editTodo.todoComment;
-        this.todos[index].todoDate = editTodo.todoDate;
-        this.todos[index].todoTime = editTodo.todoTime;
-        this.todos[index].isStarred = editTodo.isStarred;
-        this.todos[index].isCompleted = editTodo.isCompleted;
+        this.todos[index] = { todoId: this.todos[index].todoId, ...editTodo };
         this.setLocalStorage();
     }
     deleteTodo(todoId) {
