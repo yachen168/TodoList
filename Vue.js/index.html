@@ -28,7 +28,7 @@
                     <div :class="{active: newTodo.isStared}" class="todo-bar">
                         <label class="todo-title">
                     <input v-model="newTodo.isCompleted" class="checkbox" type="checkbox">
-                    <input v-model="newTodo.todoTitle" class="todo-name new-todo-name" type="text" placeholder="Type Something Here…">
+                    <input v-model.trim="newTodo.todoTitle" class="todo-name new-todo-name" type="text" placeholder="Type Something Here…">
                 </label>
                         <div class="icon-wrapper">
                             <span @click="markNewTodo" class="star"><i class="far fa-star active"></i></span>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="comment">
                                 <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                                <textarea v-model="newTodo.todoComment" class="add-comment" placeholder="Type your memo here..."></textarea>
+                                <textarea v-model.trim="newTodo.todoComment" class="add-comment" placeholder="Type your memo here..."></textarea>
                             </div>
                         </div>
                         <div @click="clearNewTodo" class="card-footer new-card-footer">
@@ -107,7 +107,7 @@
                             </div>
                             <div class="comment">
                                 <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                                <textarea v-model="todo.todoComment" class="comment-content" placeholder="Type your memo here...">{{todo.todoComment}}</textarea>
+                                <textarea v-model.trim="todo.todoComment" class="comment-content" placeholder="Type your memo here...">{{todo.todoComment}}</textarea>
                             </div>
                         </div>
                         <div class="card-footer">

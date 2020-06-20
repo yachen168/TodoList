@@ -17,7 +17,7 @@
         },
         methods: {
             addNewTodo() {
-                if (this.isTitleEmpty) {
+                if (!this.newTodo.todoTitle) {
                     alert(`尚未輸入代辦事項名稱`);
                 } else {
                     this.todos.push({ id: Date.now(), ...this.newTodo });
@@ -73,9 +73,6 @@
                     isCompleted: false,
                     isEditing: false,
                 }
-            },
-            isTitleEmpty() {
-                return (/^\s*$/).test(this.newTodo.todoTitle);
             },
             sortTodos() {
                 return this.todos.sort((a, b) => {
