@@ -1,7 +1,8 @@
-import template from './template.js';
+import Template from './template.js';
 
 export default class View {
     constructor() {
+        this.template = new Template();
         this.todoList = $('.todo-list');
         this.addTaskButton = $('.add-todo');
         this.newTodoBar = $('.new-todo .todo-bar');
@@ -97,14 +98,14 @@ export default class View {
         })
     }
     renderTodos(todos) {
-        this.todoList.html(template.todoItem(todos));
+        this.todoList.html(this.template.todoItem(todos));
         this.init();
     }
     renderCounter(leftTodo, completedTodo, state) {
         if (state === 'completed')
-            this.todoCounter.html(template.completedCounter(completedTodo));
+            this.todoCounter.html(this.template.completedCounter(completedTodo));
         else
-            this.todoCounter.html(template.leftCounter(leftTodo));
+            this.todoCounter.html(this.template.leftCounter(leftTodo));
     }
     addNewTodo() {
         console.log(this.newCheckbox);
@@ -150,8 +151,8 @@ export default class View {
         this.newTodoBar.toggleClass('active');
     }
     switchToggle(index, e) {
-        this.removeClass('active')
-        $(this[index]).addClass('active')
+        this.removeClass('active');
+        $(this[index]).addClass('active');
     }
     toggleNewCard(e) {
         e.preventDefault();

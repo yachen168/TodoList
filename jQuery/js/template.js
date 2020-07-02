@@ -1,4 +1,4 @@
-class Template {
+export default class Template {
     todoItem(todos) {
         return todos.reduce((a, todo) => a + `<form class="edit-area">
       <div class="todo-bar ${todo.isStarred?'active':''}" data-id="${todo.todoId}">
@@ -57,6 +57,3 @@ class Template {
         return (completedTodo > 1) ? `${completedTodo} tasks left` : `${completedTodo} task left`;
     }
 }
-
-const template = new Template();
-export default template;

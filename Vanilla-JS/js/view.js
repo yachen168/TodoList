@@ -1,8 +1,9 @@
 import { toggleActive, clearAllClass } from './helpers.js';
-import template from './template.js';
+import Template from './template.js';
 
 export default class View {
     constructor() {
+        this.template = new Template();
         this.$todoList = document.querySelector('.todo-list');
         this.$addTaskButton = document.querySelector('.add-todo');
         this.$newTodoBar = document.querySelector('.new-todo .todo-bar');
@@ -106,14 +107,14 @@ export default class View {
         })
     }
     renderTodos(todos) {
-        this.$todoList.innerHTML = template.todoItem(todos);
+        this.$todoList.innerHTML = this.template.todoItem(todos);
         this.init();
     }
     renderCounter(leftTodo, completedTodo, state) {
         if (state === 'completed')
-            this.$todoCounter.innerHTML = template.completedCounter(completedTodo);
+            this.$todoCounter.innerHTML = this.template.completedCounter(completedTodo);
         else
-            this.$todoCounter.innerHTML = template.leftCounter(leftTodo);
+            this.$todoCounter.innerHTML = this.template.leftCounter(leftTodo);
     }
     addNewTodo() {
         return {
