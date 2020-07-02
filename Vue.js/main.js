@@ -29,10 +29,15 @@
             clearNewTodo() {
                 this.newTodo = Object.assign({}, this.initNewTodo);
             },
-            editDone(todo, index) {
-                this.todos[index] = todo;
-                this.toggleEditCard(todo);
-                this.setLocalStorage();
+            editDone(todo, id) {
+                if (!todo.todoTitle) {
+                    alert(`尚未輸入代辦事項名稱`);
+                } else {
+                    const index = this.todos.findIndex(todo => todo.id === id);
+                    this.todos[index] = todo;
+                    this.toggleEditCard(todo);
+                    this.setLocalStorage();
+                }
             },
             deleteTodo(id) {
                 const index = this.todos.findIndex(todo => todo.id === id);
