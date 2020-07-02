@@ -2,7 +2,7 @@
     return new Vue({
         el: '#app',
         data: {
-            todos: JSON.parse(localStorage.getItem('todos-vue')) || [],
+            todos: [],
             newTodo: {
                 todoTitle: '',
                 todoComment: '',
@@ -99,6 +99,9 @@
             completedCounter() {
                 return this.todos.filter(todo => todo.isCompleted).length;
             }
+        },
+        created() {
+            this.todos = JSON.parse(localStorage.getItem('todos-vue')) || [];
         }
     })
 })()
