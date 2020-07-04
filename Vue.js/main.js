@@ -42,8 +42,7 @@
             },
             editCanceled(todo, id) {
                 const index = this.todos.findIndex(todo => todo.id === id);
-                const cacheIndex = this.cacheTodos.findIndex(todo => todo.id === id);
-                this.todos.splice(index, 1, JSON.parse(JSON.stringify(this.cacheTodos))[cacheIndex]);
+                this.todos.splice(index, 1, JSON.parse(JSON.stringify(this.cacheTodos))[index]);
                 this.todos[index].isEditing = false;
             },
             deleteTodo(id) {
