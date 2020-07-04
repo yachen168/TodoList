@@ -110,8 +110,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button @click.prevent="toggleEditCard(todo) " type="submit " class="button-cancel "><i class="fas fa-times "></i>Cancel</button>
-                            <button @click.prevent="editDone(todo,index) " type="submit " class="button-confirm "><i class="fas fa-plus "></i>Save</button>
+                            <button @click.prevent="editCanceled(todo,todo.id);toggleEditCard(todo)" type="submit " class="button-cancel "><i class="fas fa-times "></i>Cancel</button>
+                            <button @click.prevent="editDone(todo,todo.id) " type="submit " class="button-confirm "><i class="fas fa-plus "></i>Save</button>
                         </div>
                     </div>
                 </form>

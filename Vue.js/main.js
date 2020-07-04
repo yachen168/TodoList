@@ -3,6 +3,7 @@
         el: '#app',
         data: {
             todos: [],
+            cacheTodos: [],
             newTodo: {
                 todoTitle: '',
                 todoComment: '',
@@ -39,6 +40,12 @@
                     this.setLocalStorage();
                 }
             },
+            editCanceled(todo, id) {
+                const index = this.todos.findIndex(todo => todo.id === id);
+                const cacheIndex = this.cacheTodos.findIndex(todo => todo.id === id);
+                this.todos.splice(index, 1, JSON.parse(JSON.stringify(this.cacheTodos))[cacheIndex]);
+                this.todos[index].isEditing = false;
+            },
             deleteTodo(id) {
                 const index = this.todos.findIndex(todo => todo.id === id);
                 this.todos.splice(index, 1);
@@ -59,8 +66,12 @@
             toggleNewEditCard() {
                 this.isEditingNewTodo = !this.isEditingNewTodo;
             },
+            setCacheTodos() {
+                this.cacheTodos = JSON.parse(JSON.stringify(this.todos));
+            },
             toggleEditCard(todo) {
                 todo.isEditing = !todo.isEditing;
+                this.setCacheTodos();
             },
             toggleCompleted(todo) {
                 todo.isCompleted = !todo.isCompleted;
