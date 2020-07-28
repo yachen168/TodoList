@@ -3,6 +3,7 @@ export default class Controller {
         this.model = model;
         this.view = view;
         this.state = 'all';
+
         this.renderTodos();
         this.bindNewConfirmButton();
     }
@@ -32,33 +33,31 @@ export default class Controller {
         }
     }
     editDone() {
-        this.view.bindConfirmEditButton(function(e, index) {
+        this.view.bindConfirmEditButton((e, index) => {
             this.model.editDone(this.view.editDone(index), e.target.dataset.id);
             this.renderTodos();
-        }.bind(this));
+        });
     }
     editCanceled() {
-        this.view.bindCancelEditButton(function(e) {
-            this.renderTodos();
-        }.bind(this));
+        this.view.bindCancelEditButton(() => this.renderTodos());
     }
     deleteTodo() {
-        this.view.bindDeleteButton(function(e) {
+        this.view.bindDeleteButton(e => {
             this.model.deleteTodo(e.target.dataset.id);
             this.renderTodos();
-        }.bind(this));
+        });
     }
     bindAllStar() {
-        this.view.bindStar(function(e) {
+        this.view.bindStar(e => {
             this.model.bindStar(e.target.dataset.id);
             this.renderTodos();
-        }.bind(this));
+        });
     }
     bindCheckbox() {
-        this.view.bindCheckbox(function(e) {
+        this.view.bindCheckbox(e => {
             this.model.bindCheckbox(e.target.dataset.id);
             this.renderTodos();
-        }.bind(this));
+        });
     }
     bindNewConfirmButton() {
         this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
