@@ -11,11 +11,11 @@ export default class Controller {
         this.view.renderTodos(this.model.stateFilter(this.state));
         this.bindEventHandler();
 
-        this.view.switchState(function(e) {
+        this.view.switchState(e => {
             this.state = e.target.dataset.name;
             this.view.renderTodos(this.model.stateFilter(this.state));
             this.bindEventHandler();
-        }.bind(this));
+        });
     }
     renderCounter() {
         let leftTodo = this.model.leftCounter();
