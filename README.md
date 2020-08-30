@@ -15,6 +15,15 @@
 - 任務完成即置底(勾選 checkbox)
 - 計算剩餘/已完成任務總數
 
+
+## 學習重點紀錄
+- 瞭解事件驅動與資料驅動
+- 使用 MVC 架構拆分畫面邏輯、資料邏輯
+- ES6 語法
+- DOM 操作 (Vanilla JS、jQuery 版本)
+- 模組化
+
+
 <br>
 
 [設計稿](https://hexschool.github.io/THE_F2E_Design/todolist/)
