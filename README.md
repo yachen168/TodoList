@@ -23,6 +23,10 @@
 - 瞭解事件驅動與資料驅動
 - 使用 MVC 架構拆分畫面邏輯、資料邏輯
 - ES6 語法
+- 事件傳遞機制：bubbling / target / capturing
+- Event.stopPropagation() 阻止繼續 bubbling / capturing
+- Event.preventDefault() 取消事件預設行為
+- 事件代理 (Delegation)
 - DOM 操作 (Vanilla JS、jQuery 版本)
 - 模組化
 
