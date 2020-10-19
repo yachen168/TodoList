@@ -1,325 +1,325 @@
 .todo-list {
-    display: flex;
-    flex-direction: column-reverse;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .add-todo {
-    width: 100%;
-    height: 65px;
-    font-size: 24px;
-    padding: 0 30px;
-    text-align: left;
-    color: $grey-400;
-    background-color: $white;
-    border: 2px solid $grey-400;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 65px;
+  font-size: 24px;
+  padding: 0 30px;
+  text-align: left;
+  color: $grey-400;
+  background-color: $white;
+  border: 2px solid $grey-400;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .edit-area {
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 8px;
 }
 
 .edit-area.active {
-    box-shadow: 0 4px 4px $grey-400;
-    .pen {
-        color: $blue-100;
-    }
-    .card {
-        display: block;
-        animation: open-edit-area 0.01s forwards;
-    }
+  box-shadow: 0 4px 4px $grey-400;
+  .pen {
+    color: $blue-100;
+  }
+  .card {
+    display: block;
+    animation: open-edit-area 0.01s forwards;
+  }
 }
 
 .edit-area.d-none {
-    display: none;
+  display: none;
 }
 
 .new-todo-edit-area {
-    display: none;
-    margin-bottom: 20px;
-    .card {
-        display: block;
-    }
-    .todo-bar:hover {
-        cursor: auto;
-    }
+  display: none;
+  margin-bottom: 20px;
+  .card {
+    display: block;
+  }
+  .todo-bar:hover {
+    cursor: auto;
+  }
 }
 
 .new-todo-edit-area.active {
-    display: block;
-    .card {
-        animation: open-edit-area 0.01s forwards;
-    }
+  display: block;
+  .card {
+    animation: open-edit-area 0.01s forwards;
+  }
 }
 
 .card {
-    display: none;
-    height: 0;
+  display: none;
+  height: 0;
 }
 
 .card-footer {
-    display: flex;
-    button {
-        flex: 0 0 50%;
-        height: 60px;
-        font-size: 20px;
-        border: none;
-        i {
-            margin-right: 15px;
-        }
+  display: flex;
+  button {
+    flex: 0 0 50%;
+    height: 60px;
+    font-size: 20px;
+    border: none;
+    i {
+      margin-right: 15px;
     }
-    .button-cancelAdd,
-    .button-cancel {
-        color: $red;
-        background-color: $white;
-        &:hover {
-            background-color: $grey-100;
-        }
+  }
+  .button-cancelAdd,
+  .button-cancel {
+    color: $red;
+    background-color: $white;
+    &:hover {
+      background-color: $grey-100;
     }
-    .button-confirmAdd,
-    .button-confirm {
-        color: $white;
-        background-color: $blue-100;
-        &:hover {
-            background-color: $blue-200;
-        }
-        i {
-            pointer-events: none;
-        }
+  }
+  .button-confirmAdd,
+  .button-confirm {
+    color: $white;
+    background-color: $blue-100;
+    &:hover {
+      background-color: $blue-200;
     }
+    i {
+      pointer-events: none;
+    }
+  }
 }
 
 .todo-bar {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    flex-wrap: wrap;
-    padding: 20px;
-    padding-right: 25px;
-    background-color: $grey-200;
-    border-radius: 5px;
-    &:hover {
-        cursor: move;
-        .hover-dots {
-            opacity: 1;
-        }
-    }
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  padding-right: 25px;
+  background-color: $grey-200;
+  border-radius: 5px;
+  &:hover {
+    cursor: move;
     .hover-dots {
-        opacity: 0;
-        position: absolute;
-        left: 5px;
-        top: 0;
-        bottom: 0;
-        margin: auto 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 20px;
-        transition-duration: 0.3s;
-        span {
-            line-height: 10px;
-            color: $grey-400;
-        }
+      opacity: 1;
     }
-    label {
-        display: flex;
-        flex: 0.8;
-        align-items: center;
-        margin-left: 10px;
-        .checkbox {
-            position: relative;
-            width: 24px;
-            height: 24px;
-            border: none;
-            cursor: pointer;
-        }
-        .checkbox::after {
-            position: absolute;
-            content: "";
-            width: 24px;
-            height: 24px;
-            background-color: $white;
-            text-align: center;
-            line-height: 24px;
-            border-radius: 2px;
-        }
-        .checkbox:checked::after {
-            content: "✓";
-            font-size: 18px;
-            color: $white;
-            background-color: $blue-200;
-        }
-        .checkbox:checked~.todo-name {
-            color: $grey-500;
-            text-decoration: line-through;
-        }
-        .checkbox:checked~.todo-name::placeholder {
-            color: $grey-500;
-        }
-        .todo-name {
-            width: 100%;
-            margin-left: 8px;
-            font-size: 22px;
-            background-color: $grey-200;
-            border: none;
-            &::placeholder {
-                color: $black;
-                font-weight: 500;
-            }
-            &:focus::placeholder {
-                font-size: 0;
-            }
-        }
+  }
+  .hover-dots {
+    opacity: 0;
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 20px;
+    transition-duration: 0.3s;
+    span {
+      line-height: 10px;
+      color: $grey-400;
     }
-    .hint-icons {
-        width: 100%;
-        margin-left: 40px;
-        color: $grey-500;
-        i {
-            display: none;
-            margin: 10px 10px 0 5px;
-        }
-        i.active {
-            display: inline-block;
-        }
-        .hint-date {
-            padding-left: 8px;
-        }
+  }
+  label {
+    display: flex;
+    flex: 0.8;
+    align-items: center;
+    margin-left: 10px;
+    .checkbox {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      border: none;
+      cursor: pointer;
     }
+    .checkbox::after {
+      position: absolute;
+      content: "";
+      width: 24px;
+      height: 24px;
+      background-color: $white;
+      text-align: center;
+      line-height: 24px;
+      border-radius: 2px;
+    }
+    .checkbox:checked::after {
+      content: "✓";
+      font-size: 18px;
+      color: $white;
+      background-color: $blue-200;
+    }
+    .checkbox:checked ~ .todo-name {
+      color: $grey-500;
+      text-decoration: line-through;
+    }
+    .checkbox:checked ~ .todo-name::placeholder {
+      color: $grey-500;
+    }
+    .todo-name {
+      width: 100%;
+      margin-left: 8px;
+      font-size: 22px;
+      background-color: $grey-200;
+      border: none;
+      &::placeholder {
+        color: $black;
+        font-weight: 500;
+      }
+      &:focus::placeholder {
+        font-size: 0;
+      }
+    }
+  }
+  .hint-icons {
+    width: 100%;
+    margin-left: 40px;
+    color: $grey-500;
+    i {
+      display: none;
+      margin: 10px 10px 0 5px;
+    }
+    i.active {
+      display: inline-block;
+    }
+    .hint-date {
+      padding-left: 8px;
+    }
+  }
 }
 
 .todo-bar.active {
+  background-color: $yellow-100;
+  .todo-name {
     background-color: $yellow-100;
-    .todo-name {
-        background-color: $yellow-100;
-    }
-    .fa-star {
-        opacity: 1;
-        font-weight: 900;
-        color: $yellow-200;
-    }
+  }
+  .fa-star {
+    opacity: 1;
+    font-weight: 900;
+    color: $yellow-200;
+  }
 }
 
 .new-todo .hint-icons {
-    display: none;
+  display: none;
 }
 
 .icon-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    span {
-        font-size: 20px;
-        width: 20px;
-        cursor: pointer;
-        color: $grey-500;
-    }
-    span+span {
-        margin-left: 20px;
-    }
-    .fas-star {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .new-pen .fa-pen {
-        cursor: not-allowed;
-    }
-    .fa-trash-alt:hover {
-        color: $red;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  span {
+    font-size: 20px;
+    width: 20px;
+    cursor: pointer;
+    color: $grey-500;
+  }
+  span + span {
+    margin-left: 20px;
+  }
+  .fas-star {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .new-pen .fa-pen {
+    cursor: not-allowed;
+  }
+  .fa-trash-alt:hover {
+    color: $red;
+  }
 }
 
 .card-body {
-    padding: 15px 50px 15px 80px;
-    margin-top: 3px;
-    background-color: $grey-200;
-    >div:not(:last-child) {
-        margin-bottom: 20px;
+  padding: 15px 50px 15px 80px;
+  margin-top: 3px;
+  background-color: $grey-200;
+  > div:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  h3 {
+    position: relative;
+    margin-bottom: 5px;
+    i {
+      position: absolute;
+      left: -25px;
+      top: 3px;
+      bottom: 0;
+      margin: auto 0;
+      font-size: 18px;
     }
-    h3 {
-        position: relative;
-        margin-bottom: 5px;
-        i {
-            position: absolute;
-            left: -25px;
-            top: 3px;
-            bottom: 0;
-            margin: auto 0;
-            font-size: 18px;
-        }
+  }
+  .upload {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    background: #efefef;
+  }
+  .upload-input {
+    display: none;
+  }
+  .upload-icon {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: $white;
+    font-size: 20px;
+    line-height: 30px;
+    border-radius: 2px;
+    background-color: $grey-400;
+  }
+  .input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    input {
+      width: 160px;
+      margin: 0 5px 5px 0;
+      padding: 5px 15px;
+      &::placeholder {
+        font-size: 14px;
+        color: $grey-400;
+      }
     }
-    .upload {
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        position: relative;
-        text-align: center;
-        cursor: pointer;
-        background: #efefef;
+    input[type="date"]::-webkit-inner-spin-button {
+      display: none;
     }
-    .upload-input {
-        display: none;
+  }
+  .comment {
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: none;
+      resize: none;
+      &::placeholder {
+        color: $grey-400;
+        font-size: 14px;
+      }
     }
-    .upload-icon {
-        width: 32px;
-        height: 32px;
-        position: absolute;
-        left: 0;
-        font-weight: bold;
-        color: $white;
-        font-size: 20px;
-        line-height: 30px;
-        border-radius: 2px;
-        background-color: $grey-400;
-    }
-    .input-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        input {
-            width: 160px;
-            margin: 0 5px 5px 0;
-            padding: 5px 15px;
-            &::placeholder {
-                font-size: 14px;
-                color: $grey-400;
-            }
-        }
-        input[type="date"]::-webkit-inner-spin-button {
-            display: none;
-        }
-    }
-    .comment {
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            border: none;
-            resize: none;
-            &::placeholder {
-                color: $grey-400;
-                font-size: 14px;
-            }
-        }
-    }
+  }
 }
 
 @keyframes open-edit-area {
-    100% {
-        height: fit-content;
-    }
+  100% {
+    height: fit-content;
+  }
 }
 
 .todo-count {
-    padding-left: 30px;
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: 400;
-    color: $grey-400;
-    font-style: italic;
+  padding-left: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: $grey-400;
+  font-style: italic;
 }

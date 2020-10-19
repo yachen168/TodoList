@@ -1,7 +1,7 @@
 // variable-breakpoint
 $tablet: 768px;
 @mixin tablet {
-    @media all and (min-width: $tablet) {
-        @content;
-    }
+  @media all and (min-width: $tablet) {
+    @content;
+  }
 }

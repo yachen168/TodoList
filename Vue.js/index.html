@@ -1,127 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="../style/main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../style/main.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
-    <title>TodoList - Vue.js </title>
-</head>
+    <title>TodoList - Vue.js</title>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <header>
-            <nav>
-                <ul>
-                    <li @click="state='all'" :class="{active: state==='all'}" class="nav-item">My Tasks</li>
-                    <li @click="state='inProgress'" :class="{active: state==='inProgress'}" class="nav-item">In progress</li>
-                    <li @click="state='completed'" :class="{active: state==='completed'}" class="nav-item">Completed</li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <section class="new-todo">
-                <button @click="toggleNewEditCard" class="add-todo">+ Add Task</button>
-                <form class="edit-area new-todo-edit-area" :class="{active: isEditingNewTodo}">
-                    <div :class="{active: newTodo.isStared}" class="todo-bar">
-                        <label class="todo-title">
-                    <input v-model="newTodo.isCompleted" class="checkbox" type="checkbox">
-                    <input v-model.trim="newTodo.todoTitle" class="todo-name new-todo-name" type="text" placeholder="Type Something Here…">
-                </label>
-                        <div class="icon-wrapper">
-                            <span @click="markNewTodo" class="star"><i class="far fa-star active"></i></span>
-                            <span class="pen new-pen"><i class="fas fa-pen active"></i></span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="deadline">
-                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
-                                <div class="input-wrapper">
-                                    <input v-model="newTodo.todoDate" class="new-date" type="date">
-                                    <input v-model="newTodo.todoTime" class="new-time" type="time">
-                                </div>
-                            </div>
-                            <div class="file">
-                                <h3><i class="far fa-file"></i>File</h3>
-                                <label class="upload">
-                            <input class="upload-input" type="file">
-                            <span class="upload-icon">+</span>
-                        </label>
-                            </div>
-                            <div class="comment">
-                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                                <textarea v-model.trim="newTodo.todoComment" class="add-comment" placeholder="Type your memo here..."></textarea>
-                            </div>
-                        </div>
-                        <div @click="clearNewTodo" class="card-footer new-card-footer">
-                            <button @click.prevent="toggleNewEditCard" type="submit" class="button-cancel new-button-cancel"><i class="fas fa-times"></i>Cancel</button>
-                            <button @click.prevent="addNewTodo" class="button-confirm new-button-confirm"><i class="fas fa-plus"></i>Add Task</button>
-                        </div>
-                    </div>
-                </form>
-            </section>
-            <section class="todo-list" id="list">
-                <form v-for="(todo,index) in todoFilter" :key="todo.id" class="edit-area" :class="{active: todo.isEditing}">
-                    <div class="todo-bar" :class="{active: todo.isStared}">
-                        <div class="hover-dots">
-                            <span>∙</span>
-                            <span>∙</span>
-                            <span>∙</span>
-                        </div>
-                        <label class="todo-title">
-                        <input v-model="todo.isCompleted"
-                               @click="toggleCompleted(todo)" class="checkbox" type="checkbox">
-                        <input v-model.trim="todo.todoTitle"
-                               :disabled="!todo.isEditing" class="todo-name" type="text" placeholder="Type Something Here…">
-                        </label>
-                        <div class="icon-wrapper">
-                            <span class="star" @click="markTodo(todo)"><i class="far fa-star"></i></span>
-                            <span class="pen" @click="toggleEditCard(todo)"><i class="fas fa-pen"></i></span>
-                            <span class="delete" @click="deleteTodo(todo.id)"><i class="fas fa-trash-alt"></i></span>
-                        </div>
-                        <div class="hint-icons">
-                            <i class="far fa-calendar-alt" :class="{active: todo.todoDate!=''}"><span class="hint-date">{{todo.todoDate}}</span></i>
-                            <i class="far fa-file"></i>
-                            <i class="far fa-comment-dots" :class="{active: todo.todoComment!=''}"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="deadline">
-                                <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
-                                <div class="input-wrapper">
-                                    <input v-model="todo.todoDate" class="date" type="date" :value="todo.todoDate">
-                                    <input v-model="todo.todoTime" class="time" type="time" :value="todo.todoTime">
-                                </div>
-                            </div>
-                            <div class="file">
-                                <h3><i class="far fa-file"></i>File</h3>
-                                <label class="upload">
-                            <input class="upload-input" type="file">
-                            <span class="upload-icon">+</span>
-                        </label>
-                            </div>
-                            <div class="comment">
-                                <h3><i class="far fa-comment-dots"></i>Comment</h3>
-                                <textarea v-model.trim="todo.todoComment" class="comment-content" placeholder="Type your memo here...">{{todo.todoComment}}</textarea>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button @click.prevent="editCanceled(todo,todo.id);toggleEditCard(todo)" type="submit " class="button-cancel "><i class="fas fa-times "></i>Cancel</button>
-                            <button @click.prevent="editDone(todo,todo.id) " type="submit " class="button-confirm "><i class="fas fa-plus "></i>Save</button>
-                        </div>
-                    </div>
-                </form>
-            </section>
-            <h4 v-if="state!=='completed' " class="todo-count ">{{leftCounter}} <span v-if="leftCounter>1">tasks</span><span v-else>task</span> left</h4>
-            <h4 v-else class="todo-count">{{completedCounter}} <span v-if="completedCounter>1">tasks</span><span v-else>task</span> completed</h4>
-        </main>
-        <footer>點擊 ☆ 任務置頂，任務完成置底</footer>
+      <header>
+        <nav>
+          <ul>
+            <li
+              @click="state='all'"
+              :class="{active: state==='all'}"
+              class="nav-item"
+            >
+              My Tasks
+            </li>
+            <li
+              @click="state='inProgress'"
+              :class="{active: state==='inProgress'}"
+              class="nav-item"
+            >
+              In progress
+            </li>
+            <li
+              @click="state='completed'"
+              :class="{active: state==='completed'}"
+              class="nav-item"
+            >
+              Completed
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="new-todo">
+          <button @click="toggleNewEditCard" class="add-todo">
+            + Add Task
+          </button>
+          <form
+            class="edit-area new-todo-edit-area"
+            :class="{active: isEditingNewTodo}"
+          >
+            <div :class="{active: newTodo.isStared}" class="todo-bar">
+              <label class="todo-title">
+                <input
+                  v-model="newTodo.isCompleted"
+                  class="checkbox"
+                  type="checkbox"
+                />
+                <input
+                  v-model.trim="newTodo.todoTitle"
+                  class="todo-name new-todo-name"
+                  type="text"
+                  placeholder="Type Something Here…"
+                />
+              </label>
+              <div class="icon-wrapper">
+                <span @click="markNewTodo" class="star"
+                  ><i class="far fa-star active"></i
+                ></span>
+                <span class="pen new-pen"
+                  ><i class="fas fa-pen active"></i
+                ></span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="deadline">
+                  <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                  <div class="input-wrapper">
+                    <input
+                      v-model="newTodo.todoDate"
+                      class="new-date"
+                      type="date"
+                    />
+                    <input
+                      v-model="newTodo.todoTime"
+                      class="new-time"
+                      type="time"
+                    />
+                  </div>
+                </div>
+                <div class="file">
+                  <h3><i class="far fa-file"></i>File</h3>
+                  <label class="upload">
+                    <input class="upload-input" type="file" />
+                    <span class="upload-icon">+</span>
+                  </label>
+                </div>
+                <div class="comment">
+                  <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                  <textarea
+                    v-model.trim="newTodo.todoComment"
+                    class="add-comment"
+                    placeholder="Type your memo here..."
+                  ></textarea>
+                </div>
+              </div>
+              <div @click="clearNewTodo" class="card-footer new-card-footer">
+                <button
+                  @click.prevent="toggleNewEditCard"
+                  type="submit"
+                  class="button-cancel new-button-cancel"
+                >
+                  <i class="fas fa-times"></i>Cancel
+                </button>
+                <button
+                  @click.prevent="addNewTodo"
+                  class="button-confirm new-button-confirm"
+                >
+                  <i class="fas fa-plus"></i>Add Task
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+        <section class="todo-list" id="list">
+          <form
+            v-for="(todo,index) in todoFilter"
+            :key="todo.id"
+            class="edit-area"
+            :class="{active: todo.isEditing}"
+          >
+            <div class="todo-bar" :class="{active: todo.isStared}">
+              <div class="hover-dots">
+                <span>∙</span>
+                <span>∙</span>
+                <span>∙</span>
+              </div>
+              <label class="todo-title">
+                <input
+                  v-model="todo.isCompleted"
+                  @click="toggleCompleted(todo)"
+                  class="checkbox"
+                  type="checkbox"
+                />
+                <input
+                  v-model.trim="todo.todoTitle"
+                  :disabled="!todo.isEditing"
+                  class="todo-name"
+                  type="text"
+                  placeholder="Type Something Here…"
+                />
+              </label>
+              <div class="icon-wrapper">
+                <span class="star" @click="markTodo(todo)"
+                  ><i class="far fa-star"></i
+                ></span>
+                <span class="pen" @click="toggleEditCard(todo)"
+                  ><i class="fas fa-pen"></i
+                ></span>
+                <span class="delete" @click="deleteTodo(todo.id)"
+                  ><i class="fas fa-trash-alt"></i
+                ></span>
+              </div>
+              <div class="hint-icons">
+                <i
+                  class="far fa-calendar-alt"
+                  :class="{active: todo.todoDate!=''}"
+                  ><span class="hint-date">{{todo.todoDate}}</span></i
+                >
+                <i class="far fa-file"></i>
+                <i
+                  class="far fa-comment-dots"
+                  :class="{active: todo.todoComment!=''}"
+                ></i>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="deadline">
+                  <h3><i class="far fa-calendar-alt"></i>Deadline</h3>
+                  <div class="input-wrapper">
+                    <input
+                      v-model="todo.todoDate"
+                      class="date"
+                      type="date"
+                      :value="todo.todoDate"
+                    />
+                    <input
+                      v-model="todo.todoTime"
+                      class="time"
+                      type="time"
+                      :value="todo.todoTime"
+                    />
+                  </div>
+                </div>
+                <div class="file">
+                  <h3><i class="far fa-file"></i>File</h3>
+                  <label class="upload">
+                    <input class="upload-input" type="file" />
+                    <span class="upload-icon">+</span>
+                  </label>
+                </div>
+                <div class="comment">
+                  <h3><i class="far fa-comment-dots"></i>Comment</h3>
+                  <textarea
+                    v-model.trim="todo.todoComment"
+                    class="comment-content"
+                    placeholder="Type your memo here..."
+                  >
+{{todo.todoComment}}</textarea
+                  >
+                </div>
+              </div>
+              <div class="card-footer">
+                <button
+                  @click.prevent="editCanceled(todo,todo.id);toggleEditCard(todo)"
+                  type="submit "
+                  class="button-cancel "
+                >
+                  <i class="fas fa-times "></i>Cancel
+                </button>
+                <button
+                  @click.prevent="editDone(todo,todo.id) "
+                  type="submit "
+                  class="button-confirm "
+                >
+                  <i class="fas fa-plus "></i>Save
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+        <h4 v-if="state!=='completed' " class="todo-count ">
+          {{leftCounter}} <span v-if="leftCounter>1">tasks</span
+          ><span v-else>task</span> left
+        </h4>
+        <h4 v-else class="todo-count">
+          {{completedCounter}} <span v-if="completedCounter>1">tasks</span
+          ><span v-else>task</span> completed
+        </h4>
+      </main>
+      <footer>點擊 ☆ 任務置頂，任務完成置底</footer>
     </div>
     <script src="./main.js"></script>
-</body>
-
+  </body>
 </html>
