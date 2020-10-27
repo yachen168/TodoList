@@ -4,7 +4,7 @@ export default class Template {
       (a, todo) =>
         a +
         `<form class="edit-area">
-        <div class="todo-bar ${todo.isStarred ? "active" : ""}" data-id="${
+        <div class="todo-bar ${todo.isStarred ? 'active' : ''}" data-id="${
           todo.todoId
         }">
             <div class="hover-dots">
@@ -31,11 +31,11 @@ export default class Template {
             </div>
             <div class="hint-icons">
                 <i class="far fa-calendar-alt ${
-                  todo.todoDate ? "active" : ""
+                  todo.todoDate ? 'active' : ''
                 }"><span class="hint-date">${todo.todoDate}</span></i>
                 <i class="far fa-file"></i>
                 <i class="far fa-comment-dots ${
-                  todo.todoComment ? "active" : ""
+                  todo.todoComment ? 'active' : ''
                 }"></i>
             </div>
         </div>

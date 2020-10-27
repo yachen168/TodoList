@@ -2,7 +2,7 @@ export default class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.state = "all";
+    this.state = 'all';
 
     this.renderTodos();
     this.bindNewConfirmButton();

@@ -9,18 +9,18 @@ export default class Model {
     });
     this.setLocalStorage();
   }
-  stateFilter(state = "all") {
+  stateFilter(state = 'all') {
     return this.sortTodos().filter((todo) => {
-      if (state === "all") return this.sortTodos();
-      if (state === "inProgress") return !todo.isCompleted;
-      if (state === "completed") return todo.isCompleted;
+      if (state === 'all') return this.sortTodos();
+      if (state === 'inProgress') return !todo.isCompleted;
+      if (state === 'completed') return todo.isCompleted;
     });
   }
   setLocalStorage() {
-    localStorage.setItem("todos-js", JSON.stringify(this.todos));
+    localStorage.setItem('todos-js', JSON.stringify(this.todos));
   }
   getLocalStorage() {
-    return JSON.parse(localStorage.getItem("todos-js")) || [];
+    return JSON.parse(localStorage.getItem('todos-js')) || [];
   }
   sortTodos() {
     return this.todos.sort((a, b) => {
