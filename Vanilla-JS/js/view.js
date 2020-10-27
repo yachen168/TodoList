@@ -1,25 +1,25 @@
-import { toggleActive, clearAllClass } from "./helpers.js";
+import { toggleActive, clearAllClass ,qs,qsAll} from "./helpers.js";
 import Template from "./template.js";
 
 export default class View {
   constructor() {
     this.template = new Template();
-    this.$todoList = document.querySelector(".todo-list");
-    this.$addTaskButton = document.querySelector(".add-todo");
-    this.$newTodoBar = document.querySelector(".new-todo .todo-bar");
-    this.$newStar = document.querySelector(".new-todo .star");
-    this.$newCheckbox = document.querySelector(".new-todo .checkbox");
-    this.$newTodoName = document.querySelector(".new-todo-name");
-    this.$newTodoEditArea = document.querySelector(".new-todo-edit-area");
-    this.$newTodoDate = document.querySelector(".new-date");
-    this.$newTodoTime = document.querySelector(".new-time");
-    this.$newTodoComment = document.querySelector(".add-comment");
-    this.$newCardFooter = document.querySelector(".new-todo .new-card-footer");
-    this.$newCancelButton = document.querySelector(".new-button-cancel");
-    this.$newConfirmButton = document.querySelector(".new-button-confirm");
-    this.$navItems = document.querySelectorAll(".nav-item");
-    this.$todoCounter = document.querySelector(".todo-count");
-    this.$nav = document.querySelector("nav ul");
+    this.$todoList = qs(".todo-list");
+    this.$addTaskButton = qs(".add-todo");
+    this.$newTodoBar = qs(".new-todo .todo-bar");
+    this.$newStar = qs(".new-todo .star");
+    this.$newCheckbox = qs(".new-todo .checkbox");
+    this.$newTodoName = qs(".new-todo-name");
+    this.$newTodoEditArea = qs(".new-todo-edit-area");
+    this.$newTodoDate = qs(".new-date");
+    this.$newTodoTime = qs(".new-time");
+    this.$newTodoComment = qs(".add-comment");
+    this.$newCardFooter = qs(".new-todo .new-card-footer");
+    this.$newCancelButton = qs(".new-button-cancel");
+    this.$newConfirmButton = qs(".new-button-confirm");
+    this.$navItems = qsAll(".nav-item");
+    this.$todoCounter = qs(".todo-count");
+    this.$nav = qs("nav ul");
 
     this.$addTaskButton.addEventListener(
       "click",
@@ -63,21 +63,21 @@ export default class View {
     });
   }
   updateNode() {
-    this.$todoBars = this.$todoList.querySelectorAll(".todo-bar");
-    this.$todoNames = this.$todoList.querySelectorAll(".todo-name");
-    this.$todoDates = this.$todoList.querySelectorAll(".date");
-    this.$todoTimes = this.$todoList.querySelectorAll(".time");
-    this.$todoComments = this.$todoList.querySelectorAll(".comment-content");
-    this.$cancelButtons = this.$todoList.querySelectorAll(".button-cancel");
-    this.$confirmButtons = this.$todoList.querySelectorAll(".button-confirm");
-    this.$cardFooters = this.$todoList.querySelectorAll(".card-footer");
-    this.$stars = this.$todoList.querySelectorAll(".star");
-    this.$pens = this.$todoList.querySelectorAll(".pen");
-    this.$deleteButtons = this.$todoList.querySelectorAll(".delete");
-    this.$checkboxes = this.$todoList.querySelectorAll(".checkbox");
-    this.$editAreas = this.$todoList.querySelectorAll(".edit-area");
-    this.$allInputs = document.querySelectorAll("input");
-    this.$allTextAreas = document.querySelectorAll("textarea");
+    this.$todoBars = qsAll(".todo-bar",this.$todoList,this.$todoList);
+    this.$todoNames = qsAll(".todo-name",this.$todoList);
+    this.$todoDates = qsAll(".date",this.$todoList);
+    this.$todoTimes = qsAll(".time",this.$todoList);
+    this.$todoComments = qsAll(".comment-content",this.$todoList);
+    this.$cancelButtons = qsAll(".button-cancel",this.$todoList);
+    this.$confirmButtons = qsAll(".button-confirm",this.$todoList);
+    this.$cardFooters = qsAll(".card-footer",this.$todoList);
+    this.$stars = qsAll(".star",this.$todoList);
+    this.$pens = qsAll(".pen",this.$todoList);
+    this.$deleteButtons = qsAll(".delete",this.$todoList);
+    this.$checkboxes = qsAll(".checkbox",this.$todoList);
+    this.$editAreas = qsAll(".edit-area",this.$todoList);
+    this.$allInputs = qsAll("input",this.$todoList);
+    this.$allTextAreas = qsAll("textarea",this.$todoList);
   }
   bindNewConfirmButton(listener) {
     this.$newConfirmButton.addEventListener("click", listener);
