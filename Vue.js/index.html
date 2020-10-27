@@ -167,7 +167,7 @@
                 <i
                   class="far fa-calendar-alt"
                   :class="{active: todo.todoDate!=''}"
-                  ><span class="hint-date">{{todo.todoDate}}</span></i
+                  ><span class="hint-date">{{todo.todoDate.split('-').join('/')}}</span></i
                 >
                 <i class="far fa-file"></i>
                 <i

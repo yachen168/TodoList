@@ -33,7 +33,7 @@ export default class Template {
           <div class="hint-icons">
               <i class="far fa-calendar-alt ${
                 todo.todoDate ? 'active' : ''
-              }"><span class="hint-date">${todo.todoDate}</span></i>
+              }"><span class="hint-date">${todo.todoDate.split('-').join('/')}</span></i>
               <i class="far fa-file"></i>
               <i class="far fa-comment-dots ${
                 todo.todoComment ? 'active' : ''
