@@ -11,7 +11,7 @@ export default class Controller {
     this.view.renderTodos(this.model.stateFilter(this.state));
     this.bindEventHandler();
 
-    this.view.switchState((e) => {
+    this.view.switchState(e => {
       this.state = e.target.dataset.name;
       this.view.renderTodos(this.model.stateFilter(this.state));
       this.bindEventHandler();
@@ -43,19 +43,19 @@ export default class Controller {
     this.view.bindCancelEditButton(() => this.renderTodos());
   }
   deleteTodo() {
-    this.view.bindDeleteButton((e) => {
+    this.view.bindDeleteButton(e => {
       this.model.deleteTodo(e.target.dataset.id);
       this.renderTodos();
     });
   }
   bindAllStar() {
-    this.view.bindStar((e) => {
+    this.view.bindStar(e => {
       this.model.bindStar(e.target.dataset.id);
       this.renderTodos();
     });
   }
   bindCheckbox() {
-    this.view.bindCheckbox((e) => {
+    this.view.bindCheckbox(e => {
       this.model.bindCheckbox(e.target.dataset.id);
       this.renderTodos();
     });

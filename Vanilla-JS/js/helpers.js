@@ -3,7 +3,7 @@ export function toggleActive(nodeItem) {
 }
 
 export function clearAllClass(nodeItems) {
-  nodeItems.forEach((nodeItem) => nodeItem.classList.remove('active'));
+  nodeItems.forEach(nodeItem => nodeItem.classList.remove('active'));
 }
 
 export function qs(selector,scope){

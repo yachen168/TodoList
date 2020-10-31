@@ -63,14 +63,14 @@ export default class View {
   }
   bindCancelEditButton(listener) {
     this.cancelButtons.each(function(i) {
-      $(this).click((e) => {
+      $(this).click(e => {
         listener(e, i);
       });
     });
   }
   bindConfirmEditButton(listener) {
     this.confirmButtons.each(function(i) {
-      $(this).click((e) => {
+      $(this).click(e => {
         listener(e, i);
       });
     });

@@ -21,44 +21,27 @@ export default class View {
     this.$todoCounter = qs('.todo-count');
     this.$nav = qs('nav ul');
 
-    this.$addTaskButton.addEventListener(
-      'click',
-      this.toggleNewCard.bind(this)
-    );
-    this.$newConfirmButton.addEventListener(
-      'click',
-      this.newConfirmButtonHandler.bind(this)
-    );
-    this.$newCancelButton.addEventListener(
-      'click',
-      this.toggleNewCard.bind(this)
-    );
-    this.$newCancelButton.addEventListener(
-      'click',
-      this.clearNewTodo.bind(this)
-    );
+    this.$addTaskButton.addEventListener('click', this.toggleNewCard.bind(this));
+    this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler.bind(this));
+    this.$newCancelButton.addEventListener('click', this.toggleNewCard.bind(this));
+    this.$newCancelButton.addEventListener('click', this.clearNewTodo.bind(this));
     this.$newStar.addEventListener('click', this.markNewTodo.bind(this));
+
     this.init();
   }
   init() {
     this.updateNode();
     this.$pens.forEach(($pen, i) => {
-      $pen.addEventListener(
-        'click',
-        this.switchToggle.bind(this.$editAreas, i)
-      );
+      $pen.addEventListener('click', this.switchToggle.bind(this.$editAreas, i));
       $pen.addEventListener('click', this.toggleInput.bind(this.$todoNames[i]));
     });
     this.$navItems.forEach(($navItem, i) => {
-      $navItem.addEventListener(
-        'click',
-        this.switchToggle.bind(this.$navItems, i)
-      );
+      $navItem.addEventListener('click', this.switchToggle.bind(this.$navItems, i));
     });
-    this.$allInputs.forEach(($input) => {
+    this.$allInputs.forEach($input => {
       $input.addEventListener('click', this.autoSelected);
     });
-    this.$allTextAreas.forEach(($textArea) => {
+    this.$allTextAreas.forEach($textArea => {
       $textArea.addEventListener('click', this.autoSelected);
     });
   }
@@ -97,21 +80,21 @@ export default class View {
     });
   }
   bindDeleteButton(listener) {
-    this.$deleteButtons.forEach(($deleteButton) => {
+    this.$deleteButtons.forEach($deleteButton => {
       $deleteButton.addEventListener('click', function(e) {
         listener(e);
       });
     });
   }
   bindStar(listener) {
-    this.$stars.forEach(($star) => {
+    this.$stars.forEach($star => {
       $star.addEventListener('click', function(e) {
         listener(e);
       });
     });
   }
   bindCheckbox(listener) {
-    this.$checkboxes.forEach(($checkbox) => {
+    this.$checkboxes.forEach($checkbox => {
       $checkbox.addEventListener('click', function(e) {
         listener(e);
       });
@@ -129,11 +112,11 @@ export default class View {
     this.init();
   }
   renderCounter(leftTodo, completedTodo, state) {
-    if (state === 'completed')
-      this.$todoCounter.innerHTML = this.template.completedCounter(
-        completedTodo
-      );
-    else this.$todoCounter.innerHTML = this.template.leftCounter(leftTodo);
+    if (state === 'completed'){
+      this.$todoCounter.innerHTML = this.template.completedCounter( completedTodo);
+    }else {
+      this.$todoCounter.innerHTML = this.template.leftCounter(leftTodo);
+    }
   }
   addNewTodo() {
     return {
@@ -148,8 +131,11 @@ export default class View {
   newConfirmButtonHandler(e) {
     e.preventDefault();
     const isTodoTitleEmpty = this.$newTodoName.value.trim();
-    if (!isTodoTitleEmpty) alert('尚未輸入代辦事項名稱');
-    else toggleActive(this.$newTodoEditArea);
+    if (!isTodoTitleEmpty){
+      alert('尚未輸入代辦事項名稱');
+    }else {
+      toggleActive(this.$newTodoEditArea);
+    }
   }
   editDone(index) {
     return {
