@@ -19,13 +19,15 @@ export default class View {
     this.todoCounter = $('.todo-count');
     this.nav = $('nav ul');
 
-    this.addTaskButton.on('click', this.toggleNewCard.bind(this));
-    this.newConfirmButton.on('click', this.newConfirmButtonHandler.bind(this));
-    this.newCancelButton.on('click', this.toggleNewCard.bind(this));
-    this.newCancelButton.on('click', this.clearNewTodo.bind(this));
-    this.newStar.on('click', this.markNewTodo.bind(this));
+    this.addTaskButton.on('click', this.toggleNewCard);
+    this.newConfirmButton.on('click', this.newConfirmButtonHandler);
+    this.newCancelButton.on('click', this.toggleNewCard);
+    this.newCancelButton.on('click', this.clearNewTodo);
+    this.newStar.on('click', this.markNewTodo);
+
     this.init();
   }
+
   init() {
     this.updateNode();
     this.pens.each((i, pen) => {
@@ -41,6 +43,7 @@ export default class View {
     this.allInputs.on('click', this.autoSelected);
     this.allTextAreas.on('click', this.autoSelected);
   }
+
   updateNode() {
     this.todoBars = $('.todo-list .todo-bar');
     this.todoNames = $('.todo-list .todo-name');
@@ -58,9 +61,11 @@ export default class View {
     this.allInputs = $('input');
     this.allTextAreas = $('textarea');
   }
+
   bindNewConfirmButton(listener) {
     this.newConfirmButton.on('click', listener);
   }
+
   bindCancelEditButton(listener) {
     this.cancelButtons.each(function(i) {
       $(this).click(e => {
@@ -68,6 +73,7 @@ export default class View {
       });
     });
   }
+
   bindConfirmEditButton(listener) {
     this.confirmButtons.each(function(i) {
       $(this).click(e => {
@@ -75,21 +81,25 @@ export default class View {
       });
     });
   }
+
   bindDeleteButton(listener) {
     this.deleteButtons.on('click', function(e) {
       listener(e);
     });
   }
+
   bindStar(listener) {
     this.stars.on('click', function(e) {
       listener(e);
     });
   }
+
   bindCheckbox(listener) {
     this.checkboxes.on('click', function(e) {
       listener(e);
     });
   }
+
   switchState(listener) {
     this.nav.on('click', function(e) {
       if (e.target.matches('li')) {
@@ -97,17 +107,19 @@ export default class View {
       }
     });
   }
+
   renderTodos(todos) {
     this.todoList.html(this.template.todoItem(todos));
     this.init();
   }
+
   renderCounter(leftTodo, completedTodo, state) {
     if (state === 'completed')
       this.todoCounter.html(this.template.completedCounter(completedTodo));
     else this.todoCounter.html(this.template.leftCounter(leftTodo));
   }
+
   addNewTodo() {
-    console.log(this.newCheckbox);
     return {
       todoTitle: this.newTodoName.val(),
       todoComment: this.newTodoComment.val(),
@@ -117,12 +129,32 @@ export default class View {
       isCompleted: this.newCheckbox.prop('checked'),
     };
   }
-  newConfirmButtonHandler(e) {
+
+  newConfirmButtonHandler = (e) => {
     e.preventDefault();
     const isTodoTitleEmpty = $.trim(this.newTodoName.val());
     if (!isTodoTitleEmpty) alert('尚未輸入代辦事項名稱');
     else this.newTodoEditArea.toggleClass('active');
   }
+
+  markNewTodo = () => {
+    this.newTodoBar.toggleClass('active');
+  }
+  
+  toggleNewCard = (e) => {
+    e.preventDefault();
+    this.newTodoEditArea.toggleClass('active');
+  }
+  
+  clearNewTodo = () => {
+    this.newTodoName.val('');
+    this.newTodoComment.val('');
+    this.newTodoDate.val('');
+    this.newTodoTime.val('');
+    this.newTodoBar.removeClass('active');
+    this.newCheckbox.prop('checked', false);
+  }
+
   editDone(index) {
     return {
       todoTitle: $(this.todoNames[index]).val(),
@@ -133,28 +165,16 @@ export default class View {
       isCompleted: $(this.checkboxes[index]).prop('checked'),
     };
   }
-  clearNewTodo() {
-    this.newTodoName.val('');
-    this.newTodoComment.val('');
-    this.newTodoDate.val('');
-    this.newTodoTime.val('');
-    this.newTodoBar.removeClass('active');
-    this.newCheckbox.prop('checked', false);
-  }
+
   autoSelected() {
     this.select();
   }
-  markNewTodo() {
-    this.newTodoBar.toggleClass('active');
-  }
+
   switchToggle(index, e) {
     this.removeClass('active');
     $(this[index]).addClass('active');
   }
-  toggleNewCard(e) {
-    e.preventDefault();
-    this.newTodoEditArea.toggleClass('active');
-  }
+
   toggleInput() {
     this.disabled = !this.disabled;
   }

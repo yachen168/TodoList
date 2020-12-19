@@ -21,14 +21,15 @@ export default class View {
     this.$todoCounter = qs('.todo-count');
     this.$nav = qs('nav ul');
 
-    this.$addTaskButton.addEventListener('click', this.toggleNewCard.bind(this));
-    this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler.bind(this));
-    this.$newCancelButton.addEventListener('click', this.toggleNewCard.bind(this));
-    this.$newCancelButton.addEventListener('click', this.clearNewTodo.bind(this));
-    this.$newStar.addEventListener('click', this.markNewTodo.bind(this));
+    this.$addTaskButton.addEventListener('click', this.toggleNewCard);
+    this.$newConfirmButton.addEventListener('click', this.newConfirmButtonHandler);
+    this.$newCancelButton.addEventListener('click', this.toggleNewCard);
+    this.$newCancelButton.addEventListener('click', this.clearNewTodo);
+    this.$newStar.addEventListener('click', this.markNewTodo);
 
     this.init();
   }
+
   init() {
     this.updateNode();
     this.$pens.forEach(($pen, i) => {
@@ -45,6 +46,7 @@ export default class View {
       $textArea.addEventListener('click', this.autoSelected);
     });
   }
+
   updateNode() {
     this.$todoBars = qsAll('.todo-bar',this.$todoList,this.$todoList);
     this.$todoNames = qsAll('.todo-name',this.$todoList);
@@ -62,9 +64,11 @@ export default class View {
     this.$allInputs = qsAll('input',this.$todoList);
     this.$allTextAreas = qsAll('textarea',this.$todoList);
   }
+
   bindNewConfirmButton(listener) {
     this.$newConfirmButton.addEventListener('click', listener);
   }
+
   bindCancelEditButton(listener) {
     this.$cancelButtons.forEach(($cancelButton, i) => {
       $cancelButton.addEventListener('click', function(e) {
@@ -72,6 +76,7 @@ export default class View {
       });
     });
   }
+
   bindConfirmEditButton(listener) {
     this.$confirmButtons.forEach(($confirmButton, i) => {
       $confirmButton.addEventListener('click', function(e) {
@@ -79,6 +84,7 @@ export default class View {
       });
     });
   }
+
   bindDeleteButton(listener) {
     this.$deleteButtons.forEach($deleteButton => {
       $deleteButton.addEventListener('click', function(e) {
@@ -86,6 +92,7 @@ export default class View {
       });
     });
   }
+
   bindStar(listener) {
     this.$stars.forEach($star => {
       $star.addEventListener('click', function(e) {
@@ -93,6 +100,7 @@ export default class View {
       });
     });
   }
+
   bindCheckbox(listener) {
     this.$checkboxes.forEach($checkbox => {
       $checkbox.addEventListener('click', function(e) {
@@ -100,6 +108,7 @@ export default class View {
       });
     });
   }
+
   switchState(listener) {
     this.$nav.addEventListener('click', function(e) {
       if (e.target.matches('li')) {
@@ -107,10 +116,12 @@ export default class View {
       }
     });
   }
+
   renderTodos(todos) {
     this.$todoList.innerHTML = this.template.todoItem(todos);
     this.init();
   }
+
   renderCounter(leftTodo, completedTodo, state) {
     if (state === 'completed'){
       this.$todoCounter.innerHTML = this.template.completedCounter( completedTodo);
@@ -118,6 +129,7 @@ export default class View {
       this.$todoCounter.innerHTML = this.template.leftCounter(leftTodo);
     }
   }
+
   addNewTodo() {
     return {
       todoTitle: this.$newTodoName.value,
@@ -128,7 +140,8 @@ export default class View {
       isCompleted: this.$newCheckbox.checked,
     };
   }
-  newConfirmButtonHandler(e) {
+
+  newConfirmButtonHandler = (e) => {
     e.preventDefault();
     const isTodoTitleEmpty = this.$newTodoName.value.trim();
     if (!isTodoTitleEmpty){
@@ -137,6 +150,25 @@ export default class View {
       toggleActive(this.$newTodoEditArea);
     }
   }
+
+  markNewTodo = () => {
+    toggleActive(this.$newTodoBar);
+  }
+
+  toggleNewCard = (e) => {
+    e.preventDefault();
+    toggleActive(this.$newTodoEditArea);
+  }
+
+  clearNewTodo = () => {
+    this.$newTodoName.value = '';
+    this.$newTodoComment.value = '';
+    this.$newTodoDate.value = '';
+    this.$newTodoTime.value = '';
+    this.$newTodoBar.classList.remove('active');
+    this.$newCheckbox.checked = false;
+  }
+
   editDone(index) {
     return {
       todoTitle: this.$todoNames[index].value,
@@ -147,28 +179,16 @@ export default class View {
       isCompleted: this.$checkboxes[index].checked,
     };
   }
-  clearNewTodo() {
-    this.$newTodoName.value = '';
-    this.$newTodoComment.value = '';
-    this.$newTodoDate.value = '';
-    this.$newTodoTime.value = '';
-    this.$newTodoBar.classList.remove('active');
-    this.$newCheckbox.checked = false;
-  }
+
   autoSelected() {
     this.select();
   }
-  markNewTodo() {
-    toggleActive(this.$newTodoBar);
-  }
+
   switchToggle(index) {
     clearAllClass(this);
     toggleActive(this[index]);
   }
-  toggleNewCard(e) {
-    e.preventDefault();
-    toggleActive(this.$newTodoEditArea);
-  }
+
   toggleInput() {
     this.disabled = !this.disabled;
   }
