@@ -4,11 +4,16 @@ export default class Controller {
     this.view = view;
     this.state = 'all';
 
+    this.init();
+
+  }
+  
+  init = () => {
     this.renderTodos();
     this.bindNewConfirmButton();
   }
 
-  renderTodos() {
+  renderTodos = () => {
     this.view.renderTodos(this.model.stateFilter(this.state));
     this.bindEventHandler();
 
@@ -19,13 +24,13 @@ export default class Controller {
     });
   }
 
-  renderCounter() {
+  renderCounter = () => {
     let leftTodo = this.model.leftCounter();
     let completedTodo = this.model.completedCounter();
     this.view.renderCounter(leftTodo, completedTodo, this.state);
   }
 
-  addNewTodo() {
+  addNewTodo = () => {
     const newTodo = this.view.addNewTodo();
     const todoTitleEmpty = /^\s*$/;
     const isTodoTitleEmpty = todoTitleEmpty.test(newTodo.todoTitle);
@@ -37,40 +42,40 @@ export default class Controller {
     }
   }
   
-  editDone() {
+  editDone = () => {
     this.view.bindConfirmEditButton((e, index) => {
       this.model.editDone(this.view.editDone(index), e.target.dataset.id);
       this.renderTodos();
     });
   }
 
-  editCanceled() {
+  editCanceled = () => {
     this.view.bindCancelEditButton(() => this.renderTodos());
   }
 
-  deleteTodo() {
+  deleteTodo = () => {
     this.view.bindDeleteButton((e) => {
       this.model.deleteTodo(e.target.dataset.id);
       this.renderTodos();
     });
   }
 
-  bindAllStar() {
+  bindAllStar = () => {
     this.view.bindStar((e) => {
       this.model.bindStar(e.target.dataset.id);
       this.renderTodos();
     });
   }
 
-  bindCheckbox() {
+  bindCheckbox = () => {
     this.view.bindCheckbox((e) => {
       this.model.bindCheckbox(e.target.dataset.id);
       this.renderTodos();
     });
   }
 
-  bindNewConfirmButton() {
-    this.view.bindNewConfirmButton(this.addNewTodo.bind(this));
+  bindNewConfirmButton = () => {
+    this.view.bindNewConfirmButton(this.addNewTodo);
   }
   
   bindEventHandler() {
