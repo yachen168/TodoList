@@ -85,7 +85,7 @@ export default class View {
     });
   }
 
-  bindDeleteButton(listener) {
+  deleteTodo(listener) {
     this.$deleteButtons.forEach($deleteButton => {
       $deleteButton.addEventListener('click', function(e) {
         listener(e);

@@ -49,29 +49,15 @@ export default class Controller {
     });
   }
 
+  bindHandler = (bindType) => {
+    return this.view[bindType](e => {
+      this.model[bindType](e.target.dataset.id);
+      this.renderTodos();
+    })
+  }
+
   editCanceled = () => {
     this.view.bindCancelEditButton(() => this.renderTodos());
-  }
-
-  deleteTodo = () => {
-    this.view.bindDeleteButton(e => {
-      this.model.deleteTodo(e.target.dataset.id);
-      this.renderTodos();
-    });
-  }
-
-  bindAllStar = () => {
-    this.view.bindStar(e => {
-      this.model.bindStar(e.target.dataset.id);
-      this.renderTodos();
-    });
-  }
-
-  bindCheckbox = () => {
-    this.view.bindCheckbox(e => {
-      this.model.bindCheckbox(e.target.dataset.id);
-      this.renderTodos();
-    });
   }
 
   bindNewConfirmButton = () => {
@@ -80,10 +66,10 @@ export default class Controller {
 
   bindEventHandler = () => {
     this.renderCounter();
-    this.deleteTodo();
-    this.bindAllStar();
+    this.bindHandler('bindStar');
+    this.bindHandler('bindCheckbox');
+    this.bindHandler('deleteTodo');
     this.editDone();
     this.editCanceled();
-    this.bindCheckbox();
   }
 }
