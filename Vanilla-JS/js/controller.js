@@ -57,7 +57,7 @@ export default class Controller {
   }
 
   editCanceled = () => {
-    this.view.bindCancelEditButton(() => this.renderTodos());
+    this.view.bindCancelEditButton(this.renderTodos);
   }
 
   bindNewConfirmButton = () => {
