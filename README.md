@@ -1,8 +1,8 @@
 # to-do-list
-實作 Vanilla JS / jQuery / Vue.js 三種版本的 TodoList，目的為瞭解事件驅動與資料驅動，其中 Vanilla JS 與 jQuery 版本採用 MVC 架構分離畫面邏輯與資料邏輯。
+實作 Vanilla JS / jQuery / Vue.js / React.js 四種版本的 TodoList，其中 Vanilla JS 與 jQuery 版本採用 MVC 架構分離畫面邏輯與資料邏輯。
 
 ## Demo
-[Vanilla JS](https://yachen168.github.io/TodoList/Vanilla-JS) | [Vue.js](https://yachen168.github.io/TodoList/Vue.js) | [jQuery](https://yachen168.github.io/TodoList/jQuery)
+[Vanilla JS](https://yachen168.github.io/TodoList/Vanilla-JS) | [Vue.js](https://yachen168.github.io/TodoList/Vue.js) | [jQuery](https://yachen168.github.io/TodoList/jQuery) | [React.js](https://github.com/yachen168/React-TodoList)
 
 
 ![](./images/demo.gif)
