@@ -1,0 +1,54 @@
+/* reset */
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+/* base */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #E1E1E1;
+}
+
+main {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 30px 5px;
+}
+
+button {
+  cursor: pointer;
+}
+
